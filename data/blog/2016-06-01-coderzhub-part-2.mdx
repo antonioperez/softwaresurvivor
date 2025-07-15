@@ -1,0 +1,139 @@
+---
+title: 'CoderzHub - Part 2'
+date: '2016-06-01 23:43:22'
+tags: []
+draft: false
+summary: ''
+images: []
+---
+
+<div class="layoutArea">
+<div class="column">
+
+Coderzhub code samples. <span class="s1">Codershub is a social network for coders and aims to bring coders together on original projects. Projects are imported from Github for a link to code can be established. </span>
+
+</div>
+</div>
+<div class="layoutArea">
+<div class="column">
+
+The previous post defined the models, and the way the view and controller are used in Django requires a definition of the business code to handle the data. This function checks if the user is authenticated or else it sends the user back to login and create a session cookie. Through this function, the server handles the POST request data from a form in the view file.
+
+&nbsp;
+<div class="page" title="Page 8">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<pre>def CreateForum(request):
+    if not request.user.is_authenticated():
+        return HttpResponseRedirect("/login")
+    if request.method == 'POST':
+        forum_form = ForumForm(request.POST) if forum_form.is_valid():
+        new_forum = forum_form.save(commit=False) new_forum.public = True
+        new_forum.save()
+        return HttpResponseRedirect('/projects/forums')
+    else:
+        forum_form = ForumForm()
+    
+    return render(request, 'forum/add_forum.html', {'forum_form': forum_form,})</pre>
+</div>
+</div>
+</div>
+</div>
+&nbsp;
+<div class="page" title="Page 8">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+
+Though to map the URL to this particular method, Django needs to easily access the definition. For example, the function name is assigned to a unique URL for the server to direct traffic to.
+<pre>urlpatterns = patterns('',
+   url(r'^$', ProjectDashboard, name='')
+   url(r'^forums/$', PublicForums, name='Public Forums'), url(r'^create/forum/$', CreateForum, name='Create Forum'),</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="page" title="Page 8">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<div class="page" title="Page 9">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<h2><strong>Voting</strong></h2>
+Users are able to vote on thread to increase their popularity. The more popular the thread is the more likely users will see it. To enhance the user experience, when a user voted on a thread, it could not be refreshed as if a major submit was pressed. The submission had to be in real time. This is the advantage of Ajax to create an asynchronous web application. Since there are multiple threads, each require a unique id to send the vote to the right thread. A general Ajax function is needed to keep code small and maintainable. When the header is generated in HTML, a hidden input with the value of the thread ID is places there.
+
+</div>
+</div>
+</div>
+</div>
+&nbsp;
+<div class="page" title="Page 10">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+<pre>&lt;h3 class="panel-title" id="panel-title"&gt;{{t.topic}}
+ &lt;span class="pull-right label label-info" id="votes"&gt;{{t.votes}}&lt;/span&gt;
+ &lt;input type="hidden" value="{{t.id}}" name="thread_id" id="thread_id" /&gt;&lt;/h3&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+&nbsp;
+<div class="page" title="Page 10">
+<div class="section">
+<div class="layoutArea">
+<div class="column">
+
+Next, Jquery’s ‘.on’ call is necessary to send the AJAX call when the up-vote or down- vote button is pressed multiple times on the same page. This can be done with the following JavaScript/JQuery code. The buttons are within the same &lt;div&gt; tag of the hidden input, so we can use multiple Jquery functions such as parent() to transverse up the DOM tree to find the hidden input, then a AJAX POST data is sent with a command to add or subtract a vote, along with the thread ID.
+
+&nbsp;
+<pre>  &lt;script&gt;
+ function vote(data) {
+ url = '/projects/vote/';
+ $.ajax({
+    url: url,
+    type: 'post',
+    data: data,
+    success: function(data) {},
+    failure: function(data) {}
+  });
+ }
+ $(".upvote").on("click", function() {
+
+      voting = $(this).parent().parent().find('#votes');
+      id = $(this).parent().parent().find('#panel- title').children('input:hidden').val();
+      votes = parseInt(voting.text()) + 1;
+      data = {
+        'id': id,
+        'vote': 'upvote'
+      };
+    vote(data);
+    return voting.text(votes);
+ });
+ &lt;/script&gt;</pre>
+</div>
+</div>
+</div>
+</div>
+<h2 class="p1"><span class="s1"><strong>Search</strong></span></h2>
+<p class="p3"><span class="s1">In an attempt to divide searching into multiple functions rather than a single one is due to the fact that multiple tables would require to be queried to produce the results and kept the initial stage simple to implement. An attempt to not rely on the way the database orders the queries results, a search algorithm that first checks likeness of words such as ‘py’ to ‘python’ was developed, but misspellings made it very inefficient and error prone. The follow code shows a simple query done in a controller method.</span></p>
+&nbsp;
+<pre class="p1"><span class="s1">def search_by_user(request, username):
+</span><span class="s1"><span class="Apple-converted-space">    </span>users = HubUser.objects.filter(user__username__contains=username)
+</span><span class="s1"><span class="Apple-converted-space">    </span>if users:
+</span><span class="s1"><span class="Apple-converted-space">        </span>user_list = []
+</span><span class="s1"><span class="Apple-converted-space">        </span>for user in users:
+</span><span class="s1"><span class="Apple-converted-space">           </span>projects = Project.objects.filter(owners=user)</span><span class="s1"><span class="Apple-converted-space">            
+</span>           user_list.append({'username': user.user, 'github_name': user.github, </span><span class="s1">'project_count': projects.count()})
+</span><span class="s1"><span class="Apple-converted-space">        </span>return render(request, 'search/search_list.html', {'user_name': username,</span><span class="s1"><span class="Apple-converted-space">                                                </span>'user_list': user_list})
+</span><span class="s1"><span class="Apple-converted-space">    </span>else:
+</span><span class="s1"><span class="Apple-converted-space">        </span>return HttpResponseRedirect('/search/error')</span></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>

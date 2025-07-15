@@ -1,0 +1,39 @@
+---
+title: 'An AWS Code Build spec for your typescript node project'
+date: '2019-06-15 17:00:49'
+tags: ['A AWS Code Build spec for your typescript node project', 'How to setup CI/CD for your typescript build on AWS Code Pipeline', 'typescript build on AWS CodePipeline and Elastic BeanStalk']
+draft: false
+summary: ''
+images: []
+---
+
+<div align="center"><img class="aligncenter size-full wp-image-6703" src="https://softwaresurvivor.com/wp-content/uploads/2019/07/baccab28f77c594ee6b73de0224e75bd.png" alt="AWS Code Build" width="676" height="336" /></div>
+<a href="https://aws.amazon.com/codebuild/">AWS Code Build</a> is a great addition to your <a href="https://aws.amazon.com/">AWS</a> infrastructure. Today, we are going to focus on one aspect of the software deployment process. <strong>Building!</strong> Before we dive in, let me provide some context about the architecture and my plan for the CI/CD process. The project behind this post is a <a href="https://nodejs.org/en/">node.js</a> <a href="https://expressjs.com/">express</a> project written in <a href="https://www.typescriptlang.org/">typescript</a>. The API is served on <a href="https://aws.amazon.com/elasticbeanstalk/">Elastic Bean Stalk</a>. We want to auto deploy our code versions to elastic beanstalk by using AWS Codebuild and then later <a href="https://aws.amazon.com/codepipeline/">Code Pipeline</a> to push the resulting build to the Elastic Bean Stalk instance.
+
+<strong>Deployments suck</strong>. You build this great product on your local machine and now you have to deploy it to the masses. You spent so much time focusing on the product, that you forgot to scope out the deployment process. It's DevOps! How hard can it be?! ... err.. guilty. There are so many ways to do deployment, as is common in this field. You can easily spend a whole day researching different deployment tools for your environment. You try to understand why certain products exists, weigh the pros and cons of each based on opinionated words of others. Perhaps integrations between different platforms are possible. Travis for AWS? How are those set up? Death by a thousand choices and words. Now with the setup above, we can focus on our code, and let automation tools worry about the builds. I also wanted to keep it all on AWS.
+
+Let's worry about Git. Branch management is important, but that's a different topic for another day. In my project, I have two special branches, a 'staging'  and a 'production' one. I have two AWS Code Build configurations watching these two branches for any changes. If a change is detected, for example, I merged my development branch into staging or staging into production, a code build will fire and the pipeline is executed. A minute later, our project has a new release! Magic!
+
+For AWS Code Build, you need a buildspec.yml in your git repo to tell the server how to install and build your project. In this case, my package json file has an npm command called build-ts that runs <code>tsc</code>.  You can also include your tests command here, but I'll come back to that at a later post.
+
+The artifacts section is also important. Elastic Bean stalk expects us to zip the contents of the result, not the resulting build folder. So I am grabbing three things here. The package.json file, the read me, and the contents of the dist folder.
+<pre>//buildspec.yml
+version: 0.2
+phases:
+    install:
+        commands:
+            - 'npm install'
+    build:
+        commands:
+            - 'npm run build-ts'
+artifacts:
+    type: zip
+    files:
+        - package.json
+        - package-lock.json
+        - 'dist/**/*'
+        - README.md
+</pre>
+Head on over to AWS Pipeline to setup a pipeline. When you set up a pipeline, you can set the source, and later a build project. It's easier than going to each step, setting it up individually, and later connecting them. I plan on showing each step in detail in my next post, but hopefully you're at a point where you either need the build spec, or just a general overview of this type of AWS infrastructure. Happy coding!
+
+<img class="aligncenter size-full wp-image-6705" src="https://softwaresurvivor.com/wp-content/uploads/2019/07/a6f8ed3dbf2b27748e0f7ae332f821b6.png" alt="Code Pipeline" width="3132" height="1734" />

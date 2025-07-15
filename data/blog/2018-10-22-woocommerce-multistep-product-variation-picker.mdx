@@ -1,0 +1,85 @@
+---
+title: 'Woocommerce Multistep Product Variation Picker'
+date: '2018-10-22 22:22:03'
+tags: ['Multistep Product Variation Builder']
+draft: false
+summary: ''
+images: []
+---
+
+<h1>Woocommerce Multistep Product Variation Picker</h1>
+[rev_slider alias="productbuilder"][/rev_slider]
+
+<span style="font-weight: 400;">This <strong>Woocommerce</strong> <strong>Multistep Product Variation Builder</strong> or Picker gives your customers a wonderful user experience for your product variation options. </span>
+
+<span style="font-weight: 400;">Built-in functionality to allow your customers to upload artwork (pdf, jpeg, or png) on the product page and charge by the area of specific measurements. Just set your product variation pricing! Artwork links also appear in their order history and can issue a reorder with the same upload!</span>
+<h2><span style="font-weight: 400;">Live Demo</span></h2>
+<ul>
+ 	<li><a href="https://www.printshackclovis.com/store/">Print Shack Clovis</a></li>
+</ul>
+<a href="https://www.dropbox.com/s/11cao3w520xcsyi/wp-product-builder.zip?dl=0">BETA DOWNLOAD: download</a>
+<h2><span style="font-weight: 400;">Features</span></h2>
+<ul>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Set an attribute thumbnail</span></li>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Allow file upload for a product</span></li>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Builtin area measurement pricing</span></li>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Show variation pricing per each step</span></li>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Show options in grid or row style</span></li>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Easily configurable with custom CSS input or color schemes</span></li>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Responsive out of the box</span></li>
+</ul>
+<h2><span style="font-weight: 400;">Install</span></h2>
+<span style="font-weight: 400;">Upload the multistep-product-builder unzipped folder to your WordPress plugin directory and activate it in your Plugins page.</span>
+
+<span style="font-weight: 400;">The Multistep Product Builder plugin uses the following Woocommerce action to load the builder. </span>
+<pre><b>do_action( 'woocommerce_single_product_summary' );</b></pre>
+<h2><span style="font-weight: 400;">How does it work?</span></h2>
+Steps
+<ol>
+ 	<li><span style="font-weight: 400;">Create global product attributes</span>
+<ul>
+ 	<li><span style="font-weight: 400;">Upload Images for individual product attributes (optional)</span></li>
+</ul>
+</li>
+ 	<li><span style="font-weight: 400;">Add custom attributes to the product</span>
+<ul>
+ 	<li>Add pricing information to the attribute description</li>
+</ul>
+</li>
+ 	<li><span style="font-weight: 400;">Setup Product Variations and Pricing</span></li>
+ 	<li><span style="font-weight: 400;">Enable Product Variation Builder for an individual product or set admin setting for all variation products in your catalog. </span></li>
+</ol>
+<h2><span style="font-weight: 400;">How do you enable measurement pricing?</span></h2>
+<span style="font-weight: 400;">Add area width/height pricing by creating a global attribute with the slug </span><b>‘measurements’</b><span style="font-weight: 400;"> and adding it to one of the product’s customs attributes. </span>
+
+<span style="font-weight: 400;">It doesn’t have to be added to the variation, just the product custom attribute. Make sure to create term with slugs of style ‘</span><b>3-x-3</b><span style="font-weight: 400;">’, or </span><b>‘2-5-x-2-5</b><span style="font-weight: 400;">’ for decimal options. </span>
+<h2><span style="font-weight: 400;">How do you enable file upload?</span></h2>
+<span style="font-weight: 400;">Create an attribute with the slug ‘artwork’ and one term with slug ‘artwork’ to be used as the menu title and to enable the file upload field. </span>
+<h2><span style="font-weight: 400;">Do I need to enable quantity terms?</span></h2>
+<span style="font-weight: 400;">No. If you don’t set individual terms for quantity. The product builder will add the qty input box right above the add to bag button is the quantity attribute isn't found. </span>
+<h2><span style="font-weight: 400;">Reserved attribute slugs and values</span></h2>
+<span style="font-weight: 400;">The Multistep product variation builder uses reserved attributes slug to activate certain features. Set the main slug to one of the following and then the term slug. The name of the attribute is used for the side menu and the name of the term is used as the option title. You can also add a description. </span>
+<ul>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">‘</span><b>measurements</b><span style="font-weight: 400;">’: set each slug to the measurement separated by ‘-</span><b>x-</b><span style="font-weight: 400;">’. Add partial decimals by using an addition ‘-’ character.  </span>
+<ul>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Term example: ‘</span><b>3-x-3</b><span style="font-weight: 400;">’, </span><b>‘2-5-x-2-5’</b></li>
+</ul>
+</li>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">‘</span><b>quantity</b><span style="font-weight: 400;">’: set each slug to a numerical value. Add more than just an input qty field. </span>
+<ul>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Term example: </span><b>‘20’</b><span style="font-weight: 400;">, </span><b>‘300’</b><span style="font-weight: 400;">,</span></li>
+</ul>
+</li>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">‘</span><b>artwork</b><span style="font-weight: 400;">’: Set each attribute and attribute slug to ‘artwork’ to enable file upload. </span>
+<ul>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Term example: </span><b>‘artwork’</b></li>
+</ul>
+</li>
+</ul>
+<h2><span style="font-weight: 400;">Supported/Tested Woocomerce Versions:</span></h2>
+<ul>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Woocomerce 3.4.x</span></li>
+ 	<li style="font-weight: 400;"><span style="font-weight: 400;">Woocomerce 3.3.x</span></li>
+</ul>
+<h2><a href="https://perezprogramming.com/contact/">Contact for questions</a> or buy at...</h2>
+[embed]https://youtu.be/W4nktpCgzw8[/embed]
