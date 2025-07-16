@@ -10,7 +10,7 @@
   --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-  /* Brand Colors - Software Survivor */
+  /* Brand Colors - Software Survivor #BD0617 */
   --color-brand-50: oklch(0.98 0.01 15.5);   /* Lightest brand color */
   --color-brand-100: oklch(0.95 0.02 15.5);
   --color-brand-200: oklch(0.90 0.04 15.5);
@@ -36,7 +36,7 @@
   --color-primary-900: var(--color-brand-900);
   --color-primary-950: var(--color-brand-950);
 
-  /* Accent Colors */
+  /* Accent Colors - Complementary to brand */
   --color-accent-50: oklch(0.98 0.01 200);   /* Light blue accent */
   --color-accent-100: oklch(0.95 0.02 200);
   --color-accent-200: oklch(0.90 0.04 200);
@@ -75,7 +75,7 @@
   --color-warning-900: oklch(0.25 0.45 60);
   --color-warning-950: oklch(0.15 0.50 60);
 
-  /* Error Colors */
+  /* Error Colors - Using brand color for consistency */
   --color-error-50: oklch(0.98 0.01 15.5);
   --color-error-100: oklch(0.95 0.02 15.5);
   --color-error-200: oklch(0.90 0.04 15.5);

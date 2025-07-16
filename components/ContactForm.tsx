@@ -95,9 +95,9 @@ export default function ContactForm() {
     return (
       <div className="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800">
         <div className="text-center">
-          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-success-100 dark:bg-success-900">
+          <div className="bg-success-100 dark:bg-success-900 mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full">
             <svg
-              className="h-6 w-6 text-success-600 dark:text-success-400"
+              className="text-success-600 dark:text-success-400 h-6 w-6"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -126,11 +126,11 @@ export default function ContactForm() {
       <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Get in Touch</h2>
 
       {status.error && (
-        <div className="mb-6 rounded-lg bg-error-50 p-4 dark:bg-error-900/20">
+        <div className="bg-error-50 dark:bg-error-900/20 mb-6 rounded-lg p-4">
           <div className="flex">
             <div className="flex-shrink-0">
               <svg
-                className="h-5 w-5 text-error-400"
+                className="text-error-400 h-5 w-5"
                 fill="none"
                 stroke="currentColor"
                 viewBox="0 0 24 24"
@@ -144,12 +144,8 @@ export default function ContactForm() {
               </svg>
             </div>
             <div className="ml-3">
-              <h3 className="text-sm font-medium text-error-800 dark:text-error-200">
-                Error
-              </h3>
-              <div className="mt-2 text-sm text-error-700 dark:text-error-300">
-                {status.error}
-              </div>
+              <h3 className="text-error-800 dark:text-error-200 text-sm font-medium">Error</h3>
+              <div className="text-error-700 dark:text-error-300 mt-2 text-sm">{status.error}</div>
             </div>
           </div>
         </div>
@@ -158,7 +154,10 @@ export default function ContactForm() {
       <form onSubmit={handleSubmit} className="space-y-6">
         <div className="grid gap-6 md:grid-cols-2">
           <div>
-            <label htmlFor="firstName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="firstName"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               First Name *
             </label>
             <input
@@ -168,13 +167,16 @@ export default function ContactForm() {
               value={formData.firstName}
               onChange={handleInputChange}
               required
-              className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-brand-500 focus:ring-brand-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+              className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
               placeholder="John"
             />
           </div>
 
           <div>
-            <label htmlFor="lastName" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+            <label
+              htmlFor="lastName"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
               Last Name *
             </label>
             <input
@@ -184,14 +186,17 @@ export default function ContactForm() {
               value={formData.lastName}
               onChange={handleInputChange}
               required
-              className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-brand-500 focus:ring-brand-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+              className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
               placeholder="Doe"
             />
           </div>
         </div>
 
         <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="email"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Email Address *
           </label>
           <input
@@ -201,13 +206,16 @@ export default function ContactForm() {
             value={formData.email}
             onChange={handleInputChange}
             required
-            className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-brand-500 focus:ring-brand-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+            className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
             placeholder="john@company.com"
           />
         </div>
 
         <div>
-          <label htmlFor="company" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="company"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Company
           </label>
           <input
@@ -216,13 +224,16 @@ export default function ContactForm() {
             name="company"
             value={formData.company}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-brand-500 focus:ring-brand-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+            className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
             placeholder="Your Company"
           />
         </div>
 
         <div>
-          <label htmlFor="service" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="service"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Service of Interest
           </label>
           <select
@@ -230,7 +241,7 @@ export default function ContactForm() {
             name="service"
             value={formData.service}
             onChange={handleInputChange}
-            className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 focus:border-brand-500 focus:ring-brand-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+            className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
           >
             <option value="">Select a service</option>
             <option value="custom-development">Custom Software Development</option>
@@ -242,7 +253,10 @@ export default function ContactForm() {
         </div>
 
         <div>
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          <label
+            htmlFor="message"
+            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+          >
             Message *
           </label>
           <textarea
@@ -252,7 +266,7 @@ export default function ContactForm() {
             onChange={handleInputChange}
             required
             rows={6}
-            className="mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 focus:border-brand-500 focus:ring-brand-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+            className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
             placeholder="Tell us about your project and how we can help..."
           />
         </div>
@@ -260,7 +274,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={status.isSubmitting}
-          className="group relative inline-flex w-full items-center justify-center overflow-hidden rounded-lg bg-brand-600 px-6 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:bg-brand-700 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-brand-500 focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+          className="group bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 relative inline-flex w-full items-center justify-center overflow-hidden rounded-lg px-6 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:ring-2 focus:ring-offset-2 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
         >
           {status.isSubmitting ? (
             <div className="flex items-center justify-center">
@@ -284,7 +298,7 @@ export default function ContactForm() {
           ) : (
             <span className="relative z-10">Send Message</span>
           )}
-          <div className="absolute inset-0 bg-gradient-to-r from-brand-700 to-brand-800 opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+          <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
         </button>
       </form>
     </div>

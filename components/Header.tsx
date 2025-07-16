@@ -8,7 +8,8 @@ import SearchButton from './SearchButton'
 import Image from 'next/image'
 
 const Header = () => {
-  let headerClass = 'flex items-center w-full bg-white/95 backdrop-blur-sm dark:bg-gray-950/95 justify-between py-6 border-b border-gray-200 dark:border-gray-800 relative z-50'
+  let headerClass =
+    'flex items-center w-full bg-white/95 backdrop-blur-sm dark:bg-gray-950/95 justify-between py-6 border-b border-gray-200 dark:border-gray-800 relative z-50'
   if (siteMetadata.stickyNav) {
     headerClass += ' sticky top-0'
   }
@@ -16,12 +17,12 @@ const Header = () => {
   return (
     <header className={headerClass}>
       <Link href="/" aria-label={siteMetadata.headerTitle}>
-        <div className="flex items-center justify-between group">
+        <div className="group flex items-center justify-between">
           <div className="mr-3 transition-transform duration-300 group-hover:scale-105">
             <Image src="/static/images/big-logo.png" alt="Logo" width={32} height={32} />
           </div>
           {typeof siteMetadata.headerTitle === 'string' ? (
-            <div className="hidden h-6 text-2xl font-bold text-gray-900 dark:text-white sm:block group-hover:text-brand-600 dark:group-hover:text-brand-400 transition-colors duration-300">
+            <div className="group-hover:text-brand-600 dark:group-hover:text-brand-400 hidden h-6 text-2xl font-bold text-gray-900 transition-colors duration-300 sm:block dark:text-white">
               {siteMetadata.headerTitle}
             </div>
           ) : (
@@ -37,10 +38,10 @@ const Header = () => {
               <Link
                 key={link.title}
                 href={link.href}
-                className="m-1 font-medium text-gray-700 dark:text-gray-300 hover:text-brand-600 dark:hover:text-brand-400 transition-colors duration-300 relative group"
+                className="hover:text-brand-600 dark:hover:text-brand-400 group relative m-1 font-medium text-gray-700 transition-colors duration-300 dark:text-gray-300"
               >
                 {link.title}
-                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-brand-600 dark:bg-brand-400 transition-all duration-300 group-hover:w-full"></span>
+                <span className="bg-brand-600 dark:bg-brand-400 absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"></span>
               </Link>
             ))}
         </div>

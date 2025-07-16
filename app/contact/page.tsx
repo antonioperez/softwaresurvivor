@@ -11,7 +11,8 @@ export default function ContactPage() {
             Contact Us
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Ready to start your next project? Let's discuss how we can help you build something amazing.
+            Ready to start your next project? Let's discuss how we can help you build something
+            amazing.
           </p>
         </div>
 
@@ -27,9 +28,9 @@ export default function ContactPage() {
 
                 <div className="space-y-6">
                   <div className="flex items-start space-x-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-brand-100 dark:bg-brand-900">
+                    <div className="bg-brand-100 dark:bg-brand-900 flex h-12 w-12 items-center justify-center rounded-xl">
                       <svg
-                        className="h-6 w-6 text-brand-600 dark:text-brand-400"
+                        className="text-brand-600 dark:text-brand-400 h-6 w-6"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -57,9 +58,9 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-accent-100 dark:bg-accent-900">
+                    <div className="bg-accent-100 dark:bg-accent-900 flex h-12 w-12 items-center justify-center rounded-xl">
                       <svg
-                        className="h-6 w-6 text-accent-600 dark:text-accent-400"
+                        className="text-accent-600 dark:text-accent-400 h-6 w-6"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -81,9 +82,9 @@ export default function ContactPage() {
                   </div>
 
                   <div className="flex items-start space-x-4">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-success-100 dark:bg-success-900">
+                    <div className="bg-success-100 dark:bg-success-900 flex h-12 w-12 items-center justify-center rounded-xl">
                       <svg
-                        className="h-6 w-6 text-success-600 dark:text-success-400"
+                        className="text-success-600 dark:text-success-400 h-6 w-6"
                         fill="none"
                         stroke="currentColor"
                         viewBox="0 0 24 24"
@@ -116,7 +117,7 @@ export default function ContactPage() {
                   {siteMetadata.linkedin && (
                     <Link
                       href={siteMetadata.linkedin}
-                      className="group flex items-center space-x-3 text-gray-600 hover:text-brand-600 dark:text-gray-400 dark:hover:text-brand-400 transition-colors duration-300"
+                      className="group hover:text-brand-600 dark:hover:text-brand-400 flex items-center space-x-3 text-gray-600 transition-colors duration-300 dark:text-gray-400"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
@@ -129,7 +130,7 @@ export default function ContactPage() {
                   {siteMetadata.github && (
                     <Link
                       href={siteMetadata.github}
-                      className="group flex items-center space-x-3 text-gray-600 hover:text-brand-600 dark:text-gray-400 dark:hover:text-brand-400 transition-colors duration-300"
+                      className="group hover:text-brand-600 dark:hover:text-brand-400 flex items-center space-x-3 text-gray-600 transition-colors duration-300 dark:text-gray-400"
                       target="_blank"
                       rel="noopener noreferrer"
                     >

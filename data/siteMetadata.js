@@ -1,11 +1,11 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  // color #BD0617
+  // Brand color: #BD0617
   title: 'Software Survivor',
   author: 'Antonio Perez',
   headerTitle: 'Software Survivor',
   description:
-    'We build scalable software solutions, provide engineering leadership, and help companies navigate complex technical challenges.',
+    'We build scalable software solutions that stand the test of time. From concept to deployment, we craft software that grows with your business.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://softwaresurvivor.com',

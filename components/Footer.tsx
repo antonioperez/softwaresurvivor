@@ -18,7 +18,10 @@ export default function Footer() {
               <span>•</span>
               <span>{`© ${new Date().getFullYear()}`}</span>
               <span>•</span>
-              <Link href="/" className="font-semibold text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 transition-colors duration-300">
+              <Link
+                href="/"
+                className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-semibold transition-colors duration-300"
+              >
                 {siteMetadata.title}
               </Link>
             </div>

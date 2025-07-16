@@ -35,7 +35,9 @@ export default function AuthorLayout({ children, content }: Props) {
                 />
               </div>
             )}
-            <h3 className="pt-4 pb-2 text-2xl leading-8 font-bold tracking-tight text-gray-900 dark:text-white">{name}</h3>
+            <h3 className="pt-4 pb-2 text-2xl leading-8 font-bold tracking-tight text-gray-900 dark:text-white">
+              {name}
+            </h3>
             <div className="text-brand-600 dark:text-brand-400 font-medium">{occupation}</div>
             <div className="text-gray-500 dark:text-gray-400">{company}</div>
             <div className="flex space-x-4 pt-6">
