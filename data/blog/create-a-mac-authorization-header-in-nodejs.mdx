@@ -1,0 +1,65 @@
+---
+title: 'Create a HMAC Authorization Header in NodeJS'
+date: '2019-07-29 17:00:49'
+tags: ['api', 'js']
+draft: false
+summary: ''
+images: []
+---
+
+There are a ton of [HTTP Authorization methods](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Authorization) to use when trying to authenticate against an API. One such is the [**Hash Message Authentication Code (HMAC)**](https://tools.ietf.org/html/draft-ietf-oauth-v2-http-mac-00) authentication scheme. This method provides a way for the server to cryptographically verify the request by hashing the request itself, and then creating the MAC out of the HTTP method, request URI, hostname, and the request body hash.
+
+The server you are attempting to authenticate against will provide you with three key pieces of data.
+
+1. The MAC key id
+2. The MAC secret key with the expected hash algorithm. If the key is base 64 encoded. You will have to decode it when generating the HMAC.
+3. Issue time of your credentials in EPOCH.
+
+Generally, the server will use the MAC key id to look up your issued credentials on their end. The MAC secret key will be used to generate the HMAC just before sending the request to the server. The server will use this same secret key to compute the mac. If there is a mis-match, the request will be rejected.
+
+A resulting HMAC header may look like this..
+
+```
+Authorization: "MAC id='SERVER-PROVIDED-ID',
+nonce='6573561:WINTERBOOTS',
+bodyhash='pWZ7PIoST1E8QP70NAbNfSVfl/U0BFWk596zZuBuh84=',
+mac='qh4lj5GpmJd5yvxX8BUXU5j6orDUsCYBMNhjIFOA21E='"
+```
+
+Lets break down the MAC header into the main components
+
+- **id** - The server provided ID
+- **nonce** - The number of seconds since the provided issued time concatentated with a random string, separated by a ':' character.
+- **bodyhash** - The result of `=BASE64(HASH(requestText))`
+- **mac** - `=BASE64(HMAC(macString, secretKey))`
+
+The MAC before it is created needs to be formatted and preserved as a normal text string so the server and client can calculate the request MAC over the exact same value. Each piece of data is separated by a new line character (\\n). Let's review each of the 7 pieces of data. This order must be maintained in the string.
+
+## MAC normalize string
+
+1. The nonce value generated for the request.
+2. The HTTP request method in upper case. For example: "HEAD", "GET", "POST", etc.
+3. The HTTP request route ex) '/users'
+4. The hostname included in the HTTP request
+5. The port ex) 80 for HTTP or 443 for HTTPS
+6. The request payload body hash, otherwise, an empty string.
+7. The value of the "ext" "Authorization" request header field, otherwise, an empty string.
+
+```
+${nonce}\n
+${method}\n
+${route}\n
+${hostname}\n
+${PORT}\n
+${bodyHash}\n
+${ext}\n
+```
+
+Great. Now that we have the string, we can now calculate the MAC portion of the request. The result is the base 64 encoded result of the HMAC(string, secretKey). Remember, if the secret key is base64 encoded, you will have to decode it. Below is a Node js gist that takes advantage of the crypto libray to generate the hash, HMAC, and auth header for your API integration.
+
+The code sample creates an HMAC for a /users POST endpoint being hosted at example.com. The result is a header object that can be used in Axios or most HTTP libraries. The request is converted to stringified json.
+
+Happy coding!
+
+[GIST LINK](https://gist.github.com/antonioperez/2c17117eb34bf8d6c2a1be05155699a4)
+<script src="https://gist.github.com/antonioperez/2c17117eb34bf8d6c2a1be05155699a4.js"></script> 

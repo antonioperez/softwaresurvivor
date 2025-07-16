@@ -1,0 +1,87 @@
+---
+title: 'Woocommerce Multistep Product Variation Picker'
+date: '2018-10-22 22:22:03'
+tags: ['Multistep Product Variation Builder']
+draft: false
+summary: ''
+images: []
+---
+
+# Woocommerce Multistep Product Variation Picker
+
+[rev_slider alias="productbuilder"][/rev_slider]
+
+This **Woocommerce** **Multistep Product Variation Builder** or Picker gives your customers a wonderful user experience for your product variation options. 
+
+Built-in functionality to allow your customers to upload artwork (pdf, jpeg, or png) on the product page and charge by the area of specific measurements. Just set your product variation pricing! Artwork links also appear in their order history and can issue a reorder with the same upload!
+
+## Live Demo
+
+- [Print Shack Clovis](https://www.printshackclovis.com/store/)
+
+[BETA DOWNLOAD: download](https://www.dropbox.com/s/11cao3w520xcsyi/wp-product-builder.zip?dl=0)
+
+## Features
+
+- Set an attribute thumbnail
+- Allow file upload for a product
+- Builtin area measurement pricing
+- Show variation pricing per each step
+- Show options in grid or row style
+- Easily configurable with custom CSS input or color schemes
+- Responsive out of the box
+
+## Install
+
+Upload the multistep-product-builder unzipped folder to your WordPress plugin directory and activate it in your Plugins page.
+
+The Multistep Product Builder plugin uses the following Woocommerce action to load the builder.
+
+```
+do_action( 'woocommerce_single_product_summary' );
+```
+
+## How does it work?
+
+Steps
+
+1. Create global product attributes
+    - Upload Images for individual product attributes (optional)
+2. Add custom attributes to the product
+    - Add pricing information to the attribute description
+3. Setup Product Variations and Pricing
+4. Enable Product Variation Builder for an individual product or set admin setting for all variation products in your catalog.
+
+## How do you enable measurement pricing?
+
+Add area width/height pricing by creating a global attribute with the slug **'measurements'** and adding it to one of the product's customs attributes.
+
+It doesn't have to be added to the variation, just the product custom attribute. Make sure to create term with slugs of style '**3-x-3**', or **'2-5-x-2-5**' for decimal options.
+
+## How do you enable file upload?
+
+Create an attribute with the slug 'artwork' and one term with slug 'artwork' to be used as the menu title and to enable the file upload field.
+
+## Do I need to enable quantity terms?
+
+No. If you don't set individual terms for quantity. The product builder will add the qty input box right above the add to bag button is the quantity attribute isn't found. 
+
+## Reserved attribute slugs and values
+
+The Multistep product variation builder uses reserved attributes slug to activate certain features. Set the main slug to one of the following and then the term slug. The name of the attribute is used for the side menu and the name of the term is used as the option title. You can also add a description.
+
+- '**measurements**': set each slug to the measurement separated by '-**x-**'. Add partial decimals by using an addition '-' character.  
+    - Term example: '**3-x-3**', **'2-5-x-2-5'**
+- '**quantity**': set each slug to a numerical value. Add more than just an input qty field.
+    - Term example: **'20'**, **'300'**,
+- '**artwork**': Set each attribute and attribute slug to 'artwork' to enable file upload.
+    - Term example: **'artwork'**
+
+## Supported/Tested Woocomerce Versions:
+
+- Woocomerce 3.4.x
+- Woocomerce 3.3.x
+
+## [Contact for questions](https://perezprogramming.com/contact/) or buy at...
+
+[embed]https://youtu.be/W4nktpCgzw8[/embed] 

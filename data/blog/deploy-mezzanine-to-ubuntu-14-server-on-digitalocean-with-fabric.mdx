@@ -1,0 +1,191 @@
+---
+title: 'Deploy Mezzanine to Ubuntu 14 server on DigitalOcean with Fabric'
+date: '2016-03-14 23:38:59'
+tags: ['python django mezzanine']
+draft: false
+summary: ''
+images: []
+---
+
+![python django mezzanine](images/django_badge.sh-600x600.png "python django mezzanine")
+
+This guide will hopefully be useful to you in deploying your [**Mezzanine**](http://mezzanine.jupo.org/ "Mezzaine") 4 application and [**Django** 1.9](https://www.djangoproject.com/) to a Ubuntu 14 cloud server on [DigitalOcean](https://www.digitalocean.com/github-students/?utm_medium=partnerships&utm_source=github&utm_campaign=studentdevpack) with [Nginx](https://www.nginx.com/resources/wiki/ "Nginx") and a [Postgres](http://www.postgresql.org/) database. Quite a mouthful. We will be using Fabric to install and deploy the application.
+
+**Mezzanine**, a promising open sourced content management system built on top the popular **Python** Web framework, Django. Knowledge of **Python** and **Django** is not really necessary but would be extremely helpful if you decide to extend Mezzanine with your own custom application or feature(s).
+
+Now, let the fun begin.
+
+**\*If I make any mistakes. Let me know. Can't be having false or bad advice on the interwebs.. or can we?** 
+
+Ideally, we first set up our development environment on your local computer, then deploy to the DigitalOcean server as you want to treat it as a full on a production server. However, we are going to work backward by installing the default application on DigitalOcean, pushing it to a git repo that you can then pull to your local computer. If you have a Mezzanine instance already, this guide will still be useful.
+
+Pretend there are thousands of users at the public end, just waiting to see your server crash and burn. To avoid any embarrassment, we must make our changes to our local copy, test, push to a repository, ssh into our production server, pull, deploy, and test again. Sure, we can automate some tests, but that is a topic for another day. Before we continue, we must create accounts to the services we will be using. If you are a student with a .edu email address, hopefully the [GitHub Student Developer Pack](https://education.github.com/pack/offers "GitHub Student Developer Pack") is still available. Signup for a [DigitalOcean](https://www.digitalocean.com/github-students/?utm_medium=partnerships&utm_source=github&utm_campaign=studentdevpack) and a [Github](https://github.com/ "Github") account.
+
+## Setting up your Ubuntu droplet
+
+DigitalOcean allows you to create a Django droplet in one click, but for the sake of education and having total control of what is installed on the server, create a Ubuntu 14.XX x64 instance and give it a hostname. The smallest instance of 512MB/1CPU is enough to get started. Take note of your IP and ssh into your Ubuntu droplet as root. You will be prompted to create a new password.
+
+`$ssh root@YOUR.DROPLET.IP`
+
+The first thing we should do before we continue is update the base Ubuntu software.
+
+`$apt-get update`
+
+Next we will install important packages that are used by most open sourced projects that need to compile in order to work. You can view the installed components at the [Ubuntu Package wiki](http://packages.ubuntu.com/precise/build-essential "Ubuntu Package wiki ").
+
+`$apt-get install build-essential`
+
+Python 2.7 is already installed on the server, but we still will need to install some important packages that a lot of Python applications depend on to run.
+
+`$apt-get install python-setuptools`
+
+`python-dev python2.7-dev`
+
+`python-software-properties` 
+
+`libpq-dev python-pip`
+
+`$apt-get install git libtiff4-dev`
+
+`libjpeg8-dev zlib1g-dev`
+
+`libfreetype6-dev liblcms2-dev` 
+
+`libwebp-dev tcl8.5-dev tk8.5-dev`
+
+That was a lot of stuff to install and we are still not done. If you noticed above, we installed [PIP](https://pip.pypa.io/en/stable/ "PIP"), a useful package management system that we will use to install all our Python applications. We have one more package to install before we get started with Mezzaine. [Virtualenv](https://virtualenv.pypa.io/en/latest/ "Virtualenv") is an extremely powerful tool that allows you to create a sandbox python environment that is completely separate from the server. For example, say you want to upgrade to Python 3 without having to install it on the actual server. You can just install it in this isolated virtual environment and your mind will be at ease if something went wrong since you can just delete or start a new environment with no impact on the actual server. To install [Virtualenv](https://virtualenv.pypa.io/en/latest/ "Virtualenv"), we use PIP. We will also install future and fabric, but I'll get to those later.
+
+`$pip install virtualenv future fabric mezzanine`
+
+Now, you may have noticed we have been installing all these packages as the root user of the server. Generally, you never want to use root to install packages on the server because it defeats the security model in place in most Linux distributions. Check your privileges! Before we continue to the gravy of this tutorial. Let us create an account with sudo privileges to log into.
+
+`$adduser admin`
+
+`$sudo adduser admin sudo`
+
+`$exit`
+
+`$ssh admin@YOUR.DROPLET.IP`
+
+ Time for business!
+
+## Installing Mezzanine
+
+You should be logged in as the admin user we created in the previous section. I mean.. you can continue as root, but it's a big NO-NO. Seriously. Lets create our virtual environment for your site, which I will call mezzanineEnv
+
+`$virtualenv mezzanineEnv`
+
+A folder will be created in the current directory that we need to dive into to activate the virtual environment.
+
+`$ls`
+
+`$cd mezzanineEnv`
+
+`$source bin/activate`
+
+When you run the previous command you will see the folder name in parenthesis "(FOLDER_NAME)" on the left side of your terminal, indicating you are in the virtual environment. Our environment is now ready and we can install Mezzanine 4.1.0. Luckily, we can use PIP. At the time of this writing, mezzanine will automatically install all of it's dependencies. This includes [Pillow](https://github.com/python-pillow/Pillow "Pillow"), an important Python imaging library and of course, Django (1.9.4 at time of writing).
+
+`$pip install mezzanine`
+
+Awesome. Now we are ready to create our mezzanine application and our database. Make sure you install the initial demo pages if you are starting from scratch. We can delete the pages later if need be, but it is nice to have something without any additional effort. By default, Django will use SQLite as the database, which we will keep for this initial run. When we are ready to deploy, we will set up Postgres. After you create the database, run the built-in Django server command to see your Mezzanine instance. Yes, the 0.0.0.0 are needed. The command will automatically detect your IP, so when you get **"Starting development server at http://0.0.0.0:8000/"** after you run the runserver command, don't be alarmed. You can visit the demo mezzanine app at YOUR.DROPLET.IP:8000. If you are not that familar with Django, the manage.py file is the gateway to all the important Django framework commands that will help you with your application. 
+
+`$mezzanine-project mezz_app`
+
+`$cd mezz_app`
+
+`$python manage.py createdb`
+
+`$python manage.py runserver 0.0.0.0:8000` 
+
+## Deploying your Mezzanine application
+
+Your users are waiting and we want a full-fledged server to handle the traffic and a production-ready database. The Mezzanine website does have a [deployment wiki](http://mezzanine.jupo.org/docs/deployment.html), which is really helpful, but a bit incomplete. I ran into a few issues when I first deployed this site and prompted me to write this post. Documentation is king, even though we all hate to write it. Also social validation is a good thing. I will summarize some portions from that wiki page, so I recommend reading it at some point if you are hungry for more details.
+
+To properly deploy Mezzanine, we need a public facing web server, an internal HTTP application server, a database server, a memory caching server, and a process control monitor. You may be cracking your knuckles to prepare yourself for the onslaught of Linux commands we are going to type to install all these servers and tools. Of course, it would be a pain! Imagine if we mess up the installation of one or more of these tools, forcing us to search the internet for hours for the solution until we find ourselves tempted to flip our desks. If only someone can build a script to install all this stuff for us to save us from that misery. Fortunately, there is a Python solution called [Fabric](http://www.fabfile.org/ "Fabric") that enables us to automatically deploy these applications and better yet, Mezzanine is already configured for Fabric. If you check out the directory of our application you will notice a **fabfile.py** file and a **deploy** folder. This fabfile script will import important configurations from the deploy folder to set up our production server. Here is a breakdown of what will be installed. 
+
+- [NGINX](http://nginx.org/) - public facing web server
+- [gunicorn](http://gunicorn.org/) - internal HTTP application server
+- [PostgreSQL](http://postgresql.org/) - database server
+- [memcached](http://memcached.org/) - in-memory caching server
+- [supervisord](http://supervisord.org/) - process control and monitor
+- [virtualenv](https://pypi.python.org/pypi/virtualenv) - isolated Python environments for each project
+- [git](http://git-scm.com/) or [mercurial](http://mercurial.selenic.com/) - version control systems (optional)
+
+Change directories to **"~/mezzanineEnv/mezz_app/mezz_app"** and you will find a **local_setting.py** file and a **settings.py** file. We used settings.py to run the application locally, and local_settings.py will be used by Fabric to define the configurations that are needed for the production environment. Open up local_settings.py with your favorite terminal text editor (nano and vim are already installed).
+
+Let's fill in our Postgres database settings in the DATABASES dictionary.
+
+```
+DATABASES = {{
+       "ENGINE" : "django.db.backends.postgresql_psycopg2",
+       "NAME" : "mezz_app_live",
+       "USER" : "admin", 
+       "PASSWORD": "YOUR_DB_PASSWORD",
+       ....
+```
+
+Next, we have to set up our deploy settings at the end of local_settings.py. If you have a domain purchased, you will have to place it here. If not, you can use your digitial ocean IP for now.
+
+```
+ALLOWED_HOSTS = ["YOUR_IP_OR_PUBLIC_DOMAIN"]
+```
+
+Finally, we define the FABRIC dictionary with our server's information. We will be using the same admin user we created, but you can define a new user here to deploy the application, but you will have to run '**fab secure**' to create that user before installing all components.
+
+```
+FABRIC = {{
+ "DEPLOY_TOOL": "", # Deploy with "git", "hg", or "rsync"
+ "SSH_USER": "admin", # VPS SSH username
+ "HOSTS": ["YOUR_DIGITIAL_OCEAN_IP"], # The IP address of your VPS
+ "DOMAINS": ALLOWED_HOSTS, # Edit domains in ALLOWED_HOSTS
+ "REQUIREMENTS_PATH": "requirements.txt", # Project's pip requirements
+ "LOCALE": "en_US.UTF-8", # Should end with ".UTF-8"
+ "DB_PASS": "YOUR_DB_PASSWORD", # Live database password
+ "ADMIN_PASS": "YOUR_PASSWORD", # Live admin user password
+ "SECRET_KEY": SECRET_KEY,
+ "NEVERCACHE_KEY": NEVERCACHE_KEY,
+}}
+```
+
+Save the file and deactive the virtualEnv.
+
+`$deactivate`
+
+Make sure you are in the directory where the **'fabfile.py'** exists. When I was making this tutorial I ran into a little issue when I was deploying the application. Django 1.9 has deprecated the syncdb command because of the migration system. Our fab file still contains this command and if we were to try to install as-is, it would fail. Open up the fab file and comment out the syncdb command.
+
+```
+ with project():
+    manage("collectstatic -v 0 --noinput")
+   #manage("syncdb --noinput")
+    manage("migrate ")
+ for name in get_templates():
+    ....
+```
+
+Save it and finally, we can go ahead and deploy Mezzanine. When we run the fabric command to deploy the application, you will be asked several times for the user password and in some cases, you may even notice we are SSHing into the server we are on. Weird. But not weird. In this case, it is, but later, if you want to deploy your application from your local computer without having to ssh into the server, you will be able to. Ok, enough talk. Let's do this.
+
+`fab all`
+
+Bam! Hopefully, you didn't get any errors and if you go to your server's IP address you will see the Ngnix welcome page. Wait. Where is our application!? Unfortunately, fab installed our application assuming we have an SSL certificate. We need to disable that check for now, but you should installed an SSL certificate after you have a domain name. Once you have one, try out [Let's Encrypt](https://letsencrypt.org/ "Lets Encrypt") to get a free SSL certificate.
+
+Open up the application's Ngnix configuration and comment out the following lines in bold by adding a '#' before the text. The config file is located at
+
+ `$nano /etc/nginx/sites-enabled/mezz_app.conf`
+
+```
+ listen 80;
+ #listen 433 ssl;
+  .....
+ #ssl_certificate conf/mezz_app.crt;
+ #ssl_certificate_key conf/mezz_app.key;
+ #ssl_session_cache shared:SSL:10m;
+ #ssl_session_timeout 10m;
+ #ssl_ciphers ...:ECDHE-RSA-AES256-GCM-S$
+ #ssl_prefer_server_ciphers on;
+```
+
+Phew. Save it and restart the Ngnix server
+
+`sudo service nginx restart`
+
+ If all went ok, you should now see the Mezzanine application at your server's IP address. In the next session, we will set up our Git repo and go through the updating and re-deployment process. For now, happy coding! :) 

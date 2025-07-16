@@ -1,0 +1,85 @@
+---
+title: 'A Scalable React Native Project Structure'
+date: '2018-03-14 02:48:21'
+tags: ['react native folder structure', 'react native project structure']
+draft: false
+summary: ''
+images: []
+---
+
+![React Native](images/28290983333_d6e748140c_o.jpg)
+
+[**React Native**](https://facebook.github.io/react-native/) is amazing. But deciding on a **scalable React Native project structure** is hard. [**React Native**](https://facebook.github.io/react-native/) allows you to make an app for both Android and iOS through [Javascript](https://www.javascript.com/) which gets compiled down to native code. What?! Sign me up. So I did for my next project, a [FinTech](https://en.wikipedia.org/wiki/Financial_technology) mobile app  with a [Firebase](https://firebase.google.com/) backend. More details to come on that later.
+
+**[Github](https://github.com/antonioperez/fmx)**
+
+## Project Folder Structure Importance
+
+Project folder structure is something a lot of programmers spend way to much time on instead of focusing on the actual project. Most times, frameworks are opinionated are you stay within those confines like [Django](https://www.djangoproject.com/) or [Ruby](http://www.ruby-lang.org/en/), but the unopinionated nature of NodeJS makes everybody opinionated.
+
+Generally, when starting on a project in an environment I am unfamiliar with, I'll read the top 3-5 recent posts on some mid to large scale projects. It's a little overwhelming picking the right one, but the truth is there is no right one. After I see a few folder structures on that language, a pattern sometimes emerges. This pattern will tell you a bit about how most software developers in that environment expect their views or controllers. Or components and actions in [React](https://reactjs.org/). I feel this is important because your project has to scale and you'll want other software developers who come on board later to get up to speed as quickly as possible and be as comfortable as possible. A good folder structure can provide that, but that is still one stroke in the entire painting.
+
+Ok! ok! I'll shush! I used this folder structure for the project and it may or may not work for you. Or if you want to call me out on something. Feel free to that do that too. This is a feature folder organization type of structure where every component will have its own style, container, and expose its package through the index.js file within the container. There is a parent style file, but it's relatively small and used for global styles related to text styling.
+
+Disclaimer: I didn't use [Redux](https://redux.js.org/) in the initial version of the project because I wanted to focus on [React](https://reactjs.org/) first.
+
+At the parent folder, you'll have your standard android, ios, and node modules. You might have your index.ios.js and index.android.js respectively. We'll drop down into the actions, components, and screens folders in a jiffy.
+
+![parent folder structure](images/parent-folder-structure.png)
+
+The parent app/app.js should only import the application and not try to get cute with any other functionality.
+
+```
+//parent index.js
+import {{ AppRegistry }} from 'react-native';
+import App from './app/app';
+```
+
+Now, let us take a look at the entry point of the app folder. The app.js file exposes what you need for the app to run. In my case, this file is the entry point to the entire application. It imports the registeredscreen function from the screens folder index file that defines or registers the screens that the application will show to the user. It uses the [react-native-navigation](https://github.com/wix/react-native-navigation) package. Worth checking it out.
+
+```
+//index.js in app
+import {{ Navigation }} from 'react-native-navigation';
+import registerScreens from './src';
+
+registerScreens();
+Navigation.startSingleScreenApp({{
+    screen: {{
+      screen: 'fmx.user',
+      title: '',
+      navigatorStyle: {{
+        navBarHidden: true
+      }},
+      navigatorButtons: {{}},
+   }},
+   drawer : {{
+     left: {{
+     screen: 'fmx.menu',
+       disableOpenGesture: false, 
+     }},
+  }}
+}});
+```
+
+## Component Structure
+
+This will be a common theme in the lower levels. Expose only what you need through that component's index.js file. This will allow you to have clean imports from where you use the component. Each component can have a style.js, a container.js, and the main index.js file. Styles.js defines styles specific to that component, components in container.js are used and brought together in index.js to make up the whole component. For example, the dashboard component has an index.js entry point that defines the scroll view and generates each merchant card view. The individual merchant card view is defined in the container file and uses props passed from the main component file to populate the cards.
+
+```
+//static example in parent dashboard component render (index.js)
+<ScrollView>
+<RateCard info = {{this.state.card[0]}} />
+<RateCard info = {{this.state.card[1]}} />
+<RateCard info = {{this.state.card[2]}} />
+</ScrollView>
+```
+
+Ok. So that is how the components are structured. My action folder only has an index.js that defines a lot of CRUD firebase user auth and database functions. Most components import that index.js file.
+
+## The Screens Folder
+
+The screen folder has the main components that define the views available to the application. These components access the business logic heavy components in your components folder. All the screen components do is define how you want to handle screen actions and then pass that to your respective components. The screen components may handle if the application will do a push or show a modal based on an action. You'll pass to that main component as a prop. The screenshot below shows this where the LoginScreen.js component handles events and defines the navigation button. It also passed a successful login function to the login component. This is only called after the loginUI component succeeds in logging a user in and then calls this function to show the next screen.
+
+Let me know what you think! Am I totally wrong and need to be educated? I'd like to know either way! :D Perhaps once the project warrants Redux, things will change, but there is room for reduces in this **react native project structure**.
+
+![code example](images/code-example-1.png) 
