@@ -1,11 +1,10 @@
 ---
-title: "GIS Shapefile Online Viewing & Editing (Sneak Peak)"
-date: 2017-12-27
-categories: 
-  - "misc"
-tags: 
-  - "esri-shapefile-online-editor"
-  - "gis-shapefile-online-viewing-editing"
+title: 'GIS Shapefile Online Viewing & Editing (Sneak Peak)'
+date: '2017-12-27 00:00:00'
+tags: ['esri-shapefile-online-editor', 'gis-shapefile-online-viewing-editing']
+draft: false
+summary: ''
+images: []
 ---
 
 ![GIS Fresno Map](images/map-e1514397811772.png)
@@ -16,7 +15,7 @@ How we built the **GIS Shapefile Online Viewing & Editing** functionality of SGM
 
 In order to combat this problem, we needed a way to reliably translate the official posted GIS shapefile onto the web and allow seamless edits. After the user has finished editing, a new shapefile would need to be created on the fly.
 
-\[caption id="" align="aligncenter" width="480"\]![Viewing different shapefiles online](images/giphy.gif) Viewing different shapefiles online in a dashboard\[/caption\]
+![Viewing different shapefiles online](images/giphy.gif)
 
 Shapefiles are typically compressed in a .ZIP file and is the preferred format for passing along vector GIS data for use in many Desktop applications. In order to present GIS data on the web, we had to read this data in a web-friendly format, which came in the form of GeoJSON with the condition that no pre-processing on the shapefile would take place. The application would need to be able to map one or more shapefiles without any perquisites. This would allow the application to present any data with minor adjustments, all we had to do was load the compressed shapefile. With a few tweaks to the awesome open source projects from [Esri](http://www.esri.com/software/open/open-source) and a bit of elbow glue, we were able to do just that and use our GIS Shapefile Web Editor to show different types of water data in a dashboard.
 
@@ -24,4 +23,4 @@ Below is the online editor in action. A user draws their basin boundary against 
 
 I plan to break that code into a more general service for others to use. Stay tuned!
 
-\[embed\]https://www.youtube.com/watch?v=euU\_TUJi\_b4&feature=youtu.be\[/embed\]
+[embed]https://www.youtube.com/watch?v=euU_TUJi_b4&feature=youtu.be[/embed] 
