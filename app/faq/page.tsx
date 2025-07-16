@@ -1,5 +1,6 @@
 import { Metadata } from 'next'
 import { genPageMetadata } from 'app/seo'
+import FAQSchema from '@/components/FAQSchema'
 
 export const metadata: Metadata = genPageMetadata({
   title: 'Frequently Asked Questions - Fresno Software Development',
@@ -62,58 +63,62 @@ const faqs = [
 
 export default function FAQPage() {
   return (
-    <div className="divide-y divide-gray-200 dark:divide-gray-700">
-      <div className="space-y-2 pt-6 pb-8 md:space-y-5">
-        <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
-          Frequently Asked Questions
-        </h1>
-        <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-          Common questions about our software development services in Fresno and Central California
-        </p>
-      </div>
+    <>
+      <FAQSchema faqs={faqs} />
+      <div className="divide-y divide-gray-200 dark:divide-gray-700">
+        <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+          <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
+            Frequently Asked Questions
+          </h1>
+          <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
+            Common questions about our software development services in Fresno and Central
+            California
+          </p>
+        </div>
 
-      <div className="container py-12">
-        <div className="mx-auto max-w-4xl">
-          <div className="space-y-8">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
-              >
-                <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
-                  {faq.question}
-                </h3>
-                <p className="text-gray-600 dark:text-gray-400">{faq.answer}</p>
+        <div className="container py-12">
+          <div className="mx-auto max-w-4xl">
+            <div className="space-y-8">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+                >
+                  <h3 className="mb-3 text-lg font-semibold text-gray-900 dark:text-white">
+                    {faq.question}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Call to Action */}
+            <div className="mt-16 rounded-lg bg-gray-50 p-8 text-center dark:bg-gray-800">
+              <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">
+                Still Have Questions?
+              </h3>
+              <p className="mb-6 text-gray-600 dark:text-gray-400">
+                We're here to help! Contact us for a free consultation about your software
+                development needs.
+              </p>
+              <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+                <a
+                  href="/contact"
+                  className="bg-brand-600 hover:bg-brand-700 inline-flex items-center rounded-md px-6 py-3 text-base font-medium text-white"
+                >
+                  Get Free Consultation
+                </a>
+                <a
+                  href="tel:+15595125993"
+                  className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+                >
+                  Call (559) 512-5993
+                </a>
               </div>
-            ))}
-          </div>
-
-          {/* Call to Action */}
-          <div className="mt-16 rounded-lg bg-gray-50 p-8 text-center dark:bg-gray-800">
-            <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">
-              Still Have Questions?
-            </h3>
-            <p className="mb-6 text-gray-600 dark:text-gray-400">
-              We're here to help! Contact us for a free consultation about your software development
-              needs.
-            </p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              <a
-                href="/contact"
-                className="bg-brand-600 hover:bg-brand-700 inline-flex items-center rounded-md px-6 py-3 text-base font-medium text-white"
-              >
-                Get Free Consultation
-              </a>
-              <a
-                href="tel:+15595125993"
-                className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
-              >
-                Call (559) 512-5993
-              </a>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </>
   )
 }

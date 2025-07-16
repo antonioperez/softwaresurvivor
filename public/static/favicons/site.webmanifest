@@ -1,14 +1,27 @@
 {
-  "name": "",
-  "short_name": "",
+  "name": "Software Survivor - Fresno Software Development",
+  "short_name": "Software Survivor",
   "icons": [
     {
       "src": "/android-chrome-96x96.png",
       "sizes": "96x96",
       "type": "image/png"
+    },
+    {
+      "src": "/static/favicons/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/static/favicons/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
     }
   ],
-  "theme_color": "#000000",
+  "theme_color": "#BD0617",
   "background_color": "#000000",
-  "display": "standalone"
+  "display": "standalone",
+  "start_url": "/",
+  "scope": "/",
+  "description": "Principal Engineer-led software development company in Fresno, CA. Enterprise-grade software solutions that stand the test of time."
 }
