@@ -8,6 +8,7 @@ interface Project {
 const projectsData: Project[] = [
   {
     title: 'Lighthouse Medical Transport',
+    imgSrc: '/static/images/projects/lighthouse.png',
     description: `Professional medical transportation website providing reliable, safe, and compassionate non-emergency medical transport services.`,
     href: 'http://lighthousecv.com',
   },
