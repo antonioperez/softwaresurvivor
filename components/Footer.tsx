@@ -1,10 +1,19 @@
 import Link from './Link'
 import siteMetadata from '@/data/siteMetadata'
 import SocialIcon from '@/components/social-icons'
+import NewsletterForm from './NewsletterForm'
 
 export default function Footer() {
   return (
     <footer>
+      {/* Newsletter Subscription */}
+      <div className="border-t border-gray-200 bg-gray-50 dark:border-gray-700 dark:bg-gray-900">
+        <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
+          <NewsletterForm />
+        </div>
+      </div>
+
+      {/* Footer Content */}
       <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
         <div className="flex flex-col items-center">
           <div className="mb-6 flex space-x-6">
