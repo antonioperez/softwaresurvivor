@@ -4,7 +4,8 @@ const siteMetadata = {
   title: 'Software Survivor',
   author: 'Antonio Perez',
   headerTitle: 'Software Survivor',
-  description: 'A blog about software development, system design, and engineering leadership.',
+  description:
+    'We build scalable software solutions, provide engineering leadership, and help companies navigate complex technical challenges.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://softwaresurvivor.com',

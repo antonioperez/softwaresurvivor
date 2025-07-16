@@ -7,16 +7,16 @@ interface Project {
 
 const projectsData: Project[] = [
   {
+    title: 'FeelsReel',
+    description: `Revolutionary AI-powered story book generator that creates personalized children's stories and transforms them into engaging videos using OpenAI (GPT-4) and RunwayAI.`,
+    imgSrc: '/static/images/projects/feelsreel.png',
+    href: 'https://feelsreel.com/story/bee8aa0a-895d-4d17-af3e-e9a8c98f97e3',
+  },
+  {
     title: 'Tlaloc Harvest',
     description: `Stealth startup transforming how communities handle food waste with a sustainable, easy-to-use platform for redistributing surplus food.`,
     imgSrc: 'https://tlaloc.pages.dev/assets/public-banner-BQdze4gp.webp',
     href: 'https://tlaloc.pages.dev',
-  },
-  {
-    title: 'FeelsReel',
-    description: `AI based story book generator with feature to video using OpenAI (gpt-4.1-nano) and RunwayAI`,
-    imgSrc: '/static/images/projects/feelsreel.png',
-    href: 'https://feelsreel.com/story/bee8aa0a-895d-4d17-af3e-e9a8c98f97e3',
   },
   {
     title: 'Candid Moments',
