@@ -10,20 +10,85 @@
   --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-  /* Colors */
-  /* Copied from https://tailwindcss.com/docs/theme#default-theme-variable-reference */
-  --color-primary-50: oklch(0.971 0.014 343.198);
-  --color-primary-100: oklch(0.948 0.028 342.258);
-  --color-primary-200: oklch(0.899 0.061 343.231);
-  --color-primary-300: oklch(0.823 0.12 346.018);
-  --color-primary-400: oklch(0.718 0.202 349.761);
-  --color-primary-500: oklch(0.656 0.241 354.308);
-  --color-primary-600: oklch(0.592 0.249 0.584);
-  --color-primary-700: oklch(0.525 0.223 3.958);
-  --color-primary-800: oklch(0.459 0.187 3.815);
-  --color-primary-900: oklch(0.408 0.153 2.432);
-  --color-primary-950: oklch(0.284 0.109 3.907);
+  /* Brand Colors - Software Survivor */
+  --color-brand-50: oklch(0.98 0.01 15.5);   /* Lightest brand color */
+  --color-brand-100: oklch(0.95 0.02 15.5);
+  --color-brand-200: oklch(0.90 0.04 15.5);
+  --color-brand-300: oklch(0.85 0.08 15.5);
+  --color-brand-400: oklch(0.75 0.15 15.5);
+  --color-brand-500: oklch(0.65 0.25 15.5);  /* #BD0617 - Primary brand color */
+  --color-brand-600: oklch(0.55 0.30 15.5);
+  --color-brand-700: oklch(0.45 0.35 15.5);
+  --color-brand-800: oklch(0.35 0.40 15.5);
+  --color-brand-900: oklch(0.25 0.45 15.5);
+  --color-brand-950: oklch(0.15 0.50 15.5);  /* Darkest brand color */
 
+  /* Primary Colors (using brand color) */
+  --color-primary-50: var(--color-brand-50);
+  --color-primary-100: var(--color-brand-100);
+  --color-primary-200: var(--color-brand-200);
+  --color-primary-300: var(--color-brand-300);
+  --color-primary-400: var(--color-brand-400);
+  --color-primary-500: var(--color-brand-500);
+  --color-primary-600: var(--color-brand-600);
+  --color-primary-700: var(--color-brand-700);
+  --color-primary-800: var(--color-brand-800);
+  --color-primary-900: var(--color-brand-900);
+  --color-primary-950: var(--color-brand-950);
+
+  /* Accent Colors */
+  --color-accent-50: oklch(0.98 0.01 200);   /* Light blue accent */
+  --color-accent-100: oklch(0.95 0.02 200);
+  --color-accent-200: oklch(0.90 0.04 200);
+  --color-accent-300: oklch(0.85 0.08 200);
+  --color-accent-400: oklch(0.75 0.15 200);
+  --color-accent-500: oklch(0.65 0.25 200);
+  --color-accent-600: oklch(0.55 0.30 200);
+  --color-accent-700: oklch(0.45 0.35 200);
+  --color-accent-800: oklch(0.35 0.40 200);
+  --color-accent-900: oklch(0.25 0.45 200);
+  --color-accent-950: oklch(0.15 0.50 200);
+
+  /* Success Colors */
+  --color-success-50: oklch(0.98 0.01 140);
+  --color-success-100: oklch(0.95 0.02 140);
+  --color-success-200: oklch(0.90 0.04 140);
+  --color-success-300: oklch(0.85 0.08 140);
+  --color-success-400: oklch(0.75 0.15 140);
+  --color-success-500: oklch(0.65 0.25 140);
+  --color-success-600: oklch(0.55 0.30 140);
+  --color-success-700: oklch(0.45 0.35 140);
+  --color-success-800: oklch(0.35 0.40 140);
+  --color-success-900: oklch(0.25 0.45 140);
+  --color-success-950: oklch(0.15 0.50 140);
+
+  /* Warning Colors */
+  --color-warning-50: oklch(0.98 0.01 60);
+  --color-warning-100: oklch(0.95 0.02 60);
+  --color-warning-200: oklch(0.90 0.04 60);
+  --color-warning-300: oklch(0.85 0.08 60);
+  --color-warning-400: oklch(0.75 0.15 60);
+  --color-warning-500: oklch(0.65 0.25 60);
+  --color-warning-600: oklch(0.55 0.30 60);
+  --color-warning-700: oklch(0.45 0.35 60);
+  --color-warning-800: oklch(0.35 0.40 60);
+  --color-warning-900: oklch(0.25 0.45 60);
+  --color-warning-950: oklch(0.15 0.50 60);
+
+  /* Error Colors */
+  --color-error-50: oklch(0.98 0.01 15.5);
+  --color-error-100: oklch(0.95 0.02 15.5);
+  --color-error-200: oklch(0.90 0.04 15.5);
+  --color-error-300: oklch(0.85 0.08 15.5);
+  --color-error-400: oklch(0.75 0.15 15.5);
+  --color-error-500: oklch(0.65 0.25 15.5);
+  --color-error-600: oklch(0.55 0.30 15.5);
+  --color-error-700: oklch(0.45 0.35 15.5);
+  --color-error-800: oklch(0.35 0.40 15.5);
+  --color-error-900: oklch(0.25 0.45 15.5);
+  --color-error-950: oklch(0.15 0.50 15.5);
+
+  /* Gray Colors */
   --color-gray-50: oklch(0.985 0.002 247.839);
   --color-gray-100: oklch(0.967 0.003 264.542);
   --color-gray-200: oklch(0.928 0.006 264.531);
@@ -97,18 +162,18 @@
       font-weight: 600;
     }
     & :where(code):not(pre code) {
-      color: var(--color-indigo-500);
+      color: var(--color-primary-400);
     }
   }
 
   .prose-invert {
     & a {
-      color: var(--color-primary-500);
+      color: var(--color-primary-400);
       &:hover {
-        color: var(--color-primary-400);
+        color: var(--color-primary-300);
       }
       & code {
-        color: var(--color-primary-400);
+        color: var(--color-primary-300);
       }
     }
     & :where(h1, h2, h3, h4, h5, h6) {
