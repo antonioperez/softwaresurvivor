@@ -1,13 +1,18 @@
 {
-  "mobile-development": 1,
+  "ai": 1,
+  "embeddings": 1,
+  "keynote": 1,
+  "devfest": 1,
+  "fresno": 2,
+  "ml": 1,
   "web-development": 7,
+  "projects": 2,
+  "central-california": 1,
+  "algorithms": 2,
+  "random": 2,
+  "api": 9,
   "software-development": 2,
   "aws": 1,
-  "projects": 2,
-  "api": 9,
-  "algorithms": 2,
-  "fresno": 1,
-  "central-california": 1,
-  "gis": 2,
-  "random": 2
+  "mobile-development": 1,
+  "gis": 2
 }
