@@ -61,12 +61,54 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const basePath = process.env.BASE_PATH || ''
 
+  // Local Business Structured Data
+  const localBusinessStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    name: siteMetadata.localBusiness.name,
+    description: siteMetadata.localBusiness.description,
+    url: siteMetadata.localBusiness.url,
+    telephone: siteMetadata.localBusiness.telephone,
+    email: siteMetadata.localBusiness.email,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: siteMetadata.localBusiness.address.streetAddress,
+      addressLocality: siteMetadata.localBusiness.address.addressLocality,
+      addressRegion: siteMetadata.localBusiness.address.addressRegion,
+      postalCode: siteMetadata.localBusiness.address.postalCode,
+      addressCountry: siteMetadata.localBusiness.address.addressCountry,
+    },
+    areaServed: siteMetadata.localBusiness.areaServed.map((area) => ({
+      '@type': 'City',
+      name: area,
+    })),
+    hasOfferCatalog: {
+      '@type': 'OfferCatalog',
+      name: 'Software Development Services',
+      itemListElement: siteMetadata.localBusiness.serviceType.map((service) => ({
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: service,
+        },
+      })),
+    },
+    foundingDate: siteMetadata.localBusiness.foundingDate,
+    sameAs: [siteMetadata.github, siteMetadata.linkedin].filter(Boolean),
+  }
+
   return (
     <html
       lang={siteMetadata.language}
       className={`${space_grotesk.variable} scroll-smooth`}
       suppressHydrationWarning
     >
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessStructuredData) }}
+        />
+      </head>
       <link
         rel="apple-touch-icon"
         sizes="76x76"

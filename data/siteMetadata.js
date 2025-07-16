@@ -1,11 +1,11 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   // Brand color: #BD0617
-  title: 'Software Survivor',
+  title: 'Software Survivor - Fresno Software Development',
   author: 'Antonio Perez',
   headerTitle: 'Software Survivor',
   description:
-    'We build scalable software solutions that stand the test of time. From concept to deployment, we craft software that grows with your business.',
+    'Leading software development company in Fresno, CA. We build scalable software solutions that stand the test of time. From concept to deployment, we craft software that grows with your business. Serving Fresno, Clovis, Madera, and Central California.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://softwaresurvivor.com',
@@ -27,6 +27,39 @@ const siteMetadata = {
   locale: 'en-US',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
+  // Local SEO additions
+  localBusiness: {
+    name: 'Software Survivor',
+    address: {
+      streetAddress: 'Fresno, CA',
+      addressLocality: 'Fresno',
+      addressRegion: 'CA',
+      postalCode: '93701',
+      addressCountry: 'US',
+    },
+    telephone: '+1-559-512-5993',
+    email: 'aperez2541@gmail.com',
+    url: 'https://softwaresurvivor.com',
+    description: 'Software development and technical leadership services in Fresno, California',
+    areaServed: [
+      'Fresno',
+      'Clovis',
+      'Madera',
+      'Visalia',
+      'Hanford',
+      'Merced',
+      'Modesto',
+      'Central California',
+    ],
+    serviceType: [
+      'Software Development',
+      'Technical Leadership',
+      'System Architecture',
+      'Web Development',
+      'Mobile App Development',
+    ],
+    foundingDate: '2020',
+  },
   analytics: {
     // If you want to use an analytics provider you have to add it to the
     // content security policy in the `next.config.js` file.
