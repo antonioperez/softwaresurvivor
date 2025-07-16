@@ -10,20 +10,37 @@ export async function POST(request: NextRequest) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
-    // Email template
+    // Get current timestamp
+    const timestamp = new Date().toLocaleString('en-US', {
+      timeZone: 'America/Los_Angeles',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    })
+
+    // Enhanced email template with better formatting and readability
     const emailContent = `
-      New Contact Form Submission
-      
-      Name: ${firstName} ${lastName}
-      Email: ${email}
-      Company: ${company || 'Not provided'}
-      Service Interest: ${service || 'Not specified'}
-      
-      Message:
-      ${message}
-      
-      ---
-      This message was sent from the Software Survivor contact form.
+📅 SUBMISSION DETAILS
+───────────────────────────────────────────────────────────────
+• Date & Time: ${timestamp}
+• Source: Software Survivor Website Contact Form
+
+👤 CONTACT INFORMATION
+───────────────────────────────────────────────────────────────
+• Full Name: ${firstName} ${lastName}
+• Email Address: ${email}
+• Company: ${company || 'Not provided'}
+• Service Interest: ${service || 'Not specified'}
+
+💬 MESSAGE CONTENT
+───────────────────────────────────────────────────────────────
+
+${message}
+
+───────────────────────────────────────────────────────────────
     `
 
     // SendGrid API call
@@ -42,7 +59,7 @@ export async function POST(request: NextRequest) {
                 name: 'Software Survivor Team',
               },
             ],
-            subject: 'New Contact Form Submission - Software Survivor',
+            subject: `📧 Contact Form: ${firstName} ${lastName} - ${service || 'General Inquiry'}`,
           },
         ],
         from: {
