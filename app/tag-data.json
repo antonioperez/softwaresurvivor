@@ -1,19 +1,9 @@
 {
-  "next-js": 2,
-  "tailwind": 1,
-  "guide": 2,
-  "api": 6,
-  "js": 1,
-  "a-aws-code-build-spec-for-your-typescript-node-project": 1,
-  "how-to-setup-cicd-for-your-typescript-build-on-aws-code-pipeline": 1,
-  "typescript-build-on-aws-codepipeline-and-elastic-beanstalk": 1,
-  "multistep-product-variation-builder": 1,
-  "react-native-folder-structure": 1,
-  "react-native-project-structure": 1,
-  "esri-shapefile-online-editor": 1,
-  "gis-shapefile-online-viewing-editing": 1,
-  "published-projects-on-github-pages": 1,
-  "a-groundwater-management-app": 1,
-  "c": 1,
-  "python-django-mezzanine": 1
+  "mobile-development": 1,
+  "web-development": 8,
+  "deployment": 2,
+  "api": 10,
+  "random": 3,
+  "algorithms": 2,
+  "gis": 2
 }
