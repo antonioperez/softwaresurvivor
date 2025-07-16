@@ -12,17 +12,19 @@ const Embed = ({ url }) => {
   const youtubeMatch = url.match(
     /(?:https?:\/\/(?:www\.|m\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/))([\w-]{11})/
   )
-  
+
   if (youtubeMatch) {
     return (
-      <div style={{ 
-        position: 'relative', 
-        paddingBottom: '56.25%', 
-        height: 0, 
-        margin: '2rem 0',
-        width: '100%',
-        maxWidth: '100%'
-      }}>
+      <div
+        style={{
+          position: 'relative',
+          paddingBottom: '56.25%',
+          height: 0,
+          margin: '2rem 0',
+          width: '100%',
+          maxWidth: '100%',
+        }}
+      >
         <iframe
           src={`https://www.youtube.com/embed/${youtubeMatch[1]}`}
           title="YouTube video player"
@@ -35,13 +37,13 @@ const Embed = ({ url }) => {
             top: 0,
             left: 0,
             width: '100%',
-            height: '100%'
+            height: '100%',
           }}
         />
       </div>
     )
   }
-  
+
   // Fallback: render as link
   return <a href={url}>{url}</a>
 }
