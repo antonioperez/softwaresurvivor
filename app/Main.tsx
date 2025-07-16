@@ -48,12 +48,12 @@ export default function Home({ posts }) {
                   '@type': 'Offer',
                   itemOffered: { '@type': 'Service', name: 'System Architecture' },
                 },
-              ]
-            }
-          })
+              ],
+            },
+          }),
         }}
       />
-      
+
       {/* Hero Section */}
       <div className="from-brand-600 via-brand-700 to-brand-800 relative overflow-hidden bg-gradient-to-br text-white">
         {/* Background Pattern */}
@@ -71,8 +71,8 @@ export default function Home({ posts }) {
                 </span>
               </h1>
               <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-100 md:text-2xl">
-                Enterprise-grade software architecture and technical leadership. From startups to Fortune 500, 
-                we build scalable systems that survive the test of time.
+                Enterprise-grade software architecture and technical leadership. From startups to
+                Fortune 500, we build scalable systems that survive the test of time.
               </p>
             </div>
 
@@ -97,7 +97,7 @@ export default function Home({ posts }) {
       </div>
 
       {/* Services Section */}
-      <div className="bg-gray-50 py-20 dark:bg-gray-900">
+      <div className="bg-gray-50 py-15 dark:bg-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
@@ -130,8 +130,8 @@ export default function Home({ posts }) {
                 Enterprise Software Development
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Enterprise-grade web applications, mobile apps, and scalable systems built with modern
-                architectural patterns and best practices.
+                Enterprise-grade web applications, mobile apps, and scalable systems built with
+                modern architectural patterns and best practices.
               </p>
             </div>
 
@@ -155,8 +155,8 @@ export default function Home({ posts }) {
                 Technical Leadership & Architecture
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Principal Engineer-level leadership, enterprise architecture design, and technical strategy 
-                for growing companies.
+                Principal Engineer-level leadership, enterprise architecture design, and technical
+                strategy for growing companies.
               </p>
             </div>
 
@@ -187,6 +187,83 @@ export default function Home({ posts }) {
           </div>
         </div>
       </div>
+
+      {/* Latest Blog Post */}
+      {posts.length > 0 && (
+        <div className="bg-gray-50 dark:bg-gray-900">
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="mb-16 text-center">
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
+                Latest Insights
+              </h2>
+              <p className="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-400">
+                Stay updated with our latest thoughts on software development, architecture, and
+                technical leadership
+              </p>
+            </div>
+
+            <div className="overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-gray-800">
+              <div className="md:flex">
+                <div className="p-8 md:w-2/3">
+                  <div className="mb-4 flex items-center space-x-2">
+                    <span className="bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200 inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
+                      Latest Post
+                    </span>
+                    <span className="text-sm text-gray-500 dark:text-gray-400">
+                      {new Date(posts[0].date).toLocaleDateString('en-US', {
+                        year: 'numeric',
+                        month: 'long',
+                        day: 'numeric',
+                      })}
+                    </span>
+                  </div>
+                  <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+                    {posts[0].title}
+                  </h3>
+                  <p className="mb-6 text-gray-600 dark:text-gray-400">{posts[0].summary}</p>
+                  <div className="mb-6 flex flex-wrap gap-2">
+                    {posts[0].tags?.slice(0, 3).map((tag) => (
+                      <span
+                        key={tag}
+                        className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-200"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  <div className="flex gap-4">
+                    <Link
+                      href={`/${posts[0].path}`}
+                      className="group bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 relative inline-flex items-center justify-center overflow-hidden rounded-lg px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:ring-2 focus:ring-offset-2 focus:outline-none"
+                    >
+                      <span className="relative z-10">Read Full Article</span>
+                      <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+                    </Link>
+                    <Link
+                      href="/blog"
+                      className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-all duration-300 hover:bg-gray-50 hover:shadow-lg focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none dark:text-gray-300 dark:hover:bg-gray-700"
+                    >
+                      <span className="relative z-10">View All Posts</span>
+                      <div className="absolute inset-0 bg-gray-100 opacity-0 transition-opacity duration-300 group-hover:opacity-10 dark:bg-gray-600"></div>
+                    </Link>
+                  </div>
+                </div>
+                <div className="md:w-1/3">
+                  <div className="from-brand-600 to-brand-700 h-full bg-gradient-to-br p-8 text-white">
+                    <div className="flex h-full flex-col justify-center">
+                      <h4 className="mb-4 text-xl font-semibold">Technical Leadership</h4>
+                      <p className="text-brand-100">
+                        Insights from a Principal Engineer on building scalable systems, leading
+                        engineering teams, and delivering enterprise solutions.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Featured Project - FeelsReel */}
       <div className="py-20">
@@ -268,7 +345,7 @@ export default function Home({ posts }) {
       </div>
 
       {/* Other Projects */}
-      <div className="bg-gray-50 py-20 dark:bg-gray-900">
+      <div className="bg-gray-50 py-10 dark:bg-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">

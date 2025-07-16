@@ -69,8 +69,8 @@ export default function ServicesPage() {
                 Technical Leadership & Architecture
               </h3>
               <p className="mb-4 text-gray-600 dark:text-gray-400">
-                We provide Principal Engineer-level leadership, enterprise architecture design, and technical strategy
-                for growing companies.
+                We provide Principal Engineer-level leadership, enterprise architecture design, and
+                technical strategy for growing companies.
               </p>
               <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
                 <li>• Engineering Team Management & Mentoring</li>

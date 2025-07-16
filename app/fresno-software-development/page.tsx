@@ -55,8 +55,8 @@ export default function FresnoSoftwareDevelopmentPage() {
                   Enterprise Web Applications
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Enterprise-grade web solutions built with modern technologies like React, Next.js, and
-                  Node.js with focus on scalability and maintainability
+                  Enterprise-grade web solutions built with modern technologies like React, Next.js,
+                  and Node.js with focus on scalability and maintainability
                 </p>
               </div>
               <div className="border-l-4 border-red-600 pl-4">
@@ -72,7 +72,8 @@ export default function FresnoSoftwareDevelopmentPage() {
                   Technical Leadership & Architecture
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Principal Engineer-level team management and enterprise architecture for growing companies
+                  Principal Engineer-level team management and enterprise architecture for growing
+                  companies
                 </p>
               </div>
               <div className="border-l-4 border-red-600 pl-4">
