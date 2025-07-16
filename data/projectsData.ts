@@ -24,6 +24,12 @@ const projectsData: Project[] = [
     imgSrc: '/static/images/projects/candid-moments.png',
     href: 'https://candidmoments.io',
   },
+  {
+    title: 'Sigma Solutions',
+    description: `Groundwater Management web app built to simplify SGMA compliance for California water agencies with interactive mapping and data management tools.`,
+    imgSrc: '/static/images/projects/sgma.gif',
+    href: 'https://antonioperez.github.io/sgma/index.html',
+  },
 ]
 
 export default projectsData
