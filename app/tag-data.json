@@ -1,9 +1,10 @@
 {
   "mobile-development": 1,
-  "web-development": 8,
+  "web-development": 7,
   "deployment": 2,
   "api": 10,
-  "random": 3,
+  "projects": 1,
   "algorithms": 2,
-  "gis": 2
+  "gis": 2,
+  "random": 2
 }
