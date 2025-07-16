@@ -5,6 +5,55 @@ import siteMetadata from '@/data/siteMetadata'
 export default function Home({ posts }) {
   return (
     <>
+      {/* Local Business Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'LocalBusiness',
+            name: 'Software Survivor',
+            description: 'Leading software development company in Fresno, CA',
+            url: 'https://softwaresurvivor.com',
+            telephone: '+1-559-512-5993',
+            email: 'aperez2541@gmail.com',
+            address: {
+              '@type': 'PostalAddress',
+              addressLocality: 'Fresno',
+              addressRegion: 'CA',
+              addressCountry: 'US',
+            },
+            areaServed: [
+              'Fresno',
+              'Clovis',
+              'Madera',
+              'Visalia',
+              'Hanford',
+              'Merced',
+              'Central California',
+            ],
+            hasOfferCatalog: {
+              '@type': 'OfferCatalog',
+              name: 'Software Development Services',
+              itemListElement: [
+                {
+                  '@type': 'Offer',
+                  itemOffered: { '@type': 'Service', name: 'Custom Software Development' },
+                },
+                {
+                  '@type': 'Offer',
+                  itemOffered: { '@type': 'Service', name: 'Technical Leadership' },
+                },
+                {
+                  '@type': 'Offer',
+                  itemOffered: { '@type': 'Service', name: 'System Architecture' },
+                },
+              ]
+            }
+          })
+        }}
+      />
+      
       {/* Hero Section */}
       <div className="from-brand-600 via-brand-700 to-brand-800 relative overflow-hidden bg-gradient-to-br text-white">
         {/* Background Pattern */}
