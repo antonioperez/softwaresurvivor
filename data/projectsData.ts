@@ -7,6 +7,11 @@ interface Project {
 
 const projectsData: Project[] = [
   {
+    title: 'Lighthouse Medical Transport',
+    description: `Professional medical transportation website providing reliable, safe, and compassionate non-emergency medical transport services.`,
+    href: 'http://lighthousecv.com',
+  },
+  {
     title: 'FeelsReel',
     description: `Revolutionary AI-powered story book generator that creates personalized children's stories and transforms them into engaging videos using OpenAI (GPT-4) and RunwayAI.`,
     imgSrc: '/static/images/projects/feelsreel.png',
