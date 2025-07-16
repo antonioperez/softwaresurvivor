@@ -85,7 +85,7 @@ export default function Home({ posts }) {
                 <div className="from-brand-500 to-brand-600 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
               </Link>
               <Link
-                href="/projects"
+                href="/portfolio"
                 className="group hover:text-brand-600 focus:ring-offset-brand-600 relative inline-flex items-center justify-center overflow-hidden rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
               >
                 <span className="relative z-10">View Our Work</span>
@@ -282,7 +282,7 @@ export default function Home({ posts }) {
             <div className="md:flex">
               <div className="md:w-1/2">
                 <Image
-                  src="/static/images/projects/feelsreel.png"
+                  src="/static/images/portfolio/feelsreel.png"
                   alt="FeelsReel"
                   width={600}
                   height={400}
@@ -349,17 +349,18 @@ export default function Home({ posts }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-              More Projects
+              Our Portfolio
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-              Explore our other innovative solutions and cutting-edge projects.
+              Explore our portfolio to see how we solve real client challenges with cutting-edge
+              technology.
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2">
             <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
               <Image
-                src="/static/images/projects/candid-moments.png"
+                src="/static/images/portfolio/candid-moments.png"
                 alt="Candid Moments"
                 width={600}
                 height={300}
@@ -382,7 +383,7 @@ export default function Home({ posts }) {
             </div>
             <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
               <Image
-                src="/static/images/projects/sgma.gif"
+                src="/static/images/portfolio/sgma.gif"
                 alt="Sigma Solutions"
                 width={600}
                 height={300}
@@ -409,7 +410,7 @@ export default function Home({ posts }) {
 
           <div className="mt-12 text-center">
             <Link
-              href="/projects"
+              href="/portfolio"
               className="group bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 relative inline-flex items-center justify-center overflow-hidden rounded-lg px-8 py-4 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:ring-2 focus:ring-offset-2 focus:outline-none"
             >
               <span className="relative z-10">View All Projects</span>
