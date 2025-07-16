@@ -34,17 +34,17 @@ export default function ServicesPage() {
                 </svg>
               </div>
               <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                Custom Software Development
+                Enterprise Software Development
               </h3>
               <p className="mb-4 text-gray-600 dark:text-gray-400">
-                We build scalable web applications, mobile apps, and enterprise solutions using
-                modern technologies and best practices.
+                We build enterprise-grade web applications, mobile apps, and scalable systems using
+                modern architectural patterns and best practices.
               </p>
               <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Web Applications (React, Next.js, Node.js)</li>
-                <li>• Mobile Apps (React Native, Flutter)</li>
-                <li>• API Development (REST, GraphQL)</li>
-                <li>• Database Design & Optimization</li>
+                <li>• Enterprise Web Applications (React, Next.js, Node.js)</li>
+                <li>• Mobile Apps (React Native, Flutter, Native iOS/Android)</li>
+                <li>• API Development (REST, GraphQL, gRPC)</li>
+                <li>• Database Design & Optimization (PostgreSQL, MongoDB, Redis)</li>
               </ul>
             </div>
 
@@ -66,17 +66,17 @@ export default function ServicesPage() {
                 </svg>
               </div>
               <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                Technical Leadership
+                Technical Leadership & Architecture
               </h3>
               <p className="mb-4 text-gray-600 dark:text-gray-400">
-                We provide engineering team management, architecture design, and technical strategy
+                We provide Principal Engineer-level leadership, enterprise architecture design, and technical strategy
                 for growing companies.
               </p>
               <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Engineering Team Management</li>
-                <li>• Technical Architecture Design</li>
-                <li>• Code Review & Quality Assurance</li>
-                <li>• Technical Strategy & Planning</li>
+                <li>• Engineering Team Management & Mentoring</li>
+                <li>• Enterprise Architecture Design</li>
+                <li>• Code Review & Quality Standards</li>
+                <li>• Technical Strategy & Roadmap Planning</li>
               </ul>
             </div>
 
@@ -98,17 +98,17 @@ export default function ServicesPage() {
                 </svg>
               </div>
               <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                System Design & Architecture
+                System Design & Cloud Architecture
               </h3>
               <p className="mb-4 text-gray-600 dark:text-gray-400">
-                We design scalable system architectures, microservices, and cloud infrastructure
-                solutions.
+                We design enterprise system architectures, microservices, and cloud infrastructure
+                solutions across multiple platforms.
               </p>
               <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Scalable System Design</li>
-                <li>• Microservices Architecture</li>
-                <li>• Cloud Infrastructure (AWS, GCP, Azure)</li>
-                <li>• Performance Optimization</li>
+                <li>• Enterprise System Design</li>
+                <li>• Microservices & Event-Driven Architecture</li>
+                <li>• Multi-Cloud Infrastructure (AWS, Azure, GCP)</li>
+                <li>• Performance & Cost Optimization</li>
               </ul>
             </div>
 

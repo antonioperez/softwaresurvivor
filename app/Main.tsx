@@ -71,8 +71,8 @@ export default function Home({ posts }) {
                 </span>
               </h1>
               <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-100 md:text-2xl">
-                Scalable solutions that evolve with your business. From concept to deployment, we
-                craft software that grows with you.
+                Enterprise-grade software architecture and technical leadership. From startups to Fortune 500, 
+                we build scalable systems that survive the test of time.
               </p>
             </div>
 
@@ -127,11 +127,11 @@ export default function Home({ posts }) {
                 </svg>
               </div>
               <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                Custom Software Development
+                Enterprise Software Development
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Scalable web applications, mobile apps, and enterprise solutions built with modern
-                technologies and best practices.
+                Enterprise-grade web applications, mobile apps, and scalable systems built with modern
+                architectural patterns and best practices.
               </p>
             </div>
 
@@ -152,11 +152,11 @@ export default function Home({ posts }) {
                 </svg>
               </div>
               <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                Technical Leadership
+                Technical Leadership & Architecture
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Engineering team management, architecture design, and technical strategy for growing
-                companies.
+                Principal Engineer-level leadership, enterprise architecture design, and technical strategy 
+                for growing companies.
               </p>
             </div>
 
@@ -177,11 +177,11 @@ export default function Home({ posts }) {
                 </svg>
               </div>
               <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                System Design & Architecture
+                System Design & Cloud Architecture
               </h3>
               <p className="text-gray-600 dark:text-gray-400">
-                Scalable system design, microservices architecture, and cloud infrastructure
-                planning.
+                Enterprise system design, microservices architecture, and cloud infrastructure
+                planning across AWS, Azure, and Google Cloud.
               </p>
             </div>
           </div>

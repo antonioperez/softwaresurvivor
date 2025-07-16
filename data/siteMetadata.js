@@ -5,7 +5,7 @@ const siteMetadata = {
   author: 'Antonio Perez',
   headerTitle: 'Software Survivor',
   description:
-    'Leading software development company in Fresno, CA. We build scalable software solutions that stand the test of time. From concept to deployment, we craft software that grows with your business. Serving Fresno, Clovis, Madera, and Central California.',
+    'Principal Engineer-led software development company in Fresno, CA. We build enterprise-grade software solutions that stand the test of time. From concept to deployment, we craft scalable systems that grow with your business. Serving Fresno, Clovis, Madera, and Central California.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://softwaresurvivor.com',

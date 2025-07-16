@@ -52,11 +52,11 @@ export default function FresnoSoftwareDevelopmentPage() {
             <div className="space-y-4">
               <div className="border-l-4 border-red-600 pl-4">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-                  Custom Web Applications
+                  Enterprise Web Applications
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Scalable web solutions built with modern technologies like React, Next.js, and
-                  Node.js
+                  Enterprise-grade web solutions built with modern technologies like React, Next.js, and
+                  Node.js with focus on scalability and maintainability
                 </p>
               </div>
               <div className="border-l-4 border-red-600 pl-4">
@@ -69,10 +69,10 @@ export default function FresnoSoftwareDevelopmentPage() {
               </div>
               <div className="border-l-4 border-red-600 pl-4">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100">
-                  Technical Leadership
+                  Technical Leadership & Architecture
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">
-                  Engineering team management and technical strategy for growing companies
+                  Principal Engineer-level team management and enterprise architecture for growing companies
                 </p>
               </div>
               <div className="border-l-4 border-red-600 pl-4">

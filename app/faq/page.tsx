@@ -29,7 +29,7 @@ const faqs = [
   },
   {
     question: 'What technologies do you use for software development?',
-    answer: 'We use modern, scalable technologies including React, Next.js, Node.js, Python, Java, React Native, Flutter, and cloud platforms like AWS, Azure, and Google Cloud. We choose the best technology stack for your specific project requirements.',
+    answer: 'We use enterprise-grade technologies including React, Next.js, Node.js, Python, Java, React Native, Flutter, and cloud platforms like AWS, Azure, and Google Cloud. Our Principal Engineer experience ensures we choose the optimal technology stack for your specific project requirements and scale.',
   },
   {
     question: 'How long does a typical software project take?',
@@ -37,7 +37,7 @@ const faqs = [
   },
   {
     question: 'Do you handle all aspects of software development?',
-    answer: 'Yes, we provide end-to-end services from initial concept and requirements gathering to design, development, testing, deployment, and ongoing maintenance. We also offer technical leadership and team mentoring services.',
+    answer: 'Yes, we provide end-to-end services from initial concept and requirements gathering to design, development, testing, deployment, and ongoing maintenance. Our Principal Engineer-level expertise also includes technical leadership, architecture design, and team mentoring services.',
   },
   {
     question: 'Can you help with existing software systems?',
