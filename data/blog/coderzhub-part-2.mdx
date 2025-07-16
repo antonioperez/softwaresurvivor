@@ -47,7 +47,7 @@ Users are able to vote on thread to increase their popularity. The more popular 
  <input type="hidden" value="{{t.id}}" name="thread_id" id="thread_id" /></h3>
 ```
 
-Next, Jquery's '.on' call is necessary to send the AJAX call when the up-vote or down- vote button is pressed multiple times on the same page. This can be done with the following JavaScript/JQuery code. The buttons are within the same <div> tag of the hidden input, so we can use multiple Jquery functions such as parent() to transverse up the DOM tree to find the hidden input, then a AJAX POST data is sent with a command to add or subtract a vote, along with the thread ID.
+Next, Jquery's '.on' call is necessary to send the AJAX call when the up-vote or down- vote button is pressed multiple times on the same page. This can be done with the following JavaScript/JQuery code. The buttons are within the same `<div>` tag of the hidden input, so we can use multiple Jquery functions such as parent() to transverse up the DOM tree to find the hidden input, then a AJAX POST data is sent with a command to add or subtract a vote, along with the thread ID.
 
 ```
   <script>
