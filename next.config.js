@@ -14,6 +14,10 @@ const ContentSecurityPolicy = `
   connect-src *;
   font-src 'self';
   frame-src giscus.app
+  frame-src www.google-analytics.com
+  frame-src www.googletagmanager.com
+  frame-src www.youtube.com
+  frame-src www.google.com
 `
 
 const securityHeaders = [
