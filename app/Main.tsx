@@ -67,7 +67,7 @@ export default function Home({ posts }) {
             <div className="mb-8">
               <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
                 We Build Software That
-                <span className="block text-yellow-100 font-extrabold">
+                <span className="block text-yellow-100 dark:text-yellow-200 font-extrabold">
                   Scales with Confidence.
                 </span>
               </h1>
@@ -98,7 +98,7 @@ export default function Home({ posts }) {
       </div>
 
       {/* Services Section */}
-      <div className="warm-gradient py-15 dark:bg-gray-900">
+      <div className="warm-gradient dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-15">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">

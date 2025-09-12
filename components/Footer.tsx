@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer>
       {/* Newsletter Subscription */}
-      <div className="border-t border-gray-200 warm-gradient dark:border-gray-700 dark:bg-gray-900">
+      <div className="border-t border-gray-200 warm-gradient dark:border-gray-700 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <NewsletterForm />
         </div>
