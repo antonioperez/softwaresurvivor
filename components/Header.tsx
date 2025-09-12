@@ -5,6 +5,7 @@ import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
 import SearchButton from './SearchButton'
+import CampfireIcon from './CampfireIcon'
 import Image from 'next/image'
 
 const Header = () => {
@@ -18,12 +19,19 @@ const Header = () => {
     <header className={headerClass}>
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="group flex items-center justify-between">
-          <div className="mr-3 transition-transform duration-300 group-hover:scale-105">
-            <Image src="/static/images/big-logo.png" alt="Logo" width={32} height={32} />
+          <div className="mr-3 transition-all duration-300 group-hover:scale-105 group-hover:campfire-glow">
+            <Image 
+              src="/static/images/big-logo.png" 
+              alt="Logo" 
+              width={32} 
+              height={32}
+              className="flame-flicker transition-all duration-300 group-hover:ember-glow"
+            />
           </div>
           {typeof siteMetadata.headerTitle === 'string' ? (
-            <div className="group-hover:text-brand-600 dark:group-hover:text-brand-400 hidden h-6 text-2xl font-bold text-gray-900 transition-colors duration-300 sm:block dark:text-white">
+            <div className="group-hover:text-brand-600 dark:group-hover:text-brand-400 hidden h-6 text-2xl font-bold text-gray-900 transition-colors duration-300 sm:flex sm:items-center sm:gap-2 dark:text-white">
               {siteMetadata.headerTitle}
+              <CampfireIcon size="sm" className="text-campfire-500 group-hover:text-campfire-400 transition-colors duration-300" />
             </div>
           ) : (
             siteMetadata.headerTitle

@@ -55,9 +55,10 @@ export default function Home({ posts }) {
       />
 
       {/* Hero Section */}
-      <div className="from-brand-600 via-brand-700 to-brand-800 relative overflow-hidden bg-gradient-to-br text-white">
+      <div className="campfire-gradient relative overflow-hidden text-white">
         {/* Background Pattern */}
-        <div className="absolute inset-0 opacity-10">
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 fire-pattern"></div>
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
         </div>
 
@@ -66,13 +67,13 @@ export default function Home({ posts }) {
             <div className="mb-8">
               <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
                 We Build Software That
-                <span className="from-accent-300 to-accent-400 block bg-gradient-to-r bg-clip-text text-transparent">
+                <span className="block text-yellow-100 font-extrabold">
                   Scales with Confidence.
                 </span>
               </h1>
               <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-100 md:text-2xl">
                 Enterprise-grade software architecture and technical leadership. From startups to
-                Fortune 500, we build scalable systems that survive the test of time.
+                Fortune 500, we build scalable systems that survive the test of time—like a campfire that brings teams together and ignites innovation.
               </p>
             </div>
 
@@ -97,7 +98,7 @@ export default function Home({ posts }) {
       </div>
 
       {/* Services Section */}
-      <div className="bg-gray-50 py-15 dark:bg-gray-900">
+      <div className="warm-gradient py-15 dark:bg-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
@@ -105,7 +106,7 @@ export default function Home({ posts }) {
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
               From concept to deployment, we handle every aspect of your software project with
-              expertise and precision.
+              expertise and precision. Like gathering around a campfire, we bring teams together to build something meaningful.
             </p>
           </div>
 
@@ -421,14 +422,14 @@ export default function Home({ posts }) {
       </div>
 
       {/* CTA Section */}
-      <div className="from-brand-600 via-brand-700 to-brand-800 bg-gradient-to-br py-20 text-white">
+      <div className="campfire-gradient py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-3xl font-bold md:text-4xl lg:text-5xl">
             Ready to Build Something Amazing?
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-100">
             Let's discuss how we can help your company navigate complex technical challenges and
-            build scalable solutions.
+            build scalable solutions. Join us around the campfire of innovation.
           </p>
           <Link
             href="/contact"

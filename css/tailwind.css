@@ -10,7 +10,7 @@
   --font-sans: var(--font-space-grotesk), ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji',
     'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 
-  /* Brand Colors - Software Survivor #BD0617 */
+  /* Brand Colors - Software Survivor #BD0617 - Campfire Theme */
   --color-brand-50: oklch(0.98 0.01 15.5);   /* Lightest brand color */
   --color-brand-100: oklch(0.95 0.02 15.5);
   --color-brand-200: oklch(0.90 0.04 15.5);
@@ -22,6 +22,32 @@
   --color-brand-800: oklch(0.35 0.40 15.5);
   --color-brand-900: oklch(0.25 0.45 15.5);
   --color-brand-950: oklch(0.15 0.50 15.5);  /* Darkest brand color */
+
+  /* Campfire Colors - Warm orange and amber tones */
+  --color-campfire-50: oklch(0.98 0.01 45);   /* Lightest campfire color */
+  --color-campfire-100: oklch(0.95 0.02 45);
+  --color-campfire-200: oklch(0.90 0.04 45);
+  --color-campfire-300: oklch(0.85 0.08 45);
+  --color-campfire-400: oklch(0.75 0.15 45);
+  --color-campfire-500: oklch(0.65 0.25 45);  /* Warm orange */
+  --color-campfire-600: oklch(0.55 0.30 45);
+  --color-campfire-700: oklch(0.45 0.35 45);
+  --color-campfire-800: oklch(0.35 0.40 45);
+  --color-campfire-900: oklch(0.25 0.45 45);
+  --color-campfire-950: oklch(0.15 0.50 45);  /* Darkest campfire color */
+
+  /* Ember Colors - Deep red-orange for glowing effects */
+  --color-ember-50: oklch(0.98 0.01 30);
+  --color-ember-100: oklch(0.95 0.02 30);
+  --color-ember-200: oklch(0.90 0.04 30);
+  --color-ember-300: oklch(0.85 0.08 30);
+  --color-ember-400: oklch(0.75 0.15 30);
+  --color-ember-500: oklch(0.65 0.25 30);  /* Deep ember red */
+  --color-ember-600: oklch(0.55 0.30 30);
+  --color-ember-700: oklch(0.45 0.35 30);
+  --color-ember-800: oklch(0.35 0.40 30);
+  --color-ember-900: oklch(0.25 0.45 30);
+  --color-ember-950: oklch(0.15 0.50 30);
 
   /* Primary Colors (using brand color) */
   --color-primary-50: var(--color-brand-50);
@@ -237,4 +263,75 @@ input:-webkit-autofill:focus {
 .linkicon {
   display: inline-block;
   vertical-align: middle;
+}
+
+/* Campfire Theme Utilities */
+.campfire-glow {
+  box-shadow: 
+    0 0 20px var(--color-campfire-500),
+    0 0 40px var(--color-campfire-400),
+    0 0 60px var(--color-campfire-300);
+}
+
+.ember-glow {
+  box-shadow: 
+    0 0 15px var(--color-ember-500),
+    0 0 30px var(--color-ember-400),
+    0 0 45px var(--color-ember-300);
+}
+
+.flame-flicker {
+  animation: flame-flicker 2s ease-in-out infinite alternate;
+}
+
+@keyframes flame-flicker {
+  0% {
+    transform: scale(1) rotate(-1deg);
+    filter: brightness(1) hue-rotate(0deg);
+  }
+  25% {
+    transform: scale(1.02) rotate(1deg);
+    filter: brightness(1.1) hue-rotate(5deg);
+  }
+  50% {
+    transform: scale(0.98) rotate(-0.5deg);
+    filter: brightness(0.9) hue-rotate(-3deg);
+  }
+  75% {
+    transform: scale(1.01) rotate(0.5deg);
+    filter: brightness(1.05) hue-rotate(2deg);
+  }
+  100% {
+    transform: scale(1) rotate(-0.5deg);
+    filter: brightness(1) hue-rotate(0deg);
+  }
+}
+
+.campfire-gradient {
+  background: linear-gradient(135deg, 
+    var(--color-brand-600) 0%, 
+    var(--color-campfire-500) 25%, 
+    var(--color-ember-500) 50%, 
+    var(--color-campfire-600) 75%, 
+    var(--color-brand-700) 100%);
+}
+
+.warm-gradient {
+  background: linear-gradient(135deg, 
+    var(--color-campfire-100) 0%, 
+    var(--color-campfire-200) 50%, 
+    var(--color-ember-200) 100%);
+}
+
+.fire-pattern {
+  background-image: 
+    radial-gradient(circle at 20% 80%, var(--color-campfire-200) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, var(--color-ember-200) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, var(--color-campfire-300) 0%, transparent 50%);
+}
+
+.campfire-text-shadow {
+  text-shadow: 
+    0 0 5px var(--color-campfire-500),
+    0 0 10px var(--color-campfire-400);
 }

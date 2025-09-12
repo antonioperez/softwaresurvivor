@@ -5,7 +5,7 @@ const siteMetadata = {
   author: 'Antonio Perez',
   headerTitle: 'Software Survivor',
   description:
-    'We build scalable, enterprise-grade systems from concept to deployment—designed to grow with your business. Proudly serving Fresno, Clovis, Madera, and all of Central California.',
+    'We build scalable, enterprise-grade systems from concept to deployment—designed to grow with your business. Like a campfire that brings people together, we create software that unites teams and ignites innovation. Proudly serving Fresno, Clovis, Madera, and all of Central California.',
   keywords: [
     'software development fresno',
     'software engineer fresno ca',
@@ -60,7 +60,7 @@ const siteMetadata = {
     telephone: '+1-559-512-5993',
     email: 'aperez2541@gmail.com',
     url: 'https://softwaresurvivor.com',
-    description: 'Software development and technical leadership services in Fresno, California',
+    description: 'Software development and technical leadership services in Fresno, California. Building software that brings teams together like a campfire.',
     areaServed: [
       'Fresno',
       'Clovis',
