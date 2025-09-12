@@ -58,7 +58,7 @@ export default function Home({ posts }) {
       <div className="campfire-gradient relative overflow-hidden text-white">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-20">
-          <div className="absolute inset-0 fire-pattern"></div>
+          <div className="fire-pattern absolute inset-0"></div>
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
         </div>
 
@@ -67,13 +67,14 @@ export default function Home({ posts }) {
             <div className="mb-8">
               <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
                 We Build Software That
-                <span className="block text-yellow-100 dark:text-yellow-200 font-extrabold">
+                <span className="block font-extrabold text-yellow-100 dark:text-yellow-200">
                   Scales with Confidence.
                 </span>
               </h1>
               <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-100 md:text-2xl">
                 Enterprise-grade software architecture and technical leadership. From startups to
-                Fortune 500, we build scalable systems that survive the test of time—like a campfire that brings teams together and ignites innovation.
+                Fortune 500, we build scalable systems that survive the test of time—like a campfire
+                that brings teams together and ignites innovation.
               </p>
             </div>
 
@@ -98,7 +99,7 @@ export default function Home({ posts }) {
       </div>
 
       {/* Services Section */}
-      <div className="warm-gradient dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900 py-15">
+      <div className="warm-gradient py-15 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
@@ -106,7 +107,8 @@ export default function Home({ posts }) {
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
               From concept to deployment, we handle every aspect of your software project with
-              expertise and precision. Like gathering around a campfire, we bring teams together to build something meaningful.
+              expertise and precision. Like gathering around a campfire, we bring teams together to
+              build something meaningful.
             </p>
           </div>
 

@@ -19,19 +19,22 @@ const Header = () => {
     <header className={headerClass}>
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="group flex items-center justify-between">
-          <div className="mr-3 transition-all duration-300 group-hover:scale-105 group-hover:campfire-glow">
-            <Image 
-              src="/static/images/big-logo.png" 
-              alt="Logo" 
-              width={32} 
+          <div className="group-hover:campfire-glow mr-3 transition-all duration-300 group-hover:scale-105">
+            <Image
+              src="/static/images/big-logo.png"
+              alt="Logo"
+              width={32}
               height={32}
-              className="flame-flicker transition-all duration-300 group-hover:ember-glow"
+              className="flame-flicker group-hover:ember-glow transition-all duration-300"
             />
           </div>
           {typeof siteMetadata.headerTitle === 'string' ? (
             <div className="group-hover:text-brand-600 dark:group-hover:text-brand-400 hidden h-6 text-2xl font-bold text-gray-900 transition-colors duration-300 sm:flex sm:items-center sm:gap-2 dark:text-white">
               {siteMetadata.headerTitle}
-              <CampfireIcon size="sm" className="text-campfire-500 group-hover:text-campfire-400 transition-colors duration-300" />
+              <CampfireIcon
+                size="sm"
+                className="text-campfire-500 group-hover:text-campfire-400 transition-colors duration-300"
+              />
             </div>
           ) : (
             siteMetadata.headerTitle

@@ -7,7 +7,7 @@ export default function Footer() {
   return (
     <footer>
       {/* Newsletter Subscription */}
-      <div className="border-t border-gray-200 warm-gradient dark:border-gray-700 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="warm-gradient border-t border-gray-200 dark:border-gray-700 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8">
           <NewsletterForm />
         </div>
@@ -35,7 +35,8 @@ export default function Footer() {
               </Link>
             </div>
             <div className="text-xs text-gray-500 dark:text-gray-500">
-              Building software that survives the test of time • Gathering around the campfire of innovation
+              Building software that survives the test of time • Gathering around the campfire of
+              innovation
             </div>
           </div>
         </div>
