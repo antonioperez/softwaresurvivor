@@ -1,0 +1,52 @@
+<svg width="1200" height="630" viewBox="0 0 1200 630" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+  <title id="title">AI vibe-coded project pitfalls illustration</title>
+  <desc id="desc">Abstract illustration showing a tangled prototype on the left and a stable production system on the right.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#1f2937" />
+      <stop offset="100%" stop-color="#0f172a" />
+    </linearGradient>
+    <linearGradient id="glow" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38bdf8" stop-opacity="0.7" />
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.9" />
+    </linearGradient>
+    <clipPath id="panelClip">
+      <rect x="80" y="120" width="480" height="360" rx="32" />
+    </clipPath>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)" />
+  <g opacity="0.7">
+    <circle cx="1000" cy="120" r="140" fill="#38bdf8" fill-opacity="0.18" />
+    <circle cx="900" cy="540" r="180" fill="#a855f7" fill-opacity="0.16" />
+    <circle cx="300" cy="540" r="220" fill="#22d3ee" fill-opacity="0.12" />
+  </g>
+  <g clip-path="url(#panelClip)">
+    <rect x="80" y="120" width="480" height="360" rx="32" fill="#111827" stroke="#f97316" stroke-width="4" stroke-dasharray="16 16" />
+    <path d="M120 320C160 240 200 380 240 280C280 180 320 360 360 260C400 160 440 340 480 220" stroke="#f97316" stroke-width="8" stroke-linecap="round" fill="none" />
+    <g stroke="#f97316" stroke-width="6" stroke-linecap="round">
+      <line x1="130" y1="220" x2="170" y2="180" />
+      <line x1="260" y1="360" x2="220" y2="400" />
+      <line x1="350" y1="210" x2="330" y2="170" />
+      <line x1="430" y1="330" x2="470" y2="370" />
+    </g>
+  </g>
+  <g transform="translate(640 120)">
+    <rect width="480" height="360" rx="32" fill="#0b1120" stroke="#38bdf8" stroke-width="4" />
+    <g transform="translate(60 60)">
+      <rect width="120" height="120" rx="16" fill="#1f2937" stroke="#38bdf8" stroke-width="3" />
+      <rect x="140" width="120" height="120" rx="16" fill="#1f2937" stroke="#38bdf8" stroke-width="3" />
+      <rect x="280" width="120" height="120" rx="16" fill="#1f2937" stroke="#38bdf8" stroke-width="3" />
+      <rect y="140" width="120" height="120" rx="16" fill="#1f2937" stroke="#38bdf8" stroke-width="3" />
+      <rect x="140" y="140" width="120" height="120" rx="16" fill="#1f2937" stroke="#38bdf8" stroke-width="3" />
+      <rect x="280" y="140" width="120" height="120" rx="16" fill="#1f2937" stroke="#38bdf8" stroke-width="3" />
+      <path d="M60 60L200 60L200 200L340 200" stroke="url(#glow)" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+      <circle cx="60" cy="60" r="10" fill="#38bdf8" />
+      <circle cx="200" cy="60" r="10" fill="#38bdf8" />
+      <circle cx="200" cy="200" r="10" fill="#38bdf8" />
+      <circle cx="340" cy="200" r="10" fill="#38bdf8" />
+    </g>
+  </g>
+  <text x="120" y="520" fill="#f8fafc" font-family="'Inter', 'Segoe UI', sans-serif" font-weight="600" font-size="40">Prototype vibes</text>
+  <text x="760" y="520" fill="#f8fafc" font-family="'Inter', 'Segoe UI', sans-serif" font-weight="600" font-size="40">Production readiness</text>
+  <text x="120" y="580" fill="#cbd5f5" font-family="'Inter', 'Segoe UI', sans-serif" font-size="28">Guide your AI launch with disciplined engineering + consulting support.</text>
+</svg>
