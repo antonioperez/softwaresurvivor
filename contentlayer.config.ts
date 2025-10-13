@@ -64,14 +64,18 @@ const computedFields: ComputedFields = {
  */
 async function createTagCount(allBlogs) {
   const tagCount: Record<string, number> = {}
+  const slugToLabel: Record<string, string> = {}
   allBlogs.forEach((file) => {
     if (file.tags && (!isProduction || file.draft !== true)) {
       file.tags.forEach((tag) => {
-        const formattedTag = slug(tag)
-        if (formattedTag in tagCount) {
-          tagCount[formattedTag] += 1
+        const tagSlug = slug(tag)
+        const existingLabel = slugToLabel[tagSlug]
+
+        if (existingLabel) {
+          tagCount[existingLabel] += 1
         } else {
-          tagCount[formattedTag] = 1
+          slugToLabel[tagSlug] = tag
+          tagCount[tag] = 1
         }
       })
     }
