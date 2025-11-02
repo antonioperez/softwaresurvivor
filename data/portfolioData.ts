@@ -27,7 +27,7 @@ const portfolioData: PortfolioItem[] = [
   {
     title: 'Schuil Ag Real Estate',
     description: `Schuil Ag Real Estate wanted a way to generate brochures for their properties automatically using WordPress and a custom plugin.`,
-    imgSrc: 'https://schuil.com/wp-content/uploads/2023/01/SCH_Logo_S_Blues-676x780.png',
+    imgSrc: '/static/images/portfolio/schuil.png',
     href: 'https://schuil.com/property/7100-acres-irrigated-farmland-kanosh-utah/',
   },
   {
