@@ -1,0 +1,113 @@
+---
+title: 'Reading NetSuite Inventory Availability with SuiteQL'
+date: '2025-01-14'
+tags: ['netsuite', 'suiteql', 'inventory-management']
+draft: false
+summary: 'Step-by-step guide to reading NetSuite inventory availability through the SuiteQL REST endpoint with a production-ready listIssueInventoryNumber helper.'
+images: []
+---
+
+Keeping real-time tabs on inventory is one of the biggest wins you can get from NetSuite, especially when you are juggling lot-managed items alongside products that ship without lot numbers. In this tutorial we will walk through a cleaned-up `listIssueInventoryNumber` helper that safely calls the NetSuite SuiteQL REST endpoint, so you can expose reliable inventory data to fulfillment tools, customer apps, and planning dashboards.
+
+## Updated `listIssueInventoryNumber`
+
+The snippet below instantiates a NetSuite REST client and adds light-touch normalization for lot numbers while keeping the interface identical to the original helper. Copy it straight into your project when you want a minimal drop-in that still handles non-date lot values gracefully. (Import `moment` and your `IssueInventoryNumberByLotNumberResponse` interface alongside this helper.)
+
+```ts
+const netsuiteApi = new NetsuiteRest({
+  consumer_key: process.env.NETSUITE_CUSTOMER_KEY,
+  consumer_secret_key: process.env.NETSUITE_SECRET_KEY,
+  token: process.env.NETSUITE_TOKEN,
+  token_secret: process.env.NETSUITE_TOKEN_SECRET,
+  realm: process.env.NETSUITE_ACCOUNT_ID,
+  base_url: process.env.NETSUITE_API_URL,
+});
+
+
+function listIssueInventoryNumber(itemNumber: string, locationId: number, lotNumber?: string): Promise<IssueInventoryNumberByLotNumberResponse[]> {
+  const normalizeLotNumber = (lotNumberToNormalize: string) => {
+    try {
+      const isDate = moment(lotNumberToNormalize, 'MM/DD/YYYY').isValid();
+      if (isDate) {
+        return moment(lotNumberToNormalize, 'MM/DD/YYYY').format('MM/DD/YY');
+      }
+
+      return lotNumberToNormalize;
+    } catch (error) {
+      return lotNumberToNormalize;
+    }
+  };
+
+  let query, params;
+  if (lotNumber) {
+    query = `
+      SELECT inventoryNumber.Id AS id, inventorynumber.inventorynumber AS lotNumber, inventorynumber.item AS itemId, item.itemid AS itemNumber,
+        item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId
+      FROM inventorynumber
+      INNER JOIN ItemInventoryBalance ON ItemInventoryBalance.inventoryNumber = inventoryNumber.Id
+      INNER JOIN item ON inventorynumber.item = item.id
+      WHERE (inventorynumber.inventorynumber LIKE :lotNumber OR inventorynumber.inventorynumber LIKE :normalizedLotNumber)
+        AND item.itemid = :itemNumber AND ItemInventoryBalance.location = :locationId
+    `;
+    params = {
+      lotNumber: `%${lotNumber}%`,
+      normalizedLotNumber: `%${normalizeLotNumber(lotNumber)}%`,
+      itemNumber,
+      locationId
+    };
+  } else {
+    query = `
+      SELECT '' AS id, '' AS lotNumber, iteminventorybalance.item AS itemId, item.itemid AS itemNumber,
+        item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId
+      FROM ItemInventoryBalance
+      INNER JOIN item ON item.id = iteminventorybalance.item
+      WHERE item.itemid = :itemNumber AND iteminventorybalance.location = :locationId
+    `;
+    params = {
+      itemNumber,
+      locationId
+    };
+  }
+
+  return netsuiteApi.request({
+    path: `query/v1/suiteql`,
+    method: 'POST',
+    body: JSON.stringify({
+      q: query,
+      params
+    }),
+  })
+    .then(response => response.data?.items || [])
+    .catch(error => {
+      const response = error && error.response;
+      const errorMessage = (response && response.body) || error;
+
+      return Promise.reject(errorMessage);
+    });
+}
+```
+
+### How the helper works
+
+- **NetSuite authentication:** `NetsuiteRest` is configured with token-based credentials pulled from environment variables, which keeps secrets out of source control while enabling deployments across multiple accounts.
+- **Optional lot search:** When you pass a `lotNumber`, the helper searches by both the raw value and a normalized date-style variant so you can capture inventory tied to dates such as expiration lots.
+- **Non-lot inventory:** Skip the `lotNumber` argument to pull available quantity for standard items that do not rely on lot tracking; the query automatically falls back to `ItemInventoryBalance`.
+
+## Querying the NetSuite SQL (SuiteQL) endpoint
+
+All of the heavy lifting runs through NetSuite's SQL-like API at `query/v1/suiteql`. This REST endpoint accepts Oracle-flavoured SQL inside the `q` property of the POST body and returns a JSON payload with an `items` array. Because SuiteQL operates directly on NetSuite's relational data, it is the fastest way to join `inventorynumber`, `iteminventorybalance`, and `item` without resorting to multiple REST calls.
+
+To keep response times predictable and SEO-ready for customer-facing inventory pages, follow these best practices:
+
+- **Validate every input** before you concatenate or interpolate values into SuiteQL.
+- **Limit your columns** to only what the UI needs, especially when you are rendering product detail pages or headless commerce listings.
+- **Add deterministic ordering** (for example, `ORDER BY itemNumber, lotNumber`) when you plan to paginate or cache responses.
+
+## Using the helper in your application
+
+1. Instantiate a NetSuite REST client with token-based authentication or OAuth 1.0.
+2. Call `listIssueInventoryNumber` with the item number and location ID you need to inspect.
+3. Include a `lotNumber` to return per-lot availability; omit it to fetch inventory for non-lot items.
+4. Surface the resulting `quantityAvailable` data in dashboards, customer experiences, or internal planning tools.
+
+With a production-hardened helper and a clear understanding of the NetSuite SQL endpoint, you can deliver inventory visibility that search engines and stakeholders alike can trust.
