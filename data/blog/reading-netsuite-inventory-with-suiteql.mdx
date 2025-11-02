@@ -1,9 +1,9 @@
 ---
 title: 'Reading NetSuite Inventory Availability with SuiteQL'
-date: '2025-01-14'
+date: '2025-11-02'
 tags: ['netsuite', 'suiteql', 'inventory-management']
 draft: false
-summary: 'Step-by-step guide to reading NetSuite inventory availability through the SuiteQL REST endpoint with a production-ready listIssueInventoryNumber helper.'
+summary: 'NODE.js helper to reading NetSuite inventory availability through the SuiteQL REST endpoint with a production-ready listIssueInventoryNumber helper.'
 images: []
 ---
 
@@ -23,67 +23,62 @@ const netsuiteApi = new NetsuiteRest({
   base_url: process.env.NETSUITE_API_URL,
 });
 
+interface IssueInventoryNumberByLotNumberResponse {
+	id: string;
+	lotnumber: string;
+	itemid: string;
+	itemnumber: string;
+	itemname: string;
+	quantityavailable: string;
+	locationid: string;
+}
 
 function listIssueInventoryNumber(itemNumber: string, locationId: number, lotNumber?: string): Promise<IssueInventoryNumberByLotNumberResponse[]> {
-  const normalizeLotNumber = (lotNumberToNormalize: string) => {
-    try {
+	const normalizeLotNumber = (lotNumberToNormalize: string) => {
+		try {
+			// example if dates are passed in as 01/01/2025, we need to normalize it to 01/01/25
+      
       const isDate = moment(lotNumberToNormalize, 'MM/DD/YYYY').isValid();
+			
       if (isDate) {
-        return moment(lotNumberToNormalize, 'MM/DD/YYYY').format('MM/DD/YY');
-      }
+				return moment(lotNumberToNormalize, 'MM/DD/YYYY').format('MM/DD/YY');
+			}
 
-      return lotNumberToNormalize;
-    } catch (error) {
-      return lotNumberToNormalize;
-    }
-  };
+			return lotNumberToNormalize;
+		} catch (error) {
+			return lotNumberToNormalize;
+		}
+	};
 
-  let query, params;
-  if (lotNumber) {
-    query = `
-      SELECT inventoryNumber.Id AS id, inventorynumber.inventorynumber AS lotNumber, inventorynumber.item AS itemId, item.itemid AS itemNumber,
-        item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId
-      FROM inventorynumber
-      INNER JOIN ItemInventoryBalance ON ItemInventoryBalance.inventoryNumber = inventoryNumber.Id
-      INNER JOIN item ON inventorynumber.item = item.id
-      WHERE (inventorynumber.inventorynumber LIKE :lotNumber OR inventorynumber.inventorynumber LIKE :normalizedLotNumber)
-        AND item.itemid = :itemNumber AND ItemInventoryBalance.location = :locationId
-    `;
-    params = {
-      lotNumber: `%${lotNumber}%`,
-      normalizedLotNumber: `%${normalizeLotNumber(lotNumber)}%`,
-      itemNumber,
-      locationId
-    };
-  } else {
-    query = `
-      SELECT '' AS id, '' AS lotNumber, iteminventorybalance.item AS itemId, item.itemid AS itemNumber,
-        item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId
-      FROM ItemInventoryBalance
-      INNER JOIN item ON item.id = iteminventorybalance.item
-      WHERE item.itemid = :itemNumber AND iteminventorybalance.location = :locationId
-    `;
-    params = {
-      itemNumber,
-      locationId
-    };
-  }
+	let query = lotNumber ? `
+		SELECT inventoryNumber.Id AS id, inventorynumber.inventorynumber AS lotNumber, inventorynumber.item AS itemId, item.itemid AS itemNumber,
+			item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId,
+		FROM inventorynumber
+		INNER JOIN ItemInventoryBalance ON ItemInventoryBalance.inventoryNumber = inventoryNumber.Id
+		INNER JOIN item ON inventorynumber.item = item.id
+		WHERE (inventorynumber.inventorynumber LIKE '%${lotNumber}%' or inventorynumber.inventorynumber LIKE '%${normalizeLotNumber(lotNumber)}%') and item.itemid = '${itemNumber}' and ItemInventoryBalance.location = ${locationId}
+	` : `
+		SELECT '' AS id, '' AS lotNumber, iteminventorybalance.item AS itemId, item.itemid AS itemNumber,
+			item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId,
+		FROM ItemInventoryBalance
+		INNER JOIN item ON item.id = iteminventorybalance.item
+		WHERE item.itemid = '${itemNumber}' and iteminventorybalance.location = ${locationId}
+	`;
 
-  return netsuiteApi.request({
-    path: `query/v1/suiteql`,
-    method: 'POST',
-    body: JSON.stringify({
-      q: query,
-      params
-    }),
-  })
-    .then(response => response.data?.items || [])
-    .catch(error => {
-      const response = error && error.response;
-      const errorMessage = (response && response.body) || error;
+	return netsuiteApi.request({
+		path: `query/v1/suiteql`,
+		method: 'POST',
+		body: JSON.stringify({
+			q: query
+		}),
+	})
+		.then(response => response.data?.items || [])
+		.catch(error => {
+			const response = error && error.response;
+			const errorMessage = (response && response.body) || error;
 
-      return Promise.reject(errorMessage);
-    });
+			return Promise.reject(errorMessage);
+		});
 }
 ```
 
@@ -99,7 +94,6 @@ All of the heavy lifting runs through NetSuite's SQL-like API at `query/v1/suite
 
 To keep response times predictable and SEO-ready for customer-facing inventory pages, follow these best practices:
 
-- **Validate every input** before you concatenate or interpolate values into SuiteQL.
 - **Limit your columns** to only what the UI needs, especially when you are rendering product detail pages or headless commerce listings.
 - **Add deterministic ordering** (for example, `ORDER BY itemNumber, lotNumber`) when you plan to paginate or cache responses.
 
