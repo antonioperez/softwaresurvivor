@@ -38,29 +38,43 @@ function listIssueInventoryNumber(itemNumber: string, locationId: number, lotNum
     }
   };
 
-  let query = lotNumber
-    ? `
-    SELECT inventoryNumber.Id AS id, inventorynumber.inventorynumber AS lotNumber, inventorynumber.item AS itemId, item.itemid AS itemNumber,
-      item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId
-    FROM inventorynumber
-    INNER JOIN ItemInventoryBalance ON ItemInventoryBalance.inventoryNumber = inventoryNumber.Id
-    INNER JOIN item ON inventorynumber.item = item.id
-    WHERE (inventorynumber.inventorynumber LIKE '%${lotNumber}%' or inventorynumber.inventorynumber LIKE '%${normalizeLotNumber(lotNumber)}%') and item.itemid = '${itemNumber}' and ItemInventoryBalance.location = ${locationId}
-  `
-    : `
-    SELECT '' AS id, '' AS lotNumber, iteminventorybalance.item AS itemId, item.itemid AS itemNumber,
-      item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId,
-    FROM ItemInventoryBalance
-    INNER JOIN item ON item.id = iteminventorybalance.item
-    WHERE item.itemid = '${itemNumber}' and iteminventorybalance.location = ${locationId}
-  `;
-
+  let query, params;
+  if (lotNumber) {
+    query = `
+      SELECT inventoryNumber.Id AS id, inventorynumber.inventorynumber AS lotNumber, inventorynumber.item AS itemId, item.itemid AS itemNumber,
+        item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId
+      FROM inventorynumber
+      INNER JOIN ItemInventoryBalance ON ItemInventoryBalance.inventoryNumber = inventoryNumber.Id
+      INNER JOIN item ON inventorynumber.item = item.id
+      WHERE (inventorynumber.inventorynumber LIKE :lotNumber OR inventorynumber.inventorynumber LIKE :normalizedLotNumber)
+        AND item.itemid = :itemNumber AND ItemInventoryBalance.location = :locationId
+    `;
+    params = {
+      lotNumber: `%${lotNumber}%`,
+      normalizedLotNumber: `%${normalizeLotNumber(lotNumber)}%`,
+      itemNumber,
+      locationId
+    };
+  } else {
+    query = `
+      SELECT '' AS id, '' AS lotNumber, iteminventorybalance.item AS itemId, item.itemid AS itemNumber,
+        item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId
+      FROM ItemInventoryBalance
+      INNER JOIN item ON item.id = iteminventorybalance.item
+      WHERE item.itemid = :itemNumber AND iteminventorybalance.location = :locationId
+    `;
+    params = {
+      itemNumber,
+      locationId
+    };
+  }
 
   return netsuiteApi.request({
     path: `query/v1/suiteql`,
     method: 'POST',
     body: JSON.stringify({
-      q: query
+      q: query,
+      params
     }),
   })
     .then(response => response.data?.items || [])
