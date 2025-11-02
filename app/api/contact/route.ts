@@ -1,4 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
+import formData from 'form-data'
+import Mailgun from 'mailgun.js'
 
 export async function POST(request: NextRequest) {
   try {
@@ -8,6 +10,12 @@ export async function POST(request: NextRequest) {
     // Validate required fields
     if (!firstName || !lastName || !email || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
+    }
+
+    // Validate Mailgun configuration
+    if (!process.env.MAILGUN_API_KEY || !process.env.MAILGUN_API_SERVER) {
+      console.error('Mailgun configuration missing')
+      return NextResponse.json({ error: 'Email service not configured' }, { status: 500 })
     }
 
     // Get current timestamp
@@ -43,42 +51,21 @@ ${message}
 ───────────────────────────────────────────────────────────────
     `
 
-    // SendGrid API call
-    const sendGridResponse = await fetch('https://api.sendgrid.com/v3/mail/send', {
-      method: 'POST',
-      headers: {
-        Authorization: `Bearer ${process.env.SENDGRID_API_KEY}`,
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        personalizations: [
-          {
-            to: [
-              {
-                email: process.env.CONTACT_EMAIL || 'contact@softwaresurvivor.com',
-                name: 'Software Survivor Team',
-              },
-            ],
-            subject: `📧 Contact Form: ${firstName} ${lastName} - ${service || 'General Inquiry'}`,
-          },
-        ],
-        from: {
-          email: 'noreply@softwaresurvivor.com',
-          name: 'Software Survivor Contact Form',
-        },
-        content: [
-          {
-            type: 'text/plain',
-            value: emailContent,
-          },
-        ],
-      }),
+    // Initialize Mailgun client
+    const mailgun = new Mailgun(formData)
+    const mg = mailgun.client({
+      username: 'api',
+      key: process.env.MAILGUN_API_KEY,
     })
 
-    if (!sendGridResponse.ok) {
-      console.error('SendGrid API error:', await sendGridResponse.text())
-      return NextResponse.json({ error: 'Failed to send email' }, { status: 500 })
-    }
+    // Send email via Mailgun
+    await mg.messages.create(process.env.MAILGUN_API_SERVER, {
+      from: 'noreply@softwaresurvivor.com',
+      to: [process.env.CONTACT_EMAIL || 'contact@softwaresurvivor.com'],
+      subject: `📧 Contact Form: ${firstName} ${lastName} - ${service || 'General Inquiry'}`,
+      text: emailContent,
+      'h:Reply-To': email, // Allow replying directly to the submitter
+    })
 
     return NextResponse.json({ message: 'Message sent successfully' }, { status: 200 })
   } catch (error) {
