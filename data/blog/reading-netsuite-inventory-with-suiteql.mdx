@@ -41,7 +41,7 @@ function listIssueInventoryNumber(itemNumber: string, locationId: number, lotNum
   let query = lotNumber
     ? `
     SELECT inventoryNumber.Id AS id, inventorynumber.inventorynumber AS lotNumber, inventorynumber.item AS itemId, item.itemid AS itemNumber,
-      item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId,
+      item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId
     FROM inventorynumber
     INNER JOIN ItemInventoryBalance ON ItemInventoryBalance.inventoryNumber = inventoryNumber.Id
     INNER JOIN item ON inventorynumber.item = item.id
