@@ -7,7 +7,7 @@ export const metadata: Metadata = genPageMetadata({
   description:
     'Leading software development company in Fresno, CA. Custom web applications, mobile apps, and technical leadership services. Serving Central California businesses with scalable software solutions.',
   keywords:
-    'Fresno software development, Fresno web development, Fresno mobile app development, Central California software company, Fresno IT consulting, Clovis software development, Madera web development',
+    'Fresno software development, Fresno web development, Fresno mobile app development, Central California software company, Fresno IT consulting, Clovis software development, Madera web development, San Luis Obispo software development, Pismo Beach software development, SLO software development',
 })
 
 export default function FresnoSoftwareDevelopmentPage() {
@@ -104,6 +104,33 @@ export default function FresnoSoftwareDevelopmentPage() {
               { city: 'Visalia', description: 'Healthcare and retail software development' },
               { city: 'Hanford', description: 'Manufacturing and logistics software solutions' },
               { city: 'Merced', description: 'Education and government technology services' },
+            ].map((area) => (
+              <div
+                key={area.city}
+                className="rounded-lg border border-gray-200 p-4 dark:border-gray-700"
+              >
+                <h3 className="font-semibold text-gray-900 dark:text-gray-100">{area.city}</h3>
+                <p className="text-sm text-gray-600 dark:text-gray-400">{area.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <div className="mt-12">
+          <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-gray-100">
+            Serving Coastal California
+          </h2>
+          <div className="grid gap-4 md:grid-cols-3">
+            {[
+              {
+                city: 'San Luis Obispo',
+                description: 'Coastal tech hub with thriving startup ecosystem and innovation',
+              },
+              { city: 'Pismo Beach', description: 'Tourism and hospitality technology solutions' },
+              {
+                city: 'Santa Barbara',
+                description: 'Tech hub with thriving startup ecosystem and innovation',
+              },
             ].map((area) => (
               <div
                 key={area.city}
