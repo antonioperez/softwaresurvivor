@@ -7,7 +7,7 @@ export const metadata: Metadata = genPageMetadata({
   description:
     'Leading software development company in Fresno, CA. Custom web applications, mobile apps, and technical leadership services. Serving Central California businesses with scalable software solutions.',
   keywords:
-    'Fresno software development, Fresno web development, Fresno mobile app development, Central California software company, Fresno IT consulting, Clovis software development, Madera web development',
+    'Fresno software development, Fresno web development, Fresno mobile app development, Central California software company, Fresno IT consulting, Clovis software development, Madera web development, San Luis Obispo software development, Pismo Beach software development, SLO software development',
 })
 
 export default function FresnoSoftwareDevelopmentPage() {
@@ -104,6 +104,14 @@ export default function FresnoSoftwareDevelopmentPage() {
               { city: 'Visalia', description: 'Healthcare and retail software development' },
               { city: 'Hanford', description: 'Manufacturing and logistics software solutions' },
               { city: 'Merced', description: 'Education and government technology services' },
+              {
+                city: 'San Luis Obispo',
+                description: 'Coastal tech hub with thriving startup ecosystem and innovation',
+              },
+              {
+                city: 'Pismo Beach',
+                description: 'Tourism and hospitality technology solutions',
+              },
             ].map((area) => (
               <div
                 key={area.city}
