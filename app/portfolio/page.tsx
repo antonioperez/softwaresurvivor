@@ -2,7 +2,18 @@ import portfolioData from '@/data/portfolioData'
 import Card from '@/components/Card'
 import { genPageMetadata } from 'app/seo'
 
-export const metadata = genPageMetadata({ title: 'Portfolio' })
+export const metadata = genPageMetadata({
+  title: 'Portfolio | Custom Software Consulting Projects',
+  description:
+    "View our portfolio of custom software consulting projects. Enterprise web applications, mobile apps, and technical leadership solutions we've built for clients in Fresno and Central California.",
+  canonical: '/portfolio',
+  keywords: [
+    'custom software consulting portfolio',
+    'software consulting projects',
+    'enterprise software portfolio',
+    'fresno software development portfolio',
+  ],
+})
 
 export default function Portfolio() {
   return (

@@ -3,11 +3,24 @@ import { genPageMetadata } from 'app/seo'
 import siteMetadata from '@/data/siteMetadata'
 
 export const metadata: Metadata = genPageMetadata({
-  title: 'Fresno Software Development Company',
+  title: 'Fresno Custom Software Consulting | Software Development Company',
   description:
-    'Leading software development company in Fresno, CA. Custom web applications, mobile apps, and technical leadership services. Serving Central California businesses with scalable software solutions.',
-  keywords:
-    'Fresno software development, Fresno web development, Fresno mobile app development, Central California software company, Fresno IT consulting, Clovis software development, Madera web development, San Luis Obispo software development, Pismo Beach software development, SLO software development',
+    'Leading custom software consulting company in Fresno, CA. Custom web applications, mobile apps, and technical leadership services. Expert software consulting serving Central California businesses with scalable solutions.',
+  canonical: '/fresno-software-development',
+  keywords: [
+    'custom software consulting fresno',
+    'Fresno software development company',
+    'Fresno custom software consulting',
+    'Fresno web development',
+    'Fresno mobile app development',
+    'Central California software company',
+    'Fresno IT consulting',
+    'Clovis software development',
+    'Madera web development',
+    'San Luis Obispo software development',
+    'Pismo Beach software development',
+    'SLO software development',
+  ],
 })
 
 export default function FresnoSoftwareDevelopmentPage() {

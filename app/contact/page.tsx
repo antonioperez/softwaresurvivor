@@ -1,6 +1,20 @@
 import Link from '@/components/Link'
 import ContactForm from '@/components/ContactForm'
 import siteMetadata from '@/data/siteMetadata'
+import { genPageMetadata } from '../seo'
+
+export const metadata = genPageMetadata({
+  title: 'Contact Us | Custom Software Consulting',
+  description:
+    'Contact our custom software consulting team in Fresno, CA. Get expert advice on enterprise software development, technical leadership, and system architecture. We typically respond within 24 hours.',
+  canonical: '/contact',
+  keywords: [
+    'custom software consulting contact',
+    'software consulting fresno',
+    'enterprise software consulting',
+    'contact software developer fresno',
+  ],
+})
 
 export default function ContactPage() {
   return (

@@ -3,9 +3,17 @@ import ServiceSchema from '@/components/ServiceSchema'
 import { genPageMetadata } from '../seo'
 
 export const metadata = genPageMetadata({
-  title: 'Our Services',
+  title: 'Custom Software Consulting Services | Software Survivor',
   description:
-    'Comprehensive software development and technical leadership services in Fresno, CA. Enterprise software development, technical leadership, system architecture, DevOps, and consulting services for growing businesses.',
+    'Comprehensive custom software consulting services in Fresno, CA. Enterprise software development, technical leadership, system architecture, DevOps, and consulting services for growing businesses. Expert custom software solutions.',
+  canonical: '/services',
+  keywords: [
+    'custom software consulting services',
+    'enterprise software consulting',
+    'custom software development services',
+    'software consulting services fresno',
+    'technical consulting services',
+  ],
 })
 
 export default function ServicesPage() {
@@ -18,8 +26,9 @@ export default function ServicesPage() {
             Our Services
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            We provide comprehensive software development and technical leadership services to help
-            your business succeed.
+            We provide comprehensive custom software consulting and technical leadership services to
+            help your business succeed. Expert guidance on enterprise software development,
+            architecture, and implementation.
           </p>
         </div>
 

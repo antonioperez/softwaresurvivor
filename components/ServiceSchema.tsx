@@ -5,10 +5,10 @@ import Script from 'next/script'
 export default function ServiceSchema() {
   const serviceSchema = {
     '@context': 'https://schema.org',
-    '@type': 'Service',
-    name: 'Software Development Services',
+    '@type': 'ProfessionalService',
+    name: 'Custom Software Consulting Services',
     description:
-      'Comprehensive software development and technical leadership services in Fresno, CA',
+      'Comprehensive custom software consulting and technical leadership services in Fresno, CA. Expert enterprise software development, system architecture, and technical consulting.',
     provider: {
       '@type': 'LocalBusiness',
       name: 'Software Survivor',
@@ -25,6 +25,7 @@ export default function ServiceSchema() {
       },
     },
     serviceType: [
+      'Custom Software Consulting',
       'Enterprise Software Development',
       'Technical Leadership & Architecture',
       'System Design & Cloud Architecture',
@@ -44,8 +45,17 @@ export default function ServiceSchema() {
     ],
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Software Development Services',
+      name: 'Custom Software Consulting Services',
       itemListElement: [
+        {
+          '@type': 'Offer',
+          itemOffered: {
+            '@type': 'Service',
+            name: 'Custom Software Consulting',
+            description:
+              'Expert custom software consulting services to help businesses build scalable, enterprise-grade solutions tailored to their unique needs',
+          },
+        },
         {
           '@type': 'Offer',
           itemOffered: {

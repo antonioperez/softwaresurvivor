@@ -72,9 +72,9 @@ export default function Home({ posts }) {
                 </span>
               </h1>
               <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-100 md:text-2xl">
-                Enterprise-grade software architecture and technical leadership. From startups to
-                Fortune 500, we build scalable systems that survive the test of time—like a campfire
-                that brings teams together and ignites innovation.
+                Expert custom software consulting services. Enterprise-grade software architecture
+                and technical leadership. From startups to Fortune 500, we build scalable systems
+                that survive.
               </p>
             </div>
 
@@ -99,16 +99,16 @@ export default function Home({ posts }) {
       </div>
 
       {/* Services Section */}
-      <div className="warm-gradient py-15 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="warm-gradient mb-8 py-15 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
               Our Services
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-              From concept to deployment, we handle every aspect of your software project with
-              expertise and precision. Like gathering around a campfire, we bring teams together to
-              build something meaningful.
+              Expert custom software consulting from concept to deployment. We handle every aspect
+              of your software project with expertise and precision. Like gathering around a
+              campfire, we bring teams together to build something meaningful.
             </p>
           </div>
 

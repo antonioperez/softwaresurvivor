@@ -17,10 +17,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     '',
     'blog',
-    'projects',
+    'services',
+    'contact',
+    'about',
+    'portfolio',
     'tags',
     'fresno-software-development',
-    'testimonials',
     'faq',
   ].map((route) => ({
     url: `${siteUrl}/${route}`,
