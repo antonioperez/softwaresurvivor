@@ -5,7 +5,7 @@ const siteMetadata = {
   author: 'Antonio Perez',
   headerTitle: 'Software Survivor',
   description:
-    'Custom software consulting services in Fresno, CA. Expert software development consulting, enterprise architecture, and technical leadership. We build scalable, enterprise-grade systems from concept to deployment—designed to grow with your business. Proudly serving Fresno, Clovis, Madera, and all of Central California.',
+    'Expert software development consulting, enterprise architecture & technical leadership in Fresno, CA. Building scalable systems for Central California businesses.',
   keywords: [
     'custom software consulting',
     'custom software consulting fresno',
