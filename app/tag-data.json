@@ -1,5 +1,5 @@
 {
-  "web-development": 9,
+  "web-development": 10,
   "ai": 3,
   "consulting": 2,
   "software-development": 6,
@@ -8,5 +8,8 @@
   "api": 9,
   "algorithms": 2,
   "gis": 2,
-  "e-commerce": 5
+  "e-commerce": 5,
+  "local-business": 1,
+  "marketing": 1,
+  "central-california": 1
 }
