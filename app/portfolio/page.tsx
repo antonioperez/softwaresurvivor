@@ -40,6 +40,31 @@ export default function Portfolio() {
               />
             ))}
           </div>
+
+          {/* Call to Action */}
+          <div className="mt-16 rounded-lg bg-gray-50 p-8 text-center dark:bg-gray-800">
+            <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-gray-100">
+              Have Questions About Our Services?
+            </h3>
+            <p className="mb-6 text-gray-600 dark:text-gray-400">
+              Check out our FAQ page to learn more about our software development process, pricing,
+              and how we serve Central California businesses.
+            </p>
+            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
+              <a
+                href="/faq"
+                className="bg-brand-600 hover:bg-brand-700 inline-flex items-center rounded-md px-6 py-3 text-base font-medium text-white"
+              >
+                View FAQ
+              </a>
+              <a
+                href="/contact"
+                className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
+              >
+                Contact Us
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </>
