@@ -26,6 +26,7 @@ const Header = () => {
               width={32}
               height={32}
               className="flame-flicker group-hover:ember-glow transition-all duration-300"
+              priority
             />
           </div>
           {typeof siteMetadata.headerTitle === 'string' ? (
