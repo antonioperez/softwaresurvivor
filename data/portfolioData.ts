@@ -7,6 +7,12 @@ interface PortfolioItem {
 
 const portfolioData: PortfolioItem[] = [
   {
+    title: 'Inbox2Order',
+    description: `Intelligent email-to-order automation platform that transforms email inquiries into structured orders automatically, eliminating manual data entry and streamlining business operations.`,
+    href: 'http://inbox2order.com',
+    imgSrc: '/static/images/portfolio/inbox2order.png',
+  },
+  {
     title: 'Tlaloc Harvest',
     description: `Stealth startup transforming how communities handle food waste with a sustainable, easy-to-use platform for redistributing surplus food.`,
     imgSrc: 'https://tlaloc.pages.dev/assets/public-banner-BQdze4gp.webp',

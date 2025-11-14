@@ -13,7 +13,9 @@ const ContentSecurityPolicy = `
   media-src *.s3.amazonaws.com;
   connect-src *;
   font-src 'self';
-  frame-src giscus.app
+  frame-src giscus.app;
+  block-all-mixed-content;
+  upgrade-insecure-requests;
 `
 
 const securityHeaders = [
@@ -37,6 +39,11 @@ const securityHeaders = [
     key: 'X-Content-Type-Options',
     value: 'nosniff',
   },
+  // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-XSS-Protection
+  {
+    key: 'X-XSS-Protection',
+    value: '1; mode=block',
+  },
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-DNS-Prefetch-Control
   {
     key: 'X-DNS-Prefetch-Control',
@@ -55,7 +62,7 @@ const securityHeaders = [
   // https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/Feature-Policy
   {
     key: 'Permissions-Policy',
-    value: 'camera=(), microphone=(), geolocation=()',
+    value: 'camera=(), display-capture=(), microphone=()',
   },
 ]
 
