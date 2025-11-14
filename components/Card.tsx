@@ -8,28 +8,31 @@ const Card = ({ title, description, imgSrc, href }) => {
   return (
     <div className="group h-full">
       <div className="flex h-full flex-col overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
-        {imgSrc &&
-          (href ? (
-            <Link href={href} aria-label={`Link to ${title}`}>
+        {imgSrc && (
+          <div className="flex h-48 w-full items-center justify-center overflow-hidden bg-gray-50 dark:bg-gray-900">
+            {href ? (
+              <Link href={href} aria-label={`Link to ${title}`}>
+                <Image
+                  alt={title}
+                  src={imgSrc}
+                  className="max-h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  width={544}
+                  height={306}
+                  unoptimized={isGif}
+                />
+              </Link>
+            ) : (
               <Image
                 alt={title}
                 src={imgSrc}
-                className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
+                className="max-h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
                 width={544}
                 height={306}
                 unoptimized={isGif}
               />
-            </Link>
-          ) : (
-            <Image
-              alt={title}
-              src={imgSrc}
-              className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
-              width={544}
-              height={306}
-              unoptimized={isGif}
-            />
-          ))}
+            )}
+          </div>
+        )}
         <div className="flex flex-1 flex-col p-6">
           <h2 className="mb-3 text-xl font-bold tracking-tight text-gray-900 dark:text-white">
             {href ? (
