@@ -108,12 +108,6 @@ export default function FAQPage() {
                 >
                   Get Free Consultation
                 </a>
-                <a
-                  href="tel:+15595125993"
-                  className="inline-flex items-center rounded-md border border-gray-300 bg-white px-6 py-3 text-base font-medium text-gray-700 hover:bg-gray-50 dark:border-gray-600 dark:bg-gray-700 dark:text-gray-200 dark:hover:bg-gray-600"
-                >
-                  Call (559) 512-5993
-                </a>
               </div>
             </div>
           </div>

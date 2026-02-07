@@ -99,7 +99,6 @@ export default function LocalSEO({ pageTitle, pageDescription, pageUrl }: LocalS
       <meta name="business:contact_data:region" content="CA" />
       <meta name="business:contact_data:postal_code" content="93701" />
       <meta name="business:contact_data:country_name" content="United States" />
-      <meta name="business:contact_data:phone_number" content="+1-559-512-5993" />
       <meta name="business:contact_data:email" content="aperez2541@gmail.com" />
     </>
   )

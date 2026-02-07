@@ -66,7 +66,6 @@ const siteMetadata = {
       postalCode: '93701',
       addressCountry: 'US',
     },
-    telephone: '+1-559-512-5993',
     email: 'aperez2541@gmail.com',
     url: 'https://softwaresurvivor.com',
     description: 'Software development and technical leadership services in Fresno, California. Building software that brings teams together like a campfire.',

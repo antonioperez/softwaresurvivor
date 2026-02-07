@@ -15,7 +15,7 @@ export default function Home({ posts }) {
             name: 'Software Survivor',
             description: 'Leading software development company in Fresno, CA',
             url: 'https://softwaresurvivor.com',
-            telephone: '+1-559-512-5993',
+            telephone: '',
             email: 'aperez2541@gmail.com',
             address: {
               '@type': 'PostalAddress',
