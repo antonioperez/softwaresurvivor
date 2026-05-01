@@ -1,6 +1,7 @@
 'use client'
 
 import Script from 'next/script'
+import siteMetadata from '@/data/siteMetadata'
 
 export default function ServiceSchema() {
   const serviceSchema = {
@@ -8,105 +9,50 @@ export default function ServiceSchema() {
     '@type': 'ProfessionalService',
     name: 'Custom Software Consulting Services',
     description:
-      'Comprehensive custom software consulting and technical leadership services in Fresno, CA. Expert enterprise software development, system architecture, and technical consulting.',
+      'Custom software development, AI workflow automation, systems integration, and technical leadership services for established businesses and funded teams.',
     provider: {
-      '@type': 'LocalBusiness',
-      name: 'Software Survivor',
-      url: 'https://softwaresurvivor.com',
-      telephone: '',
-      email: 'aperez2541@gmail.com',
+      '@type': 'Organization',
+      name: siteMetadata.localBusiness.name,
+      url: siteMetadata.siteUrl,
+      email: siteMetadata.localBusiness.email,
       address: {
         '@type': 'PostalAddress',
-        streetAddress: 'Fresno, CA',
-        addressLocality: 'Fresno',
-        addressRegion: 'CA',
-        postalCode: '93701',
-        addressCountry: 'US',
+        addressLocality: siteMetadata.localBusiness.address.addressLocality,
+        addressRegion: siteMetadata.localBusiness.address.addressRegion,
+        addressCountry: siteMetadata.localBusiness.address.addressCountry,
       },
     },
-    serviceType: [
-      'Custom Software Consulting',
-      'Enterprise Software Development',
-      'Technical Leadership & Architecture',
-      'System Design & Cloud Architecture',
-      'DevOps & CI/CD',
-      'Technical Consulting',
-      'Training & Mentoring',
-    ],
-    areaServed: [
-      'Fresno',
-      'Clovis',
-      'Madera',
-      'Visalia',
-      'Hanford',
-      'Merced',
-      'Modesto',
-      'Central California',
-    ],
+    serviceType: siteMetadata.localBusiness.serviceType,
+    areaServed: siteMetadata.localBusiness.areaServed,
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
-      name: 'Custom Software Consulting Services',
+      name: 'Custom Software Development Services',
       itemListElement: [
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Custom Software Consulting',
+            name: 'Custom Business Software and SaaS',
             description:
-              'Expert custom software consulting services to help businesses build scalable, enterprise-grade solutions tailored to their unique needs',
+              'Business-critical web applications, SaaS products, internal platforms, and customer portals built with maintainable architecture',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Enterprise Software Development',
+            name: 'AI Workflow Automation and Integrations',
             description:
-              'Enterprise-grade web applications, mobile apps, and scalable systems using modern architectural patterns',
+              'Workflow automation, AI-assisted operations, and systems integration for teams with expensive manual processes',
           },
         },
         {
           '@type': 'Offer',
           itemOffered: {
             '@type': 'Service',
-            name: 'Technical Leadership & Architecture',
+            name: 'Architecture, Rescue, and Technical Leadership',
             description:
-              'Principal Engineer-level leadership, enterprise architecture design, and technical strategy',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'System Design & Cloud Architecture',
-            description:
-              'Enterprise system architectures, microservices, and cloud infrastructure solutions',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'DevOps & CI/CD',
-            description:
-              'Automated deployment pipelines, monitoring, and infrastructure management',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Technical Consulting',
-            description:
-              'Expert guidance on technology decisions, code reviews, and technical problem-solving',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Training & Mentoring',
-            description: 'Team training programs and technical skill development',
+              'Senior engineering leadership for legacy modernization, cloud architecture, codebase rescue, and delivery planning',
           },
         },
       ],

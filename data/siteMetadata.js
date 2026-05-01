@@ -1,16 +1,20 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
   // Brand color: #BD0617
-  title: 'Software Survivor - Fresno Software Development',
+  title: 'Software Survivor | Custom Software Development',
   author: 'Antonio Perez',
   headerTitle: 'Software Survivor',
   description:
-    'Expert software development consulting, enterprise architecture & technical leadership in Fresno, CA. Building scalable systems for Central California businesses.',
+    'Custom software development, AI workflow automation, systems integration, and technical leadership for established businesses and funded teams.',
   keywords: [
+    'custom software development company',
     'custom software consulting',
-    'custom software consulting fresno',
-    'custom software development consulting',
-    'software consulting services',
+    'business software development',
+    'software modernization consulting',
+    'AI workflow automation developer',
+    'systems integration consultant',
+    'fractional CTO consulting',
+    'SaaS product development',
     'custom software consultant',
     'software development consulting fresno',
     'enterprise software consulting',
@@ -33,7 +37,7 @@ const siteMetadata = {
     'fresno software company',
     'clovis software development',
     'madera software development',
-    'visalia software development'
+    'visalia software development',
   ],
   language: 'en-us',
   theme: 'system', // system, dark or light
@@ -68,7 +72,8 @@ const siteMetadata = {
     },
     email: 'aperez2541@gmail.com',
     url: 'https://softwaresurvivor.com',
-    description: 'Software development and technical leadership services in Fresno, California. Building software that brings teams together like a campfire.',
+    description:
+      'Custom software development, AI workflow automation, systems integration, and technical leadership services based in Fresno, California.',
     areaServed: [
       'Fresno',
       'Clovis',
@@ -80,11 +85,13 @@ const siteMetadata = {
       'Central California',
     ],
     serviceType: [
-      'Software Development',
+      'Custom Software Development',
+      'AI Workflow Automation',
+      'Systems Integration',
+      'Software Modernization',
+      'SaaS Product Development',
       'Technical Leadership',
       'System Architecture',
-      'Web Development',
-      'Mobile App Development',
     ],
     foundingDate: '2020',
   },

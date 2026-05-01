@@ -4,16 +4,18 @@ import Main from './Main'
 import { genPageMetadata } from './seo'
 
 export const metadata = genPageMetadata({
-  title: 'Custom Software Consulting | Fresno Software Development',
+  title: 'Custom Software Development for Growing Teams',
   description:
-    'Expert custom software consulting services in Fresno, CA. Enterprise software development, technical leadership, and system architecture. Building scalable solutions for Central California businesses.',
+    'Custom software development for established businesses and funded teams. We build AI workflow automation, integrations, SaaS products, and cloud systems from Fresno, CA.',
   canonical: '/',
   keywords: [
-    'custom software consulting',
-    'custom software consulting fresno',
-    'custom software development consulting',
-    'software consulting services',
-    'enterprise software consulting',
+    'custom software development company',
+    'business software development',
+    'software modernization consulting',
+    'AI workflow automation developer',
+    'systems integration consultant',
+    'fractional CTO consulting',
+    'Fresno software development',
   ],
 })
 

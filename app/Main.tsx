@@ -2,56 +2,71 @@ import Link from '@/components/Link'
 import Image from 'next/image'
 import siteMetadata from '@/data/siteMetadata'
 
+const homepageDescription =
+  'Software Survivor helps established businesses and funded product teams build business-critical web apps, AI workflow automation, integrations, and cloud platforms.'
+
+const serviceHighlights = [
+  {
+    title: 'Custom Business Software and SaaS',
+    description:
+      'Plan and build revenue, operations, and customer-facing products with maintainable architecture, clean APIs, and practical delivery milestones.',
+  },
+  {
+    title: 'AI Workflow Automation and Integrations',
+    description:
+      'Connect the tools your team already uses, automate expensive manual workflows, and add AI where it can create measurable leverage.',
+  },
+  {
+    title: 'Architecture, Rescue, and Technical Leadership',
+    description:
+      'Stabilize fragile systems, modernize legacy code, and get senior engineering judgment before a rebuild, scale-up, or key technical hire.',
+  },
+]
+
+const clientFit = [
+  {
+    title: 'Business-critical systems',
+    description:
+      'Internal platforms, portals, dashboards, and product workflows where reliability and maintainability matter more than a quick prototype.',
+  },
+  {
+    title: 'Operational complexity',
+    description:
+      'Teams with spreadsheets, disconnected apps, manual review steps, or customer handoffs that are now too costly to run by hand.',
+  },
+  {
+    title: 'Senior technical direction',
+    description:
+      'Founders and operators who need architectural clarity, delivery leadership, or an experienced partner before growing an engineering team.',
+  },
+]
+
+const homepageStructuredData = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  '@id': `${siteMetadata.siteUrl}/#homepage`,
+  url: siteMetadata.siteUrl,
+  name: 'Custom Software Development for Growing Teams',
+  description: homepageDescription,
+  isPartOf: {
+    '@id': `${siteMetadata.siteUrl}/#website`,
+  },
+  about: serviceHighlights.map((service) => ({
+    '@type': 'Service',
+    name: service.title,
+    description: service.description,
+    provider: {
+      '@id': `${siteMetadata.siteUrl}/#organization`,
+    },
+  })),
+}
+
 export default function Home({ posts }) {
   return (
     <>
-      {/* Local Business Schema - Deferred to avoid blocking */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            '@context': 'https://schema.org',
-            '@type': 'LocalBusiness',
-            name: 'Software Survivor',
-            description: 'Leading software development company in Fresno, CA',
-            url: 'https://softwaresurvivor.com',
-            telephone: '',
-            email: 'aperez2541@gmail.com',
-            address: {
-              '@type': 'PostalAddress',
-              addressLocality: 'Fresno',
-              addressRegion: 'CA',
-              addressCountry: 'US',
-            },
-            areaServed: [
-              'Fresno',
-              'Clovis',
-              'Madera',
-              'Visalia',
-              'Hanford',
-              'Merced',
-              'Central California',
-            ],
-            hasOfferCatalog: {
-              '@type': 'OfferCatalog',
-              name: 'Software Development Services',
-              itemListElement: [
-                {
-                  '@type': 'Offer',
-                  itemOffered: { '@type': 'Service', name: 'Custom Software Development' },
-                },
-                {
-                  '@type': 'Offer',
-                  itemOffered: { '@type': 'Service', name: 'Technical Leadership' },
-                },
-                {
-                  '@type': 'Offer',
-                  itemOffered: { '@type': 'Service', name: 'System Architecture' },
-                },
-              ],
-            },
-          }),
-        }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(homepageStructuredData) }}
       />
 
       {/* Hero Section */}
@@ -66,16 +81,29 @@ export default function Home({ posts }) {
           <div className="text-center">
             <div className="mb-8">
               <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-                We Build Software That
+                Custom Software for Teams
                 <span className="block font-extrabold text-yellow-100 dark:text-yellow-200">
-                  Scales with Confidence.
+                  That Outgrew Workarounds.
                 </span>
               </h1>
               <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-100 md:text-2xl">
-                Expert custom software consulting services. Enterprise-grade software architecture
-                and technical leadership. From startups to Fortune 500, we build scalable systems
-                that survive.
+                {homepageDescription} Based in Fresno and serving teams across California and the
+                US.
               </p>
+              <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-3 text-sm font-medium text-white/90">
+                <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2">
+                  Operations-heavy businesses
+                </span>
+                <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2">
+                  Funded product teams
+                </span>
+                <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2">
+                  Legacy system modernization
+                </span>
+                <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2">
+                  AI and integration work
+                </span>
+              </div>
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -83,14 +111,14 @@ export default function Home({ posts }) {
                 href="/contact"
                 className="group text-brand-600 focus:ring-offset-brand-600 relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-white px-8 py-4 font-semibold shadow-lg transition-all duration-300 hover:bg-gray-50 hover:shadow-xl focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
               >
-                <span className="relative z-10">Start Your Project</span>
+                <span className="relative z-10">Start a Project Conversation</span>
                 <div className="from-brand-500 to-brand-600 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
               </Link>
               <Link
                 href="/portfolio"
                 className="group hover:text-brand-600 focus:ring-offset-brand-600 relative inline-flex items-center justify-center overflow-hidden rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
               >
-                <span className="relative z-10">View Our Work</span>
+                <span className="relative z-10">See Relevant Work</span>
                 <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
               </Link>
             </div>
@@ -103,89 +131,89 @@ export default function Home({ posts }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-              Our Services
+              Software Work Worth Hiring Senior Help For
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-              Expert custom software consulting from concept to deployment. We handle every aspect
-              of your software project with expertise and precision. Like gathering around a
-              campfire, we bring teams together to build something meaningful.
+              The best engagements start with a real business constraint: a workflow that will not
+              scale, a product that needs technical depth, or a legacy system that has become too
+              expensive to carry.
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            <div className="group relative overflow-hidden rounded-xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
-              <div className="bg-brand-100 dark:bg-brand-900 mb-6 flex h-16 w-16 items-center justify-center rounded-xl">
-                <svg
-                  className="text-brand-600 dark:text-brand-400 h-8 w-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
+            {serviceHighlights.map((service, index) => (
+              <div
+                key={service.title}
+                className="group relative overflow-hidden rounded-xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800"
+              >
+                <div className="bg-brand-100 dark:bg-brand-900 mb-6 flex h-16 w-16 items-center justify-center rounded-xl">
+                  <svg
+                    className="text-brand-600 dark:text-brand-400 h-8 w-8"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                    />
+                  </svg>
+                </div>
+                <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
+                  {service.title}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">{service.description}</p>
+                {index === 0 && (
+                  <Link
+                    href="/services"
+                    className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 mt-6 inline-flex font-medium"
+                  >
+                    Explore software services →
+                  </Link>
+                )}
               </div>
-              <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                Enterprise Software Development
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Enterprise-grade web applications, mobile apps, and scalable systems built with
-                modern architectural patterns and best practices.
-              </p>
-            </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
-            <div className="group relative overflow-hidden rounded-xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
-              <div className="bg-accent-100 dark:bg-accent-900 mb-6 flex h-16 w-16 items-center justify-center rounded-xl">
-                <svg
-                  className="text-accent-600 dark:text-accent-400 h-8 w-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                Technical Leadership & Architecture
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Principal Engineer-level leadership, enterprise architecture design, and technical
-                strategy for growing companies.
+      {/* Client Fit Section */}
+      <div className="py-16">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-start">
+            <div>
+              <p className="text-brand-600 dark:text-brand-400 mb-3 text-sm font-semibold tracking-wide uppercase">
+                Better-fit clients
               </p>
+              <h2 className="mb-5 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
+                Built for buyers with a serious software problem.
+              </h2>
+              <p className="text-lg text-gray-600 dark:text-gray-400">
+                This is a strong fit when the software is tied to revenue, operations, compliance,
+                customer experience, or a product roadmap. It is less useful for one-off brochure
+                sites or projects where the only goal is the lowest possible hourly rate.
+              </p>
+              <Link
+                href="/contact"
+                className="bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 mt-8 inline-flex items-center rounded-lg px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              >
+                Talk Through the Constraints
+              </Link>
             </div>
-
-            <div className="group relative overflow-hidden rounded-xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
-              <div className="bg-success-100 dark:bg-success-900 mb-6 flex h-16 w-16 items-center justify-center rounded-xl">
-                <svg
-                  className="text-success-600 dark:text-success-400 h-8 w-8"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            <div className="grid gap-5">
+              {clientFit.map((fit) => (
+                <div
+                  key={fit.title}
+                  className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-4 text-xl font-semibold text-gray-900 dark:text-white">
-                System Design & Cloud Architecture
-              </h3>
-              <p className="text-gray-600 dark:text-gray-400">
-                Enterprise system design, microservices architecture, and cloud infrastructure
-                planning across AWS, Azure, and Google Cloud.
-              </p>
+                  <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+                    {fit.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">{fit.description}</p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -273,11 +301,11 @@ export default function Home({ posts }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-              Featured Project: FeelsReel
+              Featured AI Product Build: FeelsReel
             </h2>
             <p className="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-400">
-              Revolutionary AI-powered story book generator that creates personalized children's
-              stories and transforms them into engaging videos
+              A media-heavy AI product that combines custom application development, prompt-driven
+              content workflows, and third-party video generation APIs.
             </p>
           </div>
 
@@ -297,9 +325,10 @@ export default function Home({ posts }) {
               <div className="p-8 md:w-1/2">
                 <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">FeelsReel</h3>
                 <p className="mb-6 text-gray-600 dark:text-gray-400">
-                  An innovative AI-powered platform that generates personalized children's stories
-                  and transforms them into engaging videos using OpenAI (GPT-4) and RunwayAI. This
-                  project showcases cutting-edge AI integration and creative content generation.
+                  FeelsReel generates personalized children's stories and turns them into videos
+                  using OpenAI and RunwayAI. It is a useful example of where Software Survivor fits:
+                  turning a product idea with complex AI and media dependencies into a working
+                  software platform.
                 </p>
                 <div className="mb-8 space-y-3">
                   <div className="flex items-center">
@@ -433,11 +462,12 @@ export default function Home({ posts }) {
       <div className="campfire-gradient py-20 text-white">
         <div className="mx-auto max-w-7xl px-4 text-center sm:px-6 lg:px-8">
           <h2 className="mb-4 text-3xl font-bold md:text-4xl lg:text-5xl">
-            Ready to Build Something Amazing?
+            Bring a Serious Software Problem.
           </h2>
           <p className="mx-auto mb-8 max-w-2xl text-xl text-gray-100">
-            Let's discuss how we can help your company navigate complex technical challenges and
-            build scalable solutions. Join us around the campfire of innovation.
+            If your team needs a dependable partner for a revenue, operations, or product system,
+            start with the constraints. We will help clarify the architecture, delivery path, and
+            first useful release.
           </p>
           <Link
             href="/contact"

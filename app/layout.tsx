@@ -62,40 +62,71 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   const basePath = process.env.BASE_PATH || ''
 
-  // Local Business Structured Data
-  const localBusinessStructuredData = {
+  const organizationId = `${siteMetadata.siteUrl}/#organization`
+  const websiteId = `${siteMetadata.siteUrl}/#website`
+  const serviceId = `${siteMetadata.siteUrl}/#software-development-services`
+  const logoUrl = `${siteMetadata.siteUrl}/static/images/logo.png`
+
+  const siteStructuredData = {
     '@context': 'https://schema.org',
-    '@type': 'LocalBusiness',
-    name: siteMetadata.localBusiness.name,
-    description: siteMetadata.localBusiness.description,
-    url: siteMetadata.localBusiness.url,
-    telephone: siteMetadata.localBusiness.telephone,
-    email: siteMetadata.localBusiness.email,
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: siteMetadata.localBusiness.address.streetAddress,
-      addressLocality: siteMetadata.localBusiness.address.addressLocality,
-      addressRegion: siteMetadata.localBusiness.address.addressRegion,
-      postalCode: siteMetadata.localBusiness.address.postalCode,
-      addressCountry: siteMetadata.localBusiness.address.addressCountry,
-    },
-    areaServed: siteMetadata.localBusiness.areaServed.map((area) => ({
-      '@type': 'City',
-      name: area,
-    })),
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'Software Development Services',
-      itemListElement: siteMetadata.localBusiness.serviceType.map((service) => ({
-        '@type': 'Offer',
-        itemOffered: {
-          '@type': 'Service',
-          name: service,
+    '@graph': [
+      {
+        '@type': 'Organization',
+        '@id': organizationId,
+        name: siteMetadata.localBusiness.name,
+        alternateName: siteMetadata.headerTitle,
+        url: siteMetadata.siteUrl,
+        logo: logoUrl,
+        description: siteMetadata.localBusiness.description,
+        email: siteMetadata.localBusiness.email,
+        foundingDate: siteMetadata.localBusiness.foundingDate,
+        address: {
+          '@type': 'PostalAddress',
+          addressLocality: siteMetadata.localBusiness.address.addressLocality,
+          addressRegion: siteMetadata.localBusiness.address.addressRegion,
+          addressCountry: siteMetadata.localBusiness.address.addressCountry,
         },
-      })),
-    },
-    foundingDate: siteMetadata.localBusiness.foundingDate,
-    sameAs: [siteMetadata.github, siteMetadata.linkedin].filter(Boolean),
+        sameAs: [siteMetadata.github, siteMetadata.linkedin].filter(Boolean),
+      },
+      {
+        '@type': 'WebSite',
+        '@id': websiteId,
+        name: siteMetadata.localBusiness.name,
+        alternateName: siteMetadata.headerTitle,
+        url: siteMetadata.siteUrl,
+        inLanguage: siteMetadata.language,
+        publisher: {
+          '@id': organizationId,
+        },
+      },
+      {
+        '@type': 'ProfessionalService',
+        '@id': serviceId,
+        name: 'Custom Software Development Services',
+        description: siteMetadata.localBusiness.description,
+        url: siteMetadata.siteUrl,
+        email: siteMetadata.localBusiness.email,
+        provider: {
+          '@id': organizationId,
+        },
+        areaServed: siteMetadata.localBusiness.areaServed.map((area) => ({
+          '@type': 'City',
+          name: area,
+        })),
+        serviceType: siteMetadata.localBusiness.serviceType,
+        hasOfferCatalog: {
+          '@type': 'OfferCatalog',
+          name: 'Software Development Services',
+          itemListElement: siteMetadata.localBusiness.serviceType.map((service) => ({
+            '@type': 'Offer',
+            itemOffered: {
+              '@type': 'Service',
+              name: service,
+            },
+          })),
+        },
+      },
+    ],
   }
 
   return (
@@ -107,7 +138,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <script
           type="application/ld+json"
-          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessStructuredData) }}
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(siteStructuredData) }}
         />
       </head>
       <link

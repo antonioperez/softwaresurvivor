@@ -3,16 +3,16 @@ import ServiceSchema from '@/components/ServiceSchema'
 import { genPageMetadata } from '../seo'
 
 export const metadata = genPageMetadata({
-  title: 'Custom Software Consulting Services | Software Survivor',
+  title: 'Custom Software Development Services',
   description:
-    'Comprehensive custom software consulting services in Fresno, CA. Enterprise software development, technical leadership, system architecture, DevOps, and consulting services for growing businesses. Expert custom software solutions.',
+    'Custom software development, AI workflow automation, systems integration, software modernization, and technical leadership for established businesses and funded teams.',
   canonical: '/services',
   keywords: [
-    'custom software consulting services',
-    'enterprise software consulting',
     'custom software development services',
-    'software consulting services fresno',
-    'technical consulting services',
+    'AI workflow automation services',
+    'systems integration consulting',
+    'software modernization services',
+    'fractional CTO services',
   ],
 })
 
@@ -23,12 +23,12 @@ export default function ServicesPage() {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
-            Our Services
+            Custom Software Development Services
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            We provide comprehensive custom software consulting and technical leadership services to
-            help your business succeed. Expert guidance on enterprise software development,
-            architecture, and implementation.
+            We help established businesses and funded teams build, modernize, and integrate the
+            software their operations depend on. The work spans custom business applications, AI
+            workflow automation, systems integration, architecture, and delivery leadership.
           </p>
         </div>
 
