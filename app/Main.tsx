@@ -131,7 +131,7 @@ export default function Home({ posts }) {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-              Software Work Worth Hiring Senior Help For
+              Software for Business-Critical Workflows
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
               The best engagements start with a real business constraint: a workflow that will not
