@@ -4,17 +4,35 @@ import siteMetadata from '@/data/siteMetadata'
 import { genPageMetadata } from '../seo'
 
 export const metadata = genPageMetadata({
-  title: 'Contact Us | Custom Software Consulting',
+  title: 'Start a Project Conversation',
   description:
-    'Contact our custom software consulting team in Fresno, CA. Get expert advice on enterprise software development, technical leadership, and system architecture. We typically respond within 24 hours.',
+    'Start a project conversation with Software Survivor. Share your custom software, AI workflow automation, integration, modernization, or architecture challenge.',
   canonical: '/contact',
   keywords: [
-    'custom software consulting contact',
-    'software consulting fresno',
-    'enterprise software consulting',
-    'contact software developer fresno',
+    'custom software development contact',
+    'software project consultation',
+    'AI workflow automation consultation',
+    'Fresno software developer contact',
   ],
 })
+
+const nextSteps = [
+  {
+    title: 'Send the context',
+    description:
+      'Share the business problem, current system, timeline, constraints, and what a useful outcome would look like.',
+  },
+  {
+    title: 'We review fit',
+    description:
+      'We look for clear ownership, realistic scope, enough budget to do the work responsibly, and a problem where senior engineering help can matter.',
+  },
+  {
+    title: 'You get a practical next step',
+    description:
+      'If there is a fit, the next step is usually a short discovery conversation or a scoped architecture and delivery recommendation.',
+  },
+]
 
 export default function ContactPage() {
   return (
@@ -22,11 +40,12 @@ export default function ContactPage() {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
-            Contact Us
+            Start a Project Conversation
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Ready to start your next project? Let's discuss how we can help you build something
-            amazing.
+            Tell us about the software problem, workflow, integration, or modernization effort your
+            team needs to solve. The goal is to quickly determine whether Software Survivor is the
+            right senior partner for the work.
           </p>
         </div>
 
@@ -38,10 +57,34 @@ export default function ContactPage() {
             {/* Contact Information */}
             <div className="space-y-8">
               <div className="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800">
-                <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">About Us</h2>
+                <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
+                  What Happens Next
+                </h2>
 
                 <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
+                  {nextSteps.map((step, index) => (
+                    <div key={step.title} className="flex items-start space-x-4">
+                      <div className="bg-brand-100 text-brand-700 dark:bg-brand-900 dark:text-brand-300 flex h-10 w-10 shrink-0 items-center justify-center rounded-lg font-semibold">
+                        {index + 1}
+                      </div>
+                      <div>
+                        <h3 className="font-semibold text-gray-900 dark:text-white">
+                          {step.title}
+                        </h3>
+                        <p className="text-gray-600 dark:text-gray-400">{step.description}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800">
+                <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
+                  Trust Signals
+                </h2>
+
+                <div className="space-y-6">
+                  <div className="flex items-start space-x-4">
                     <div className="bg-brand-100 dark:bg-brand-900 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl">
                       <svg
                         className="text-brand-600 dark:text-brand-400 h-6 w-6"
@@ -66,12 +109,12 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Location</h3>
                       <p className="text-gray-600 dark:text-gray-400">
-                        Fresno, CA - Serving Central California and beyond
+                        Fresno, CA, serving Central California and remote US teams
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-start space-x-4">
                     <div className="bg-accent-100 dark:bg-accent-900 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl">
                       <svg
                         className="text-accent-600 dark:text-accent-400 h-6 w-6"
@@ -90,12 +133,12 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Response Time</h3>
                       <p className="text-gray-600 dark:text-gray-400">
-                        We typically respond within 24 hours
+                        We typically respond within 24 hours with a fit check or a better next step
                       </p>
                     </div>
                   </div>
 
-                  <div className="flex items-center space-x-4">
+                  <div className="flex items-start space-x-4">
                     <div className="bg-success-100 dark:bg-success-900 flex h-12 w-12 shrink-0 items-center justify-center rounded-xl">
                       <svg
                         className="text-success-600 dark:text-success-400 h-6 w-6"
@@ -114,9 +157,41 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Expertise</h3>
                       <p className="text-gray-600 dark:text-gray-400">
-                        Custom software development, technical leadership, and system architecture
+                        Custom software, AI workflow automation, integrations, architecture, and
+                        technical leadership
                       </p>
                     </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800">
+                <h2 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+                  Engagement Fit
+                </h2>
+                <p className="mb-4 text-gray-600 dark:text-gray-400">
+                  Most serious custom software engagements start in the five-figure range. Smaller
+                  advisory or architecture reviews can be scoped separately when you need a clear
+                  technical plan before implementation.
+                </p>
+                <div className="grid gap-4 sm:grid-cols-2">
+                  <div>
+                    <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">Best fit</h3>
+                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                      <li>Business-critical workflows</li>
+                      <li>AI and integration work</li>
+                      <li>Modernization or architecture rescue</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="mb-2 font-semibold text-gray-900 dark:text-white">
+                      Not the best fit
+                    </h3>
+                    <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                      <li>Lowest-bid brochure sites</li>
+                      <li>No clear business owner</li>
+                      <li>No implementation budget</li>
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -124,7 +199,7 @@ export default function ContactPage() {
               {/* Social Links */}
               <div className="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800">
                 <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
-                  Connect With Us
+                  Connect With Software Survivor
                 </h2>
 
                 <div className="space-y-4">

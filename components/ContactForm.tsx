@@ -111,10 +111,11 @@ export default function ContactForm() {
             </svg>
           </div>
           <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-            Message Sent Successfully!
+            Project Details Sent
           </h3>
           <p className="text-gray-600 dark:text-gray-400">
-            Thank you for reaching out. We'll get back to you within 24 hours.
+            Thanks for the context. We'll review fit and respond with a practical next step within
+            24 hours.
           </p>
         </div>
       </div>
@@ -123,7 +124,9 @@ export default function ContactForm() {
 
   return (
     <div className="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800">
-      <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">Get in Touch</h2>
+      <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
+        Tell Us About the Project
+      </h2>
 
       {status.error && (
         <div className="bg-error-50 dark:bg-error-900/20 mb-6 rounded-lg p-4">
@@ -245,9 +248,10 @@ export default function ContactForm() {
           >
             <option value="">Select a service</option>
             <option value="custom-development">Custom Software Development</option>
-            <option value="technical-leadership">Technical Leadership</option>
-            <option value="system-architecture">System Design & Architecture</option>
-            <option value="consulting">Technical Consulting</option>
+            <option value="ai-workflow-automation">AI Workflow Automation</option>
+            <option value="systems-integration">Systems Integration</option>
+            <option value="software-modernization">Software Modernization</option>
+            <option value="architecture-leadership">Architecture & Technical Leadership</option>
             <option value="other">Other</option>
           </select>
         </div>
@@ -267,7 +271,7 @@ export default function ContactForm() {
             required
             rows={6}
             className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-            placeholder="Tell us about your project and how we can help..."
+            placeholder="What problem are you trying to solve? Include the current workflow or system, timeline, budget range if known, and what a useful first release would do."
           />
         </div>
 
@@ -296,7 +300,7 @@ export default function ContactForm() {
               Sending...
             </div>
           ) : (
-            <span className="relative z-10">Send Message</span>
+            <span className="relative z-10">Send Project Details</span>
           )}
           <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
         </button>
