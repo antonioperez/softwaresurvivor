@@ -1,0 +1,213 @@
+---
+title: 'Find Partially Fulfilled Sales Orders in NetSuite with SuiteQL'
+date: '2026-05-01'
+tags: ['e-commerce', 'software-development', 'automation', 'custom-development']
+draft: true
+summary: 'Build a NetSuite SuiteQL report for partially fulfilled sales orders by calculating ordered, fulfilled, and pending quantities at the line-item level.'
+images: []
+---
+
+Partially fulfilled sales orders are easy to miss if you only look at the order header. The order might look active, fulfillment might have happened, and customer support might have tracking information, but one or more lines can still be open.
+
+For e-commerce and warehouse teams, that creates real operational questions:
+
+- Which SKUs are still pending?
+- How many units remain on each order line?
+- Which channel or warehouse owns the follow-up?
+- Can the result be exported for an operations team?
+
+SuiteQL is a strong fit because you can calculate ordered, fulfilled, and pending quantities at the line level. This post is part of the [NetSuite SuiteQL examples series](/blog/netsuite-suiteql-examples-ecommerce-integrations).
+
+## Why partially fulfilled orders need a line-level report
+
+Sales order headers are useful for broad status, but partial fulfillment is a line-level problem. One line can be fully shipped while another line is still open. One fulfillment can cover part of a quantity. A second fulfillment might be created later. Some lines should be ignored because they are not printable, not fulfillable, closed, or already fully shipped.
+
+The report needs to start from `transactionline`, then subtract any linked item fulfillment line quantities.
+
+The core relationship looks like this:
+
+- `transaction` as `salesOrder`
+- `transactionline` as `salesOrderLine`
+- `PreviousTransactionLineLink` from sales order line to fulfillment line
+- `transaction` as `fulfillment`
+- `transactionline` as `fulfillmentLine`
+- `item` for SKU and display metadata
+
+## Filters for open and fulfillable sales order lines
+
+Start with the sales order lines that can still matter to fulfillment.
+
+```sql
+WHERE salesOrder.type = 'SalesOrd'
+  AND salesOrder.status IN ('D', 'E')
+  AND salesOrderLine.item IS NOT NULL
+  AND salesOrderLine.donotprintline = 'F'
+  AND salesOrderLine.fulfillable = 'T'
+  AND salesOrderLine.isfullyshipped = 'F'
+  AND salesOrderLine.isclosed = 'F'
+```
+
+The status values in this example come from a specific operational workflow. In your account, confirm which statuses mean partially fulfilled, pending fulfillment, or pending billing before automating against them.
+
+The line filters are the important part:
+
+- `item IS NOT NULL` keeps the report focused on item lines
+- `donotprintline = 'F'` skips hidden lines
+- `fulfillable = 'T'` keeps lines that can be fulfilled
+- `isfullyshipped = 'F'` keeps lines NetSuite does not consider complete
+- `isclosed = 'F'` avoids lines someone intentionally closed
+
+## Calculate ordered, fulfilled, and pending quantities
+
+The ordered quantity can be read from the sales order line. The fulfilled quantity comes from item fulfillment lines connected through `PreviousTransactionLineLink`.
+
+```sql
+ABS(NVL(MAX(salesOrderLine.quantity), 0)) AS ordered_quantity,
+NVL(SUM(CASE
+  WHEN fulfillment.id IS NOT NULL
+  THEN ABS(NVL(fulfillmentLine.quantity, 0))
+  ELSE 0
+END), 0) AS fulfilled_quantity,
+ABS(NVL(MAX(salesOrderLine.quantity), 0))
+  - NVL(SUM(CASE
+      WHEN fulfillment.id IS NOT NULL
+      THEN ABS(NVL(fulfillmentLine.quantity, 0))
+      ELSE 0
+    END), 0) AS pending_quantity
+```
+
+`ABS(...)` keeps the report readable when NetSuite represents quantities with transaction-type-specific signs. `NVL(...)` protects the math when no fulfillment exists yet.
+
+## Full pending-items SuiteQL query
+
+This version returns one row per sales order line with a positive pending quantity.
+
+```sql
+SELECT
+  MAX(item.itemid) AS sku,
+  MAX(NVL(item.displayname, item.itemid)) AS item_name,
+  MAX(BUILTIN.DF(salesOrderLine.class)) AS product_category,
+  MAX(salesOrder.id) AS order_id,
+  MAX(salesOrder.tranid) AS order_number,
+  MAX(salesOrder.trandate) AS order_date,
+  MAX(BUILTIN.DF(salesOrder.status)) AS order_status,
+  ABS(NVL(MAX(salesOrderLine.quantity), 0))
+    - NVL(SUM(CASE
+        WHEN fulfillment.id IS NOT NULL
+        THEN ABS(NVL(fulfillmentLine.quantity, 0))
+        ELSE 0
+      END), 0) AS qty,
+  MAX(BUILTIN.DF(salesOrderLine.cseg1)) AS channel,
+  MAX(CASE
+    WHEN salesOrderMainLine.location IS NOT NULL
+    THEN BUILTIN.DF(salesOrderMainLine.location)
+    ELSE BUILTIN.DF(salesOrder.location)
+  END) AS location_name,
+  MAX(salesOrder.memo) AS memo
+FROM transaction salesOrder
+INNER JOIN transactionline salesOrderLine
+  ON salesOrderLine.transaction = salesOrder.id
+LEFT JOIN transactionline salesOrderMainLine
+  ON salesOrderMainLine.transaction = salesOrder.id
+  AND salesOrderMainLine.id = 0
+INNER JOIN item
+  ON item.id = salesOrderLine.item
+LEFT JOIN PreviousTransactionLineLink ptll
+  ON ptll.PreviousDoc = salesOrder.id
+  AND ptll.PreviousLine = salesOrderLine.id
+LEFT JOIN transaction fulfillment
+  ON fulfillment.id = ptll.NextDoc
+  AND fulfillment.type = 'ItemShip'
+LEFT JOIN transactionline fulfillmentLine
+  ON fulfillmentLine.transaction = fulfillment.id
+  AND fulfillmentLine.id = ptll.NextLine
+WHERE salesOrder.type = 'SalesOrd'
+  AND salesOrder.status IN ('D', 'E')
+  AND salesOrderLine.item IS NOT NULL
+  AND salesOrderLine.donotprintline = 'F'
+  AND salesOrderLine.fulfillable = 'T'
+  AND salesOrderLine.isfullyshipped = 'F'
+  AND salesOrderLine.isclosed = 'F'
+  AND salesOrder.trandate >= '<START_DATE>'
+  AND salesOrder.trandate <= '<END_DATE>'
+GROUP BY salesOrder.id, salesOrderLine.id
+HAVING ABS(NVL(MAX(salesOrderLine.quantity), 0))
+  - NVL(SUM(CASE
+      WHEN fulfillment.id IS NOT NULL
+      THEN ABS(NVL(fulfillmentLine.quantity, 0))
+      ELSE 0
+    END), 0) > 0
+ORDER BY MAX(salesOrder.trandate) DESC,
+  MAX(salesOrder.tranid) DESC,
+  MAX(item.itemid) ASC
+```
+
+The `HAVING` clause is doing the important report cleanup. It removes lines where the calculated pending quantity is zero or negative after linked fulfillment quantities are counted.
+
+## Add channel or location filters
+
+Most operations teams do not want every pending line in the account. They usually want a subset by channel, warehouse, date range, or memo convention.
+
+Channel filters often use a custom segment:
+
+```sql
+AND salesOrderLine.cseg1 IN (<CHANNEL_ID>, <CHANNEL_ID>)
+```
+
+Location filters can use the main transaction line:
+
+```sql
+AND salesOrderMainLine.location = <LOCATION_ID>
+```
+
+Memo filters are useful when an integration writes a stable source marker:
+
+```sql
+AND UPPER(NVL(salesOrder.memo, '')) LIKE '%<SOURCE_MARKER>%'
+```
+
+Keep these filters explicit. A partially fulfilled report is most valuable when everyone understands exactly which orders are included.
+
+## Export results to CSV
+
+Once the query returns rows, exporting them is straightforward. A small CSV layer lets operations teams work from a spreadsheet without manually building a NetSuite saved search.
+
+```ts
+import { Parser } from 'json2csv'
+
+const parser = new Parser({
+  fields: [
+    'sku',
+    'item_name',
+    'product_category',
+    'order_id',
+    'order_number',
+    'order_date',
+    'order_status',
+    'qty',
+    'channel',
+    'location_name',
+    'memo',
+  ],
+})
+
+async function exportPendingItemsCsv() {
+  const response = await runSuiteQlAll(query)
+
+  return parser.parse(response.items)
+}
+```
+
+CSV is not glamorous, but it is often the fastest way to unblock warehouse, customer support, and finance teams while a fuller dashboard is being built.
+
+## Common variations
+
+For customer support, include customer-facing order numbers, reference numbers, shipping state, and package tracking data.
+
+For warehouse planning, group by SKU and location instead of returning one row per order line.
+
+For finance, include posting period, sales channel, order subtotal, and billing status.
+
+For integrations, keep the line-level result and feed it into a retry or exception queue.
+
+If the report needs package history too, pair it with [Track NetSuite Item Fulfillments and Shipping Packages with SuiteQL](/blog/track-netsuite-item-fulfillments-shipping-packages-suiteql). For broader context, start with [NetSuite SuiteQL Examples for E-commerce Integrations](/blog/netsuite-suiteql-examples-ecommerce-integrations).

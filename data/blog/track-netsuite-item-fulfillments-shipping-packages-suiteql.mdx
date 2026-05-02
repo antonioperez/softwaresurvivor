@@ -1,0 +1,225 @@
+---
+title: 'Track NetSuite Item Fulfillments and Shipping Packages with SuiteQL'
+date: '2026-05-01'
+tags: ['e-commerce', 'software-development', 'automation', 'custom-development']
+draft: true
+summary: 'Use SuiteQL to connect NetSuite item fulfillments back to sales orders, fulfillment lines, shipment packages, tracking numbers, and carrier metadata.'
+images: []
+---
+
+Shipping visibility is one of the first places NetSuite integrations get messy. A sales order might have one fulfillment, several fulfillments, multiple package rows, linked tracking numbers, and carrier fields added by a shipping system. The record API can read those records one at a time, but SuiteQL is often better when you need a tracking report or reconciliation view.
+
+This article shows practical SuiteQL patterns for connecting item fulfillments back to sales orders and reading package tracking data. It is part of the [NetSuite SuiteQL examples series](/blog/netsuite-suiteql-examples-ecommerce-integrations).
+
+## Why fulfillment tracking is awkward in NetSuite
+
+Sales orders and item fulfillments are separate transaction records. At the header level, a fulfillment can point back to its source, but reliable line-level reporting usually needs the transaction link table.
+
+The key table is `PreviousTransactionLineLink`.
+
+In fulfillment workflows, this table tells you:
+
+- Which sales order produced an item fulfillment
+- Which sales order line produced a fulfillment line
+- Which fulfillment line should be compared to the original order line
+
+Package tracking adds another table: `itemfulfillmentpackage`. That is where package tracking numbers and package descriptions commonly live.
+
+## Query item fulfillments by sales order ID
+
+If you already know the sales order internal ID, this query returns fulfillment rows and item-level quantities.
+
+```sql
+SELECT
+  t.id,
+  t.tranid,
+  t.trandate,
+  TransactionLine.item AS itemId,
+  BUILTIN.DF(TransactionLine.item) AS itemName,
+  TransactionLine.quantity AS fulfilledQuantity
+FROM transaction AS t
+INNER JOIN TransactionLine
+  ON TransactionLine.transaction = t.id
+WHERE t.type = 'ItemShip'
+  AND (
+    SELECT DISTINCT SO.id
+    FROM PreviousTransactionLineLink AS PTLL
+    INNER JOIN transaction AS SO
+      ON SO.id = PTLL.PreviousDoc
+    WHERE PTLL.NextDoc = t.id
+      AND SO.type = 'SalesOrd'
+  ) = <SALES_ORDER_ID>
+ORDER BY t.trandate DESC, t.tranid DESC
+```
+
+This is a compact way to answer, "Which fulfillments were created from this order?" It is useful for cleanup scripts, date correction tools, duplicate fulfillment detection, and support dashboards.
+
+## Query fulfillment lines with original sales order lines
+
+For line-level reconciliation, join `PreviousTransactionLineLink` to both transaction lines. This lets you compare the quantity fulfilled with the quantity ordered.
+
+```sql
+SELECT
+  MAX(fulfillment.id) AS item_fulfillment_id,
+  MAX(fulfillment.tranid) AS item_fulfillment_number,
+  MAX(fulfillment.trandate) AS item_fulfillment_date,
+  salesOrder.id AS sales_order_id,
+  salesOrderLine.id AS sales_order_line_id,
+  MAX(ABS(salesOrderLine.quantity)) AS sales_order_line_quantity,
+  MAX(ABS(fulfillmentLine.quantity)) AS fulfilled_quantity,
+  MAX(salesOrder.tranid) AS sales_order_document_number,
+  MAX(BUILTIN.DF(fulfillment.postingperiod)) AS posting_period,
+  MAX(item.itemid) AS sku,
+  MAX(item.displayname) AS item_display_name
+FROM transaction fulfillment
+INNER JOIN transactionline fulfillmentLine
+  ON fulfillmentLine.transaction = fulfillment.id
+LEFT JOIN PreviousTransactionLineLink ptll
+  ON ptll.NextDoc = fulfillment.id
+  AND ptll.NextLine = fulfillmentLine.id
+INNER JOIN transaction salesOrder
+  ON salesOrder.id = ptll.PreviousDoc
+  AND salesOrder.type = 'SalesOrd'
+LEFT JOIN transactionline salesOrderLine
+  ON salesOrderLine.transaction = salesOrder.id
+  AND salesOrderLine.id = ptll.PreviousLine
+LEFT JOIN item
+  ON item.id = fulfillmentLine.item
+WHERE fulfillment.type = 'ItemShip'
+  AND fulfillmentLine.item IS NOT NULL
+  AND salesOrderLine.id IS NOT NULL
+  AND fulfillment.trandate >= '<START_DATE>'
+  AND fulfillment.trandate <= '<END_DATE>'
+GROUP BY salesOrder.id, salesOrderLine.id
+ORDER BY MAX(salesOrder.tranid) DESC,
+  salesOrder.id ASC,
+  salesOrderLine.id ASC
+```
+
+The `ABS(...)` calls are intentional. Transaction quantities can appear as negative values depending on transaction type and account behavior. For reporting, positive quantities are usually easier to reason about.
+
+## Add package tracking numbers
+
+Package data can be joined through `itemfulfillmentpackage`. This is the piece customer support and downstream systems usually need.
+
+```sql
+SELECT
+  MAX(fulfillment.id) AS item_fulfillment_id,
+  MAX(fulfillment.tranid) AS item_fulfillment_number,
+  MAX(fulfillment.trandate) AS item_fulfillment_date,
+  salesOrder.id AS sales_order_id,
+  MAX(salesOrder.tranid) AS sales_order_document_number,
+  MAX(item.itemid) AS sku,
+  MAX(item.displayname) AS item_display_name,
+  MAX(pkg.packagetrackingnumber) AS package_tracking_number,
+  MAX(pkg.packagedescr) AS package_description,
+  NVL(MAX(fulfillment.custbody_shiphawk_carrier_name), '') AS carrier
+FROM transaction fulfillment
+INNER JOIN transactionline fulfillmentLine
+  ON fulfillmentLine.transaction = fulfillment.id
+LEFT JOIN PreviousTransactionLineLink ptll
+  ON ptll.NextDoc = fulfillment.id
+  AND ptll.NextLine = fulfillmentLine.id
+INNER JOIN transaction salesOrder
+  ON salesOrder.id = ptll.PreviousDoc
+  AND salesOrder.type = 'SalesOrd'
+LEFT JOIN item
+  ON item.id = fulfillmentLine.item
+LEFT JOIN itemfulfillmentpackage pkg
+  ON pkg.itemfulfillment = fulfillment.id
+WHERE fulfillment.type = 'ItemShip'
+  AND fulfillmentLine.item IS NOT NULL
+  AND salesOrder.tranid = '<ORDER_NUMBER>'
+GROUP BY salesOrder.id, fulfillmentLine.id
+ORDER BY MAX(salesOrder.tranid) DESC
+```
+
+The carrier field in this example is a custom body field. Replace it with the field your account uses, or omit it if your carrier data only lives in package descriptions or external shipping records.
+
+## Query order-level package tracking
+
+If you only need one row per order and package, use a smaller query. This is a better shape for customer service tools or tracking exports.
+
+```sql
+SELECT
+  salesOrder.trandate AS sales_order_date,
+  salesOrder.id AS sales_order_id,
+  salesOrder.tranid AS sales_order_document_number,
+  NVL(salesOrder.otherrefnum, '') AS sales_order_reference_number,
+  salesOrder.linkedtrackingnumbers AS linked_tracking_numbers,
+  NVL(pkg.packagetrackingnumber, '') AS package_tracking_number,
+  NVL(pkg.packagedescr, '') AS package_description,
+  NVL(fulfillment.custbody_shiphawk_carrier_name, '') AS carrier
+FROM transaction fulfillment
+INNER JOIN PreviousTransactionLineLink ptll
+  ON ptll.NextDoc = fulfillment.id
+INNER JOIN transaction salesOrder
+  ON salesOrder.id = ptll.PreviousDoc
+  AND salesOrder.type = 'SalesOrd'
+LEFT JOIN itemfulfillmentpackage pkg
+  ON pkg.itemfulfillment = fulfillment.id
+WHERE fulfillment.type = 'ItemShip'
+  AND salesOrder.tranid = '<ORDER_NUMBER>'
+ORDER BY salesOrder.tranid DESC,
+  fulfillment.trandate DESC,
+  pkg.packagetrackingnumber ASC
+```
+
+This query intentionally does not join fulfillment lines. That avoids multiplying package rows by item rows when the consumer only cares about tracking numbers.
+
+## Group duplicate carrier or package rows in code
+
+NetSuite joins can return repeated package data when multiple link rows point at the same fulfillment. Sometimes the cleanest solution is to query the data you need, then collapse duplicates in application code.
+
+```ts
+interface TrackingRow {
+  sales_order_id: string
+  sales_order_document_number: string
+  package_tracking_number: string
+  package_description: string
+  carrier: string
+}
+
+function groupTrackingRows(rows: TrackingRow[]): TrackingRow[] {
+  const grouped = new Map<string, TrackingRow & { carriers: Set<string> }>()
+
+  for (const row of rows) {
+    const key = [
+      row.sales_order_id,
+      row.sales_order_document_number,
+      row.package_tracking_number,
+      row.package_description,
+    ].join('|')
+
+    const existing = grouped.get(key)
+    const carriers = existing?.carriers ?? new Set<string>()
+    const carrier = (row.carrier || '').trim()
+
+    if (carrier) {
+      carriers.add(carrier)
+    }
+
+    grouped.set(key, {
+      ...row,
+      carrier: [...carriers].join(' '),
+      carriers,
+    })
+  }
+
+  return [...grouped.values()].map(({ carriers, ...row }) => row)
+}
+```
+
+This keeps the SQL focused on extracting NetSuite data and keeps presentation-specific grouping in the service layer.
+
+## Practical notes for fulfillment SuiteQL
+
+Use `PreviousTransactionLineLink` when line-level accuracy matters. Header-level links are useful, but line links make reconciliation much easier.
+
+Keep package joins separate from item-line reporting when possible. Package rows and item rows have different cardinality, and combining them can duplicate data.
+
+Use `NVL(...)` for optional package and carrier fields if the result feeds CSV exports or UI tables.
+
+Be careful with item fulfillment dates. If you use fulfillment dates for financial or operational reporting, verify whether your workflow cares about `trandate`, `shipdate`, posting period, or a custom ship-date field.
+
+Next in the series: [Find Partially Fulfilled Sales Orders in NetSuite with SuiteQL](/blog/find-partially-fulfilled-sales-orders-netsuite-suiteql).

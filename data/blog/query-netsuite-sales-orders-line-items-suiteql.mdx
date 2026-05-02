@@ -1,0 +1,223 @@
+---
+title: 'Query NetSuite Sales Orders and Line Items with SuiteQL'
+date: '2026-05-01'
+tags: ['e-commerce', 'software-development', 'automation', 'custom-development']
+draft: true
+summary: 'Learn how to query NetSuite sales orders and line items with SuiteQL, including order number search, line joins, status labels, and pending fulfillment filters.'
+images: []
+---
+
+Sales orders sit at the center of most NetSuite e-commerce integrations. A storefront, warehouse management system, shipping platform, customer support tool, or billing job usually starts with the same question: which NetSuite sales order matches the external order number I already have?
+
+SuiteQL is a good fit for that workflow because it lets you search across transaction fields, join order lines, read display values, and filter fulfillment state without making several record API calls.
+
+This article walks through practical SuiteQL examples for finding sales orders and reading line-item state. It is part of a broader series that starts with [NetSuite SuiteQL Examples for E-commerce Integrations](/blog/netsuite-suiteql-examples-ecommerce-integrations).
+
+## When to query sales orders directly
+
+The NetSuite record API is convenient when your integration already has an internal ID. E-commerce systems usually do not. They tend to know values like a Shopify order number, purchase order number, customer-facing order name, or reference number.
+
+Use SuiteQL when you need to:
+
+- Find a sales order by `tranid` or `otherrefnum`
+- Read order status with a display label
+- Inspect sales order line items before creating fulfillments
+- Filter lines that are fulfillable, open, or not fully shipped
+- Build warehouse queues by location and transaction date
+
+The examples below use direct string interpolation for readability. In production, never pass raw user input into a SuiteQL string.
+
+```ts
+function escapeSuiteQlString(value: string): string {
+  return (value || '').replace(/'/g, "''")
+}
+
+const safeOrderNumber = escapeSuiteQlString(orderNumber)
+```
+
+Numeric filters such as location IDs or channel IDs should be converted with `Number(...)` and rejected if the result is not valid.
+
+## Query a sales order by order number or reference number
+
+This is the basic lookup pattern. It searches both `tranid` and `otherrefnum` because integrations often disagree about which field contains the external order reference.
+
+```sql
+SELECT
+  transaction.id,
+  transaction.tranid,
+  transaction.trandate,
+  transaction.otherrefnum,
+  transaction.memo,
+  BUILTIN.DF(transaction.status) AS status,
+  transaction.entity
+FROM transaction
+WHERE transaction.type = 'SalesOrd'
+  AND (
+    transaction.tranid LIKE '%<ORDER_NUMBER>%'
+    OR transaction.otherrefnum LIKE '%<ORDER_NUMBER>%'
+  )
+```
+
+`BUILTIN.DF(transaction.status)` returns a readable status label instead of only the internal status code. That makes logs, dashboards, and API responses easier for operations teams to understand.
+
+In application code, normalize the label before making decisions with it:
+
+```ts
+const status = (row.status || '').replace('Sales Order : ', '').toLowerCase()
+```
+
+Status codes and labels can vary by account configuration and workflow. Treat them as an integration contract, not universal constants.
+
+## Query printable sales order line items
+
+After finding the order, most fulfillment workflows need the item lines. This query joins `transaction`, `transactionline`, and `item`, then filters out non-printing lines.
+
+```sql
+SELECT
+  t.id AS salesOrderId,
+  t.tranid AS salesOrderNumber,
+  tl.id AS orderLine,
+  BUILTIN.DF(t.status) AS status,
+  i.itemid AS itemName,
+  tl.item AS itemId,
+  tl.memo,
+  tl.cseg1,
+  tl.quantity,
+  tl.rate,
+  tl.inventorylocation,
+  tl.isfullyshipped,
+  tl.quantitypacked,
+  tl.donotprintline
+FROM transaction t
+JOIN transactionline tl
+  ON t.id = tl.transaction
+JOIN item i
+  ON tl.item = i.id
+WHERE t.type = 'SalesOrd'
+  AND (
+    t.tranid LIKE '%<ORDER_NUMBER>%'
+    OR t.otherrefnum LIKE '%<ORDER_NUMBER>%'
+  )
+  AND tl.donotprintline = 'F'
+ORDER BY tl.id
+```
+
+The `donotprintline = 'F'` filter removes lines that are not intended to appear as normal order lines. Depending on your account, discount, tax, payment, subtotal, or hidden system lines may still need additional filtering.
+
+Useful fields in this result:
+
+- `orderLine`: the sales order line identifier needed for fulfillment transforms
+- `itemName`: the SKU or item number from the `item` record
+- `cseg1`: a custom segment often used for channel, department, or business line reporting
+- `isfullyshipped`: whether NetSuite considers the line complete
+- `quantitypacked`: useful when comparing packed and fulfilled state
+
+## Query pending fulfillment line items
+
+If you only need open fulfillable lines, add line-level filters for unshipped and fulfillable state.
+
+```sql
+SELECT
+  t.id AS salesOrderId,
+  t.tranid AS salesOrderNumber,
+  tl.id AS orderLine,
+  BUILTIN.DF(t.status) AS status,
+  i.itemid AS itemName,
+  tl.cleared,
+  tl.fulfillable,
+  tl.item AS itemId,
+  tl.memo,
+  tl.quantity,
+  tl.rate,
+  tl.inventorylocation,
+  tl.isfullyshipped,
+  tl.quantitypacked,
+  tl.donotprintline,
+  tl.itemtype,
+  tl.cseg1
+FROM transaction t
+JOIN transactionline tl
+  ON t.id = tl.transaction
+JOIN item i
+  ON tl.item = i.id
+WHERE t.type = 'SalesOrd'
+  AND (
+    t.tranid LIKE '%<ORDER_NUMBER>%'
+    OR t.otherrefnum LIKE '%<ORDER_NUMBER>%'
+  )
+  AND tl.donotprintline = 'F'
+  AND tl.isfullyshipped = 'F'
+  AND tl.fulfillable = 'T'
+ORDER BY tl.id
+```
+
+This pattern is especially useful before creating an item fulfillment from an external warehouse event. The integration can compare the external shipment contents to the NetSuite lines that are still open.
+
+For lot-managed assembly items, you will usually pair this sales order line query with an inventory-number lookup before submitting the fulfillment.
+
+## List pending fulfillment sales orders by location
+
+Warehouse integrations often need a queue of orders by location. The order header location is commonly found through the main transaction line, where `transactionline.id = 0`.
+
+```sql
+SELECT
+  transaction.id,
+  transaction.tranid,
+  transaction.location,
+  transaction.trandate,
+  transaction.otherrefnum,
+  transaction.memo,
+  BUILTIN.DF(transaction.status) AS status,
+  mainline.location AS locationId
+FROM transaction
+LEFT JOIN transactionline mainline
+  ON mainline.transaction = transaction.id
+  AND mainline.id = 0
+WHERE transaction.type = 'SalesOrd'
+  AND transaction.status IN ('B', 'D', 'E')
+  AND mainline.location = <LOCATION_ID>
+  AND transaction.trandate >= '<START_DATE>'
+ORDER BY transaction.trandate DESC
+```
+
+This query is a starting point for warehouse polling jobs. In a production integration, keep the status list configurable or well documented because each NetSuite account can use sales order statuses differently.
+
+Common additions include:
+
+- Date range filters for backfills or daily jobs
+- `memo` filters for channel-specific workflows
+- Custom segment filters for B2C, B2B, marketplace, or sample orders
+- Exclusions for closed, cancelled, or billing-only orders
+
+## List pending billing sales orders
+
+Billing jobs use a similar transaction-level pattern. The key difference is the status filter and the date window.
+
+```sql
+SELECT
+  transaction.id,
+  transaction.tranid,
+  transaction.otherrefnum,
+  transaction.memo,
+  BUILTIN.DF(transaction.status) AS status
+FROM transaction
+WHERE transaction.type = 'SalesOrd'
+  AND transaction.status = 'F'
+  AND transaction.trandate >= '<START_DATE>'
+  AND transaction.trandate <= '<END_DATE>'
+ORDER BY transaction.trandate DESC
+```
+
+This can feed a job that transforms sales orders into invoices or cash sales after fulfillment. Keep the transform logic separate from the report query so the query remains easy to test and audit.
+
+## Practical notes for sales order SuiteQL
+
+`transaction` is a reserved-looking table name, but it is the core NetSuite transaction table used by SuiteQL. Alias it as `t` or use the full table name consistently.
+
+`transactionline` contains both item lines and other system lines. Always decide which line types your integration should include.
+
+`BUILTIN.DF(...)` is useful for readable labels, but do not base critical automation only on display text if your account has localized or customized values. Store explicit status rules in configuration.
+
+`tranid` and `otherrefnum` searches with `LIKE` are convenient for operations tooling, but exact matches are safer for automation when your identifiers are clean.
+
+From here, the next step is usually fulfillment tracking. See [Track NetSuite Item Fulfillments and Shipping Packages with SuiteQL](/blog/track-netsuite-item-fulfillments-shipping-packages-suiteql) for the join patterns that connect item fulfillments back to sales orders.
