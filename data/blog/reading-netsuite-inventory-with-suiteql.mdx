@@ -21,64 +21,71 @@ const netsuiteApi = new NetsuiteRest({
   token_secret: process.env.NETSUITE_TOKEN_SECRET,
   realm: process.env.NETSUITE_ACCOUNT_ID,
   base_url: process.env.NETSUITE_API_URL,
-});
+})
 
 interface IssueInventoryNumberByLotNumberResponse {
-	id: string;
-	lotnumber: string;
-	itemid: string;
-	itemnumber: string;
-	itemname: string;
-	quantityavailable: string;
-	locationid: string;
+  id: string
+  lotnumber: string
+  itemid: string
+  itemnumber: string
+  itemname: string
+  quantityavailable: string
+  locationid: string
 }
 
-function listIssueInventoryNumber(itemNumber: string, locationId: number, lotNumber?: string): Promise<IssueInventoryNumberByLotNumberResponse[]> {
-	const normalizeLotNumber = (lotNumberToNormalize: string) => {
-		try {
-			// example if dates are passed in as 01/01/2025, we need to normalize it to 01/01/25
-      
-      const isDate = moment(lotNumberToNormalize, 'MM/DD/YYYY').isValid();
-			
+function listIssueInventoryNumber(
+  itemNumber: string,
+  locationId: number,
+  lotNumber?: string
+): Promise<IssueInventoryNumberByLotNumberResponse[]> {
+  const normalizeLotNumber = (lotNumberToNormalize: string) => {
+    try {
+      // example if dates are passed in as 01/01/2025, we need to normalize it to 01/01/25
+
+      const isDate = moment(lotNumberToNormalize, 'MM/DD/YYYY').isValid()
+
       if (isDate) {
-				return moment(lotNumberToNormalize, 'MM/DD/YYYY').format('MM/DD/YY');
-			}
+        return moment(lotNumberToNormalize, 'MM/DD/YYYY').format('MM/DD/YY')
+      }
 
-			return lotNumberToNormalize;
-		} catch (error) {
-			return lotNumberToNormalize;
-		}
-	};
+      return lotNumberToNormalize
+    } catch (error) {
+      return lotNumberToNormalize
+    }
+  }
 
-	let query = lotNumber ? `
+  let query = lotNumber
+    ? `
 		SELECT inventoryNumber.Id AS id, inventorynumber.inventorynumber AS lotNumber, inventorynumber.item AS itemId, item.itemid AS itemNumber,
 			item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId,
 		FROM inventorynumber
 		INNER JOIN ItemInventoryBalance ON ItemInventoryBalance.inventoryNumber = inventoryNumber.Id
 		INNER JOIN item ON inventorynumber.item = item.id
 		WHERE (inventorynumber.inventorynumber LIKE '%${lotNumber}%' or inventorynumber.inventorynumber LIKE '%${normalizeLotNumber(lotNumber)}%') and item.itemid = '${itemNumber}' and ItemInventoryBalance.location = ${locationId}
-	` : `
+	`
+    : `
 		SELECT '' AS id, '' AS lotNumber, iteminventorybalance.item AS itemId, item.itemid AS itemNumber,
 			item.displayname AS itemName, ItemInventoryBalance.quantityAvailable AS quantityAvailable, ItemInventoryBalance.location AS locationId,
 		FROM ItemInventoryBalance
 		INNER JOIN item ON item.id = iteminventorybalance.item
 		WHERE item.itemid = '${itemNumber}' and iteminventorybalance.location = ${locationId}
-	`;
+	`
 
-	return netsuiteApi.request({
-		path: `query/v1/suiteql`,
-		method: 'POST',
-		body: JSON.stringify({
-			q: query
-		}),
-	})
-		.then(response => response.data?.items || [])
-		.catch(error => {
-			const response = error && error.response;
-			const errorMessage = (response && response.body) || error;
+  return netsuiteApi
+    .request({
+      path: `query/v1/suiteql`,
+      method: 'POST',
+      body: JSON.stringify({
+        q: query,
+      }),
+    })
+    .then((response) => response.data?.items || [])
+    .catch((error) => {
+      const response = error && error.response
+      const errorMessage = (response && response.body) || error
 
-			return Promise.reject(errorMessage);
-		});
+      return Promise.reject(errorMessage)
+    })
 }
 ```
 
@@ -103,5 +110,14 @@ To keep response times predictable and SEO-ready for customer-facing inventory p
 2. Call `listIssueInventoryNumber` with the item number and location ID you need to inspect.
 3. Include a `lotNumber` to return per-lot availability; omit it to fetch inventory for non-lot items.
 4. Surface the resulting `quantityAvailable` data in dashboards, customer experiences, or internal planning tools.
+
+## More NetSuite SuiteQL examples
+
+This inventory helper is part of a broader NetSuite SuiteQL series:
+
+- [NetSuite SuiteQL Examples for E-commerce Integrations](/blog/netsuite-suiteql-examples-ecommerce-integrations)
+- [Query NetSuite Sales Orders and Line Items with SuiteQL](/blog/query-netsuite-sales-orders-line-items-suiteql)
+- [Track NetSuite Item Fulfillments and Shipping Packages with SuiteQL](/blog/track-netsuite-item-fulfillments-shipping-packages-suiteql)
+- [Find Partially Fulfilled Sales Orders in NetSuite with SuiteQL](/blog/find-partially-fulfilled-sales-orders-netsuite-suiteql)
 
 With a production-hardened helper and a clear understanding of the NetSuite SQL endpoint, you can deliver inventory visibility that search engines and stakeholders alike can trust.
