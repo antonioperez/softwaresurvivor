@@ -1,9 +1,9 @@
 ---
-title: "Transforming CloudWatch Nginx Logs to CloudFront Log format"
-date: "2025-12-10 23:43:22"
-tags: ["aws", "serverless", "nginx", "firehose", "cloudwatch", "lambda"]
+title: 'CloudWatch Nginx Logs to CloudFront Log format'
+date: '2025-12-10 23:43:22'
+tags: ['aws', 'serverless', 'nginx', 'firehose', 'cloudwatch', 'lambda']
 draft: false
-summary: "A deep dive into transforming CloudWatch Nginx logs using a Lambda data transform that reduces multi-line batches into a single prioritized event for downstream HTTP ingestion."
+summary: 'A deep dive into transforming CloudWatch Nginx logs using a Lambda data transform that reduces multi-line batches into a single prioritized event for downstream HTTP ingestion.'
 images: []
 ---
 
@@ -66,46 +66,49 @@ We parse these into structured records that match CloudFront log format for cons
 ```javascript
 function parseNginxLine(line) {
   // Nginx combined log format regex
-  const re = /^(\S+)\s+\S+\s+\S+\s+\[([^\]]+)]\s+"(\S+)\s+([^" ]+)(?:\s+HTTP\/[0-9.]+)?"\s+(\d{3})\s+(\S+)\s+"([^"]*)"\s+"([^"]*)"(?:\s+"([^"]*)")?$/;
+  const re =
+    /^(\S+)\s+\S+\s+\S+\s+\[([^\]]+)]\s+"(\S+)\s+([^" ]+)(?:\s+HTTP\/[0-9.]+)?"\s+(\d{3})\s+(\S+)\s+"([^"]*)"\s+"([^"]*)"(?:\s+"([^"]*)")?$/
 
-  const m = line.match(re);
-  if (!m) return null;
+  const m = line.match(re)
+  if (!m) return null
 
-  const clientIp = m[1];
-  const dateTime = m[2];
-  const method = m[3];
-  const uri = m[4];
-  const status = m[5];
-  const bytesSent = m[6];
-  const referer = m[7];
-  const userAgent = m[8];
+  const clientIp = m[1]
+  const dateTime = m[2]
+  const method = m[3]
+  const uri = m[4]
+  const status = m[5]
+  const bytesSent = m[6]
+  const referer = m[7]
+  const userAgent = m[8]
 
   // Parse date and time
-  const dateTimeMatch = dateTime.match(/(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2})\s+([+-]\d{4})/);
-  if (!dateTimeMatch) return null;
+  const dateTimeMatch = dateTime.match(
+    /(\d{2})\/(\w{3})\/(\d{4}):(\d{2}):(\d{2}):(\d{2})\s+([+-]\d{4})/
+  )
+  if (!dateTimeMatch) return null
 
-  const [, day, month, year, hour, minute, second, timezone] = dateTimeMatch;
-  const date = `${year}-${month}-${day}`;
-  const time = `${hour}:${minute}:${second}`;
+  const [, day, month, year, hour, minute, second, timezone] = dateTimeMatch
+  const date = `${year}-${month}-${day}`
+  const time = `${hour}:${minute}:${second}`
 
   // Parse URI into path and query
-  const [path, query] = uri.split('?');
-  const host = extractHostFromReferer(referer) || '-';
+  const [path, query] = uri.split('?')
+  const host = extractHostFromReferer(referer) || '-'
 
   return {
     date,
     time,
-    "c-ip": clientIp,
-    "cs-method": method,
-    "x-host-header": host,
-    "cs-uri-stem": path,
-    "cs-uri-query": query || "-",
-    "cs(User-Agent)": encodeURIComponent(userAgent),
-    "cs(Referer)": referer || "-",
-    "sc-status": status,
-    "sc-bytes": bytesSent,
-    "time-taken": "0.002" // Default value, can be extracted from logs if available
-  };
+    'c-ip': clientIp,
+    'cs-method': method,
+    'x-host-header': host,
+    'cs-uri-stem': path,
+    'cs-uri-query': query || '-',
+    'cs(User-Agent)': encodeURIComponent(userAgent),
+    'cs(Referer)': referer || '-',
+    'sc-status': status,
+    'sc-bytes': bytesSent,
+    'time-taken': '0.002', // Default value, can be extracted from logs if available
+  }
 }
 ```
 
@@ -117,10 +120,10 @@ The core of our solution is the priority function that assigns a numeric priorit
 
 ```javascript
 function getPathPriority(stem) {
-  if (stem.startsWith("/products")) return 1;
-  if (stem.startsWith("/shop")) return 2;
-  if (stem === "/") return 3;
-  return 4; // everything else
+  if (stem.startsWith('/products')) return 1
+  if (stem.startsWith('/shop')) return 2
+  if (stem === '/') return 3
+  return 4 // everything else
 }
 ```
 
@@ -129,23 +132,23 @@ Inside the Lambda handler, we iterate through all log events in the batch and se
 ```javascript
 exports.handler = async (event) => {
   const output = event.records.map((record) => {
-    const payload = Buffer.from(record.data, 'base64').toString('utf-8');
-    const parsed = JSON.parse(payload);
+    const payload = Buffer.from(record.data, 'base64').toString('utf-8')
+    const parsed = JSON.parse(payload)
 
-    let bestEvent = null;
-    let bestPriority = Infinity;
+    let bestEvent = null
+    let bestPriority = Infinity
 
     for (const logEvent of parsed.logEvents) {
-      const cfRecord = parseNginxLine(logEvent.message);
-      if (!cfRecord) continue;
+      const cfRecord = parseNginxLine(logEvent.message)
+      if (!cfRecord) continue
 
-      const priority = getPathPriority(cfRecord["cs-uri-stem"]);
+      const priority = getPathPriority(cfRecord['cs-uri-stem'])
 
       if (priority < bestPriority) {
-        bestPriority = priority;
-        bestEvent = cfRecord;
+        bestPriority = priority
+        bestEvent = cfRecord
         // Early exit optimization: if we find a product page, we can't do better
-        if (priority === 1) break;
+        if (priority === 1) break
       }
     }
 
@@ -153,24 +156,24 @@ exports.handler = async (event) => {
     if (!bestEvent) {
       return {
         recordId: record.recordId,
-        result: "ProcessingFailed",
-        data: {}
-      };
+        result: 'ProcessingFailed',
+        data: {},
+      }
     }
 
     // Encode the selected event
-    const outJson = JSON.stringify(bestEvent);
-    const encoded = Buffer.from(outJson).toString("base64");
+    const outJson = JSON.stringify(bestEvent)
+    const encoded = Buffer.from(outJson).toString('base64')
 
     return {
       recordId: record.recordId,
-      result: "Ok",
-      data: encoded
-    };
-  });
+      result: 'Ok',
+      data: encoded,
+    }
+  })
 
-  return { records: output };
-};
+  return { records: output }
+}
 ```
 
 This approach ensures that only the single, highest-value event is emitted for each batch, perfectly flattened for your HTTP endpoint to consume.
@@ -186,14 +189,14 @@ Firehose expects a specific response format from your Lambda transform function.
 Our transform produces this format:
 
 ```javascript
-const outJson = JSON.stringify(bestEvent);
-const encoded = Buffer.from(outJson).toString("base64");
+const outJson = JSON.stringify(bestEvent)
+const encoded = Buffer.from(outJson).toString('base64')
 
 return {
   recordId: record.recordId,
-  result: "Ok",
-  data: encoded
-};
+  result: 'Ok',
+  data: encoded,
+}
 ```
 
 The downstream HTTP endpoint receives a clean, focused event representing the most meaningful action from that log batch, without any noise from bots or low-value requests.
