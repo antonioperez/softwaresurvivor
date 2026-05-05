@@ -1,7 +1,7 @@
 ---
 title: 'Track NetSuite Item Fulfillments and Shipping Packages with SuiteQL'
 date: '2026-05-03 00:00:00'
-tags: ['e-commerce', 'software-development', 'automation', 'custom-development']
+tags: ['e-commerce', 'software-development']
 draft: false
 summary: 'Use SuiteQL to connect NetSuite item fulfillments back to sales orders, fulfillment lines, shipment packages, tracking numbers, and carrier metadata.'
 images: []
@@ -112,8 +112,7 @@ SELECT
   MAX(item.itemid) AS sku,
   MAX(item.displayname) AS item_display_name,
   MAX(pkg.packagetrackingnumber) AS package_tracking_number,
-  MAX(pkg.packagedescr) AS package_description,
-  NVL(MAX(fulfillment.custbody_shiphawk_carrier_name), '') AS carrier
+  MAX(pkg.packagedescr) AS package_description
 FROM transaction fulfillment
 INNER JOIN transactionline fulfillmentLine
   ON fulfillmentLine.transaction = fulfillment.id
@@ -148,8 +147,7 @@ SELECT
   NVL(salesOrder.otherrefnum, '') AS sales_order_reference_number,
   salesOrder.linkedtrackingnumbers AS linked_tracking_numbers,
   NVL(pkg.packagetrackingnumber, '') AS package_tracking_number,
-  NVL(pkg.packagedescr, '') AS package_description,
-  NVL(fulfillment.custbody_shiphawk_carrier_name, '') AS carrier
+  NVL(pkg.packagedescr, '') AS package_description
 FROM transaction fulfillment
 INNER JOIN PreviousTransactionLineLink ptll
   ON ptll.NextDoc = fulfillment.id

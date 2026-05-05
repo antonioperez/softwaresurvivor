@@ -1,7 +1,7 @@
 ---
 title: 'NetSuite SuiteQL Examples for E-commerce Integrations'
 date: '2026-05-01 00:00:00'
-tags: ['e-commerce', 'software-development', 'automation', 'custom-development']
+tags: ['e-commerce', 'software-development']
 draft: false
 summary: 'Practical NetSuite SuiteQL examples for sales orders, fulfillment tracking, pending items, inventory, and e-commerce integration workflows.'
 images: []
@@ -166,8 +166,7 @@ SELECT
   NVL(salesOrder.otherrefnum, '') AS sales_order_reference_number,
   salesOrder.linkedtrackingnumbers AS linked_tracking_numbers,
   NVL(pkg.packagetrackingnumber, '') AS package_tracking_number,
-  NVL(pkg.packagedescr, '') AS package_description,
-  NVL(fulfillment.custbody_shiphawk_carrier_name, '') AS carrier
+  NVL(pkg.packagedescr, '') AS package_description
 FROM transaction fulfillment
 INNER JOIN PreviousTransactionLineLink ptll
   ON ptll.NextDoc = fulfillment.id
