@@ -1,13 +1,13 @@
 ---
 title: 'CoderzHub - Part 2'
 date: '2016-06-01 23:43:22'
-tags: ['web-development', 'api', 'algorithms']
+tags: ['web-development', 'api', 'software-development']
 draft: false
 summary: 'Implementation details of CoderzHub - a social network for coders. Covers Django authentication, AJAX voting system, and search functionality with code examples.'
 images: []
 ---
 
-Coderzhub code samples. Codershub is a social network for coders and aims to bring coders together on original projects. Projects are imported from Github for a link to code can be established. 
+Coderzhub code samples. Codershub is a social network for coders and aims to bring coders together on original projects. Projects are imported from Github for a link to code can be established.
 
 The previous post defined the models, and the way the view and controller are used in Django requires a definition of the business code to handle the data. This function checks if the user is authenticated or else it sends the user back to login and create a session cookie. Through this function, the server handles the POST request data from a form in the view file.
 
@@ -16,15 +16,15 @@ def CreateForum(request):
     if not request.user.is_authenticated():
         return HttpResponseRedirect("/login")
     if request.method == 'POST':
-        forum_form = ForumForm(request.POST) 
+        forum_form = ForumForm(request.POST)
         if forum_form.is_valid():
-            new_forum = forum_form.save(commit=False) 
+            new_forum = forum_form.save(commit=False)
             new_forum.public = True
             new_forum.save()
             return HttpResponseRedirect('/projects/forums')
     else:
         forum_form = ForumForm()
-    
+
     return render(request, 'forum/add_forum.html', {{'forum_form': forum_form,}})
 ```
 
@@ -33,7 +33,7 @@ Though to map the URL to this particular method, Django needs to easily access t
 ```
 urlpatterns = patterns('',
    url(r'^$', ProjectDashboard, name=''),
-   url(r'^forums/$', PublicForums, name='Public Forums'), 
+   url(r'^forums/$', PublicForums, name='Public Forums'),
    url(r'^create/forum/$', CreateForum, name='Create Forum'),)
 ```
 
@@ -86,9 +86,9 @@ def search_by_user(request, username):
     if users:
         user_list = []
         for user in users:
-           projects = Project.objects.filter(owners=user)           
+           projects = Project.objects.filter(owners=user)
            user_list.append({{'username': user.user, 'github_name': user.github, 'project_count': projects.count()}})
         return render(request, 'search/search_list.html', {{'user_name': username, 'user_list': user_list}})
     else:
         return HttpResponseRedirect('/search/error')
-``` 
+```

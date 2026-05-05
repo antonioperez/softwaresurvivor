@@ -1,7 +1,7 @@
 ---
 title: 'An AWS Code Build spec for your typescript node project'
 date: '2019-06-15 17:00:49'
-tags: ['software-development']
+tags: ['software-development', 'cloud']
 draft: false
 summary: 'Complete guide to setting up AWS Code Build for TypeScript Node.js projects with buildspec.yml configuration for automated deployment to Elastic Beanstalk.'
 images: []
@@ -13,9 +13,9 @@ images: []
 
 **Deployments suck**. You build this great product on your local machine and now you have to deploy it to the masses. You spent so much time focusing on the product, that you forgot to scope out the deployment process. It's DevOps! How hard can it be?! ... err.. guilty. There are so many ways to do deployment, as is common in this field. You can easily spend a whole day researching different deployment tools for your environment. You try to understand why certain products exists, weigh the pros and cons of each based on opinionated words of others. Perhaps integrations between different platforms are possible. Travis for AWS? How are those set up? Death by a thousand choices and words. Now with the setup above, we can focus on our code, and let automation tools worry about the builds. I also wanted to keep it all on AWS.
 
-Let's worry about Git. Branch management is important, but that's a different topic for another day. In my project, I have two special branches, a 'staging'  and a 'production' one. I have two AWS Code Build configurations watching these two branches for any changes. If a change is detected, for example, I merged my development branch into staging or staging into production, a code build will fire and the pipeline is executed. A minute later, our project has a new release! Magic!
+Let's worry about Git. Branch management is important, but that's a different topic for another day. In my project, I have two special branches, a 'staging' and a 'production' one. I have two AWS Code Build configurations watching these two branches for any changes. If a change is detected, for example, I merged my development branch into staging or staging into production, a code build will fire and the pipeline is executed. A minute later, our project has a new release! Magic!
 
-For AWS Code Build, you need a buildspec.yml in your git repo to tell the server how to install and build your project. In this case, my package json file has an npm command called build-ts that runs `tsc`.  You can also include your tests command here, but I'll come back to that at a later post.
+For AWS Code Build, you need a buildspec.yml in your git repo to tell the server how to install and build your project. In this case, my package json file has an npm command called build-ts that runs `tsc`. You can also include your tests command here, but I'll come back to that at a later post.
 
 The artifacts section is also important. Elastic Bean stalk expects us to zip the contents of the result, not the resulting build folder. So I am grabbing three things here. The package.json file, the read me, and the contents of the dist folder.
 
@@ -40,4 +40,4 @@ artifacts:
 
 Head on over to AWS Pipeline to setup a pipeline. When you set up a pipeline, you can set the source, and later a build project. It's easier than going to each step, setting it up individually, and later connecting them. I plan on showing each step in detail in my next post, but hopefully you're at a point where you either need the build spec, or just a general overview of this type of AWS infrastructure. Happy coding!
 
-![Code Pipeline](images/a6f8ed3dbf2b27748e0f7ae332f821b6.png) 
+![Code Pipeline](images/a6f8ed3dbf2b27748e0f7ae332f821b6.png)

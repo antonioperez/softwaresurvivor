@@ -1,7 +1,7 @@
 ---
 title: 'Programming Interview Fundamentals'
 date: '2020-02-07 00:00:00'
-tags: ['algorithms']
+tags: ['software-development']
 draft: false
 summary: 'Comprehensive notes on programming interview fundamentals including time complexity, data structures, tree algorithms, recursion, and sorting algorithms with complexity analysis.'
 images: []
@@ -19,20 +19,20 @@ Notes for reviewing **computer science and programming interview fundamentals**.
 - If algorithm is in the form of "Do this then when done do that", then you add the runtimes. (Two separate loops).
 - If algorithm is in the form of "Do this for each time you do that" then you multiple the runtimes. (Loops within Loops).
 
-| Sorting Algorithm | Time |
-| --- | --- |
-| Selection Sort | n^2 |
-| Insertion Sort | n - n^2 |
-| Quick Sort | nLog(n) - n^2 |
-| Merge Sort | nLog(n) |
-| Heap Sort | nLog(n) |
+| Sorting Algorithm | Time          |
+| ----------------- | ------------- |
+| Selection Sort    | n^2           |
+| Insertion Sort    | n - n^2       |
+| Quick Sort        | nLog(n) - n^2 |
+| Merge Sort        | nLog(n)       |
+| Heap Sort         | nLog(n)       |
 
-| Data Structures | Average | Worst |
-| --- | --- | --- |
-| Array | O(n) | O(n) |
-| Stack | O(n) | O(1) |
-| Queue | O(n) | O(1) |
-| Hash | O(1) | O(n) |
+| Data Structures    | Average   | Worst     |
+| ------------------ | --------- | --------- |
+| Array              | O(n)      | O(n)      |
+| Stack              | O(n)      | O(1)      |
+| Queue              | O(n)      | O(1)      |
+| Hash               | O(1)      | O(n)      |
 | Binary Search Tree | O(log(n)) | O(log(n)) |
 
 ## Trees
@@ -72,13 +72,13 @@ A tree with each node having N possible nodes to build a path for finding a word
 ### Must Know Tree Algorithm
 
 - In Order
-    - Go left node, current, then right (BST)
+  - Go left node, current, then right (BST)
 - Pre Order
-    - Go current, then left, then right
+  - Go current, then left, then right
 - Post Order
-    - Go left, right, then current
+  - Go left, right, then current
 - Insert Node
-    - BST, insert by comparing to root if **Insert** > root, go right, else go left. Go until an empty spot.
+  - BST, insert by comparing to root if **Insert** > root, go right, else go left. Go until an empty spot.
 
 ## Recursion
 
@@ -99,12 +99,12 @@ Appoaching problem by..
 ## Searching Algorithms
 
 - Bubble Sort | O(n^2)
-    - Start at beginning of array, swap first two elements, go to next pair until sorted.
+  - Start at beginning of array, swap first two elements, go to next pair until sorted.
 - Selection Sort | O(n^2)
-    - Find the smallest element in array, move to front of array, then find the second smallest and move it to second place. Repeat.
+  - Find the smallest element in array, move to front of array, then find the second smallest and move it to second place. Repeat.
 - Merge Sort | O(nLog(n))
-    - Sort each pair of elements, then sort every four elements by merging the pairs, then sort every 8 elements.
+  - Sort each pair of elements, then sort every four elements by merging the pairs, then sort every 8 elements.
 - Quick Sort | Expecting: O(nLog(n)) Worst: O(n^2)
-    - Pick a random element and partition the array such that all numbers are less than it come before all elements that are greater than it. Then do that for each half.
+  - Pick a random element and partition the array such that all numbers are less than it come before all elements that are greater than it. Then do that for each half.
 - Bucket Sort | O(m+n)
-    - Partition the array into finite number of buckets then sort each bucket individually. N = number of items. M = number of distinct items. 
+  - Partition the array into finite number of buckets then sort each bucket individually. N = number of items. M = number of distinct items.

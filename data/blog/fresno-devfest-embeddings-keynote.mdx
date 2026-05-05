@@ -1,7 +1,7 @@
 ---
 title: 'From Text to Intelligence: My Fresno DevFest Keynote on Embeddings'
 date: '2025-07-06 00:00:00'
-tags: ['ai', 'fresno']
+tags: ['ai', 'local-business']
 draft: false
 summary: 'Expanded recap of my Fresno DevFest keynote using personal notes and slides to explore embeddings, vector databases, and AI-powered search.'
 images: []
@@ -13,14 +13,14 @@ At **Fresno DevFest **, I had the opportunity to present a keynote titled _“Le
 
 ## 🤖 What Are Embeddings?
 
-Embeddings show us what the model "sees" in a piece of data. By converting text (or even images) into arrays of numbers, they help LLMs understand relationships, meaning, and context. 
+Embeddings show us what the model "sees" in a piece of data. By converting text (or even images) into arrays of numbers, they help LLMs understand relationships, meaning, and context.
 
 These vector representations allow us to:
 
-- Perform semantic search  
-- Group similar content via clustering  
-- Power intelligent classification  
-- Provide focused context to LLMs without full fine-tuning  
+- Perform semantic search
+- Group similar content via clustering
+- Power intelligent classification
+- Provide focused context to LLMs without full fine-tuning
 
 > 🧮 _“King” – “Man” + “Woman” = “Queen”_ is a famous example of how relationships are preserved in vector space.
 
@@ -30,8 +30,8 @@ These vector representations allow us to:
 
 We explored multiple paths for generating embeddings:
 
-- **OpenAI Embedding API** — Simple but vulnerable to deprecations or API changes  
-- **LLAMA2 + Huggingface** — Open-source, hostable, customizable  
+- **OpenAI Embedding API** — Simple but vulnerable to deprecations or API changes
+- **LLAMA2 + Huggingface** — Open-source, hostable, customizable
 - **LangChain** — A powerful abstraction layer for connecting and switching between models
 
 LangChain simplifies embedding workflows by offering consistent interfaces, while Huggingface offers plug-and-play flexibility with models like CodeLlama and word2vec.
@@ -46,6 +46,7 @@ We used:
 - 🔎 ElasticSearch for full-text + vector hybrid search
 
 SQL-style similarity query:
+
 ```sql
 SELECT 1 - (embedding <=> '[3,1,2]') AS cosine_similarity FROM items;
 ```
@@ -56,10 +57,10 @@ SELECT 1 - (embedding <=> '[3,1,2]') AS cosine_similarity FROM items;
 
 Exciting improvements are on the horizon:
 
-- **OpenAI's CLIP** — Embed both images and text in the same vector space  
-- **In-browser embeddings** — No API required: [CLIP Demo](https://observablehq.com/@simonw/openai-clip-in-a-browser)  
-- **RAG Pipelines** — Use embeddings to inject relevant context into LLM queries  
-- **Smaller, local models** — Embeddings and chat agents on your laptop  
+- **OpenAI's CLIP** — Embed both images and text in the same vector space
+- **In-browser embeddings** — No API required: [CLIP Demo](https://observablehq.com/@simonw/openai-clip-in-a-browser)
+- **RAG Pipelines** — Use embeddings to inject relevant context into LLM queries
+- **Smaller, local models** — Embeddings and chat agents on your laptop
 
 This opens up creative possibilities across search, personalization, and AI workflows—especially for those working with **private data**.
 
@@ -67,11 +68,10 @@ This opens up creative possibilities across search, personalization, and AI work
 
 Embedding-powered retrieval enables a **context-first** approach. Instead of fine-tuning large models, we can:
 
-- Narrow the context  
-- Inject relevant, up-to-date info  
-- Keep cost and tokens under control  
+- Narrow the context
+- Inject relevant, up-to-date info
+- Keep cost and tokens under control
 
 ---
 
 The future of search and AI is contextual, efficient, and deeply personal. Embeddings help make that future possible—and accessible.
-
