@@ -1,6 +1,8 @@
 import Link from '@/components/Link'
 import Image from 'next/image'
 import siteMetadata from '@/data/siteMetadata'
+import NewsletterForm from '@/components/NewsletterForm'
+import FAQSchema from '@/components/FAQSchema'
 
 const homepageDescription =
   'Software Survivor helps established businesses and funded product teams build business-critical web apps, AI workflow automation, integrations, and cloud platforms.'
@@ -46,6 +48,30 @@ const clientFit = [
   },
 ]
 
+// Kept in sync with the full list on /faq so the FAQPage schema stays consistent.
+const homepageFaqs = [
+  {
+    question: 'How much does custom software development cost?',
+    answer:
+      'Most serious custom software engagements start in the five-figure range, and smaller advisory or architecture reviews can be scoped separately when you need a clear technical plan first. We offer flexible engagement models including project-based pricing, retainers, and ongoing technical leadership. Contact us for a free consultation to discuss your specific needs and budget.',
+  },
+  {
+    question: 'How long does a typical software project take?',
+    answer:
+      'Project timelines vary based on complexity and scope. A simple web application might take 4-8 weeks, while complex enterprise systems can take 3-6 months. We provide detailed timelines during our initial consultation and keep you updated throughout the process.',
+  },
+  {
+    question: 'Can you help with existing software systems?',
+    answer:
+      'Yes, we can help modernize, maintain, or enhance existing software systems. We provide code reviews, system audits, performance optimization, and migration services to improve your current technology infrastructure.',
+  },
+  {
+    question: 'How do I get started with a software project?',
+    answer:
+      "Start by contacting us for a free consultation. We'll discuss your business needs, technical requirements, timeline, and budget. From there, we'll create a detailed proposal and project plan tailored to your specific goals.",
+  },
+]
+
 const homepageStructuredData = {
   '@context': 'https://schema.org',
   '@type': 'WebPage',
@@ -86,9 +112,9 @@ export default function Home({ posts }) {
           <div className="text-center">
             <div className="mb-8">
               <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-                Custom Software for Teams
+                Custom Software Development
                 <span className="block font-extrabold text-yellow-100 dark:text-yellow-200">
-                  That Outgrew Workarounds.
+                  for Teams That Outgrew Workarounds.
                 </span>
               </h1>
               <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-100 md:text-2xl">
@@ -101,20 +127,6 @@ export default function Home({ posts }) {
                 </Link>{' '}
                 and serving teams across California and the US.
               </p>
-              <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-3 text-sm font-medium text-white/90">
-                <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2">
-                  Operations-heavy businesses
-                </span>
-                <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2">
-                  Funded product teams
-                </span>
-                <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2">
-                  Legacy system modernization
-                </span>
-                <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2">
-                  AI and integration work
-                </span>
-              </div>
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -138,7 +150,7 @@ export default function Home({ posts }) {
       </div>
 
       {/* Services Section */}
-      <div className="warm-gradient mb-8 py-16 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="warm-gradient py-16 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
@@ -212,7 +224,7 @@ export default function Home({ posts }) {
                 href="/contact"
                 className="bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 mt-8 inline-flex items-center rounded-lg px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:ring-2 focus:ring-offset-2 focus:outline-none"
               >
-                Talk Through the Constraints
+                Start a Project Conversation
               </Link>
             </div>
             <div className="grid gap-5">
@@ -232,7 +244,44 @@ export default function Home({ posts }) {
         </div>
       </div>
 
-      {/* Latest Blog Post */}
+      {/* Founder Section */}
+      <div className="warm-gradient py-16 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="mx-auto flex max-w-4xl flex-col items-center gap-10 md:flex-row">
+            <Image
+              src="/static/images/antonio-headshot.JPG"
+              alt="Antonio Perez, Principal Engineer and founder of Software Survivor"
+              width={288}
+              height={384}
+              className="h-72 w-56 flex-none rounded-2xl object-cover object-top shadow-xl"
+              loading="lazy"
+              sizes="224px"
+            />
+            <div className="text-center md:text-left">
+              <p className="text-brand-600 dark:text-brand-400 mb-3 text-sm font-semibold tracking-wide uppercase">
+                Who you'll work with
+              </p>
+              <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
+                Antonio Perez, Principal Engineer
+              </h2>
+              <p className="mb-6 text-lg text-gray-600 dark:text-gray-400">
+                Every engagement is led directly by a Principal Engineer with over a decade of
+                experience building software for startups, small businesses, and enterprises
+                including Target and Pressed Juicery. You get senior judgment on architecture and
+                delivery from the first conversation — not a handoff to a junior team.
+              </p>
+              <Link
+                href="/about"
+                className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex font-medium"
+              >
+                More about Software Survivor →
+              </Link>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Latest Blog Posts */}
       {posts.length > 0 && (
         <div className="bg-gray-50 py-16 dark:bg-gray-900">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -246,27 +295,33 @@ export default function Home({ posts }) {
               </p>
             </div>
 
-            <div className="overflow-hidden rounded-2xl bg-white shadow-2xl dark:bg-gray-800">
-              <div className="md:flex">
-                <div className="p-8 md:w-2/3">
-                  <div className="mb-4 flex items-center space-x-2">
-                    <span className="bg-brand-100 text-brand-800 dark:bg-brand-900 dark:text-brand-200 inline-flex items-center rounded-full px-3 py-1 text-sm font-medium">
-                      Latest Post
-                    </span>
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      {new Date(posts[0].date).toLocaleDateString('en-US', {
-                        year: 'numeric',
-                        month: 'long',
-                        day: 'numeric',
-                      })}
-                    </span>
-                  </div>
-                  <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
-                    {posts[0].title}
+            <div className="grid gap-8 md:grid-cols-3">
+              {posts.slice(0, 3).map((post) => (
+                <article
+                  key={post.path}
+                  className="flex flex-col rounded-xl bg-white p-6 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800"
+                >
+                  <time
+                    dateTime={post.date}
+                    className="mb-3 text-sm text-gray-500 dark:text-gray-400"
+                  >
+                    {new Date(post.date).toLocaleDateString('en-US', {
+                      year: 'numeric',
+                      month: 'long',
+                      day: 'numeric',
+                    })}
+                  </time>
+                  <h3 className="mb-3 text-xl font-bold text-gray-900 dark:text-white">
+                    <Link
+                      href={`/${post.path}`}
+                      className="hover:text-brand-600 dark:hover:text-brand-400"
+                    >
+                      {post.title}
+                    </Link>
                   </h3>
-                  <p className="mb-6 text-gray-600 dark:text-gray-400">{posts[0].summary}</p>
-                  <div className="mb-6 flex flex-wrap gap-2">
-                    {posts[0].tags?.slice(0, 3).map((tag) => (
+                  <p className="mb-4 grow text-gray-600 dark:text-gray-400">{post.summary}</p>
+                  <div className="mb-4 flex flex-wrap gap-2">
+                    {post.tags?.slice(0, 3).map((tag) => (
                       <span
                         key={tag}
                         className="inline-flex items-center rounded-full bg-gray-100 px-3 py-1 text-sm font-medium text-gray-800 dark:bg-gray-700 dark:text-gray-200"
@@ -275,35 +330,27 @@ export default function Home({ posts }) {
                       </span>
                     ))}
                   </div>
-                  <div className="flex gap-4">
-                    <Link
-                      href={`/${posts[0].path}`}
-                      className="group bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 relative inline-flex items-center justify-center overflow-hidden rounded-lg px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:ring-2 focus:ring-offset-2 focus:outline-none"
-                    >
-                      <span className="relative z-10">Read Full Article</span>
-                      <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
-                    </Link>
-                    <Link
-                      href="/blog"
-                      className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-all duration-300 hover:bg-gray-50 hover:shadow-lg focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none dark:text-gray-300 dark:hover:bg-gray-700"
-                    >
-                      <span className="relative z-10">View All Posts</span>
-                      <div className="absolute inset-0 bg-gray-100 opacity-0 transition-opacity duration-300 group-hover:opacity-10 dark:bg-gray-600"></div>
-                    </Link>
-                  </div>
-                </div>
-                <div className="md:w-1/3">
-                  <div className="from-brand-600 to-brand-700 h-full bg-gradient-to-br p-8 text-white">
-                    <div className="flex h-full flex-col justify-center">
-                      <h4 className="mb-4 text-xl font-semibold">Technical Leadership</h4>
-                      <p className="text-brand-100">
-                        Insights from a Principal Engineer on building scalable systems, leading
-                        engineering teams, and delivering enterprise solutions.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                  <Link
+                    href={`/${post.path}`}
+                    className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex font-medium"
+                  >
+                    Read article →
+                  </Link>
+                </article>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center">
+              <Link
+                href="/blog"
+                className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex font-medium"
+              >
+                View all posts →
+              </Link>
+            </div>
+
+            <div className="mt-16">
+              <NewsletterForm />
             </div>
           </div>
         </div>
@@ -367,22 +414,21 @@ export default function Home({ posts }) {
                     </span>
                   </div>
                 </div>
-                <div className="flex gap-4">
+                <div className="flex flex-wrap items-center gap-4">
                   <Link
-                    href="https://feelsreel.com/story/bee8aa0a-895d-4d17-af3e-e9a8c98f97e3"
+                    href="/portfolio"
                     className="group bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 relative inline-flex items-center justify-center overflow-hidden rounded-lg px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:ring-2 focus:ring-offset-2 focus:outline-none"
-                    target="_blank"
-                    rel="noopener noreferrer"
                   >
-                    <span className="relative z-10">View Live Demo</span>
+                    <span className="relative z-10">See How We Build Products</span>
                     <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
                   </Link>
                   <Link
                     href="https://feelsreel.com"
-                    className="group relative inline-flex items-center justify-center overflow-hidden rounded-lg border border-gray-300 px-6 py-3 font-semibold text-gray-700 transition-all duration-300 hover:bg-gray-50 hover:shadow-lg focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none dark:text-gray-300 dark:hover:bg-gray-700"
+                    className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex font-medium"
+                    target="_blank"
+                    rel="noopener noreferrer"
                   >
-                    <span className="relative z-10">Visit Website</span>
-                    <div className="absolute inset-0 bg-gray-100 opacity-0 transition-opacity duration-300 group-hover:opacity-10 dark:bg-gray-600"></div>
+                    Visit FeelsReel →
                   </Link>
                 </div>
               </div>
@@ -420,7 +466,8 @@ export default function Home({ posts }) {
                   Candid Moments
                 </h3>
                 <p className="mb-4 text-gray-600 dark:text-gray-400">
-                  Photo-sharing app with AWS Lambda, Rekognition, and S3 for safe event photography.
+                  Replaced manual photo review for private events: every guest upload is screened
+                  automatically for safety before it appears, using serverless AWS moderation.
                 </p>
                 <Link
                   href="https://candidmoments.io"
@@ -432,7 +479,7 @@ export default function Home({ posts }) {
             </div>
             <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
               <Image
-                src="/static/images/portfolio/sgma.gif"
+                src="/static/images/portfolio/sgma.webp"
                 alt="Sigma Solutions groundwater management app with interactive California map"
                 width={600}
                 height={300}
@@ -446,14 +493,14 @@ export default function Home({ posts }) {
                   Sigma Solutions
                 </h3>
                 <p className="mb-4 text-gray-600 dark:text-gray-400">
-                  Groundwater management web app for California water agencies with interactive
-                  mapping and SGMA compliance tools.
+                  Gives California water agencies one place for groundwater data, interactive
+                  mapping, and SGMA compliance reporting instead of scattered spreadsheets.
                 </p>
                 <Link
-                  href="https://antonioperez.github.io/sgma/index.html#/login"
+                  href="/portfolio"
                   className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex items-center font-medium"
                 >
-                  See Demo →
+                  See More Client Work →
                 </Link>
               </div>
             </div>
@@ -466,6 +513,44 @@ export default function Home({ posts }) {
             >
               <span className="relative z-10">View All Projects</span>
               <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+            </Link>
+          </div>
+        </div>
+      </div>
+
+      {/* FAQ Section */}
+      <FAQSchema faqs={homepageFaqs} />
+      <div className="py-16">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+          <div className="mb-12 text-center">
+            <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl dark:text-white">
+              Common Questions
+            </h2>
+            <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
+              The questions most teams ask before starting a custom software project
+            </p>
+          </div>
+
+          <div className="space-y-5">
+            {homepageFaqs.map((faq) => (
+              <div
+                key={faq.question}
+                className="rounded-lg border border-gray-200 bg-white p-6 shadow-sm dark:border-gray-700 dark:bg-gray-800"
+              >
+                <h3 className="mb-2 text-lg font-semibold text-gray-900 dark:text-white">
+                  {faq.question}
+                </h3>
+                <p className="text-gray-600 dark:text-gray-400">{faq.answer}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/faq"
+              className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex font-medium"
+            >
+              Read all frequently asked questions →
             </Link>
           </div>
         </div>
@@ -486,9 +571,13 @@ export default function Home({ posts }) {
             href="/contact"
             className="group text-brand-600 focus:ring-offset-brand-600 relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-white px-8 py-4 font-semibold shadow-lg transition-all duration-300 hover:bg-gray-50 hover:shadow-xl focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
           >
-            <span className="relative z-10">Start a Conversation</span>
+            <span className="relative z-10">Start a Project Conversation</span>
             <div className="from-brand-500 to-brand-600 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
           </Link>
+          <p className="mx-auto mt-6 max-w-xl text-sm text-white/80">
+            You'll hear back within one business day — no sales deck, just a working conversation
+            about your constraints and the most useful first step.
+          </p>
         </div>
       </div>
     </>

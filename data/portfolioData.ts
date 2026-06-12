@@ -51,7 +51,7 @@ const portfolioData: PortfolioItem[] = [
   {
     title: 'Sigma Solutions',
     description: `Groundwater Management web app built to simplify SGMA compliance for California water agencies with interactive mapping and data management tools.`,
-    imgSrc: '/static/images/portfolio/sgma.gif',
+    imgSrc: '/static/images/portfolio/sgma.webp',
     href: 'https://antonioperez.github.io/sgma/index.html',
   },
 ]
