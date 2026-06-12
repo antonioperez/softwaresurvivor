@@ -80,7 +80,7 @@ export default function ContactPage() {
 
               <div className="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800">
                 <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
-                  Trust Signals
+                  At a Glance
                 </h2>
 
                 <div className="space-y-6">
@@ -109,7 +109,13 @@ export default function ContactPage() {
                     <div>
                       <h3 className="font-semibold text-gray-900 dark:text-white">Location</h3>
                       <p className="text-gray-600 dark:text-gray-400">
-                        Fresno, CA, serving Central California and remote US teams
+                        <Link
+                          href="/fresno-software-development"
+                          className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
+                        >
+                          Fresno, CA
+                        </Link>
+                        , serving Central California and remote US teams
                       </p>
                     </div>
                   </div>

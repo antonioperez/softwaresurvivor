@@ -1,12 +1,12 @@
 {
-  "web-development": 12,
-  "ai": 5,
-  "software-development": 17,
-  "automation": 5,
-  "cloud": 3,
-  "projects": 5,
-  "e-commerce": 13,
-  "local-business": 8,
-  "api": 10,
-  "data": 2
+  "ai": 8,
+  "software-development": 24,
+  "local-business": 11,
+  "data": 3,
+  "web-development": 13,
+  "projects": 6,
+  "cloud": 4,
+  "api": 11,
+  "automation": 6,
+  "e-commerce": 13
 }

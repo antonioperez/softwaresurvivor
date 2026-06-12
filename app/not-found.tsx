@@ -10,12 +10,43 @@ export default function NotFound() {
       </div>
       <div className="max-w-md">
         <p className="mb-4 text-xl leading-normal font-bold md:text-2xl">
-          Sorry we couldn't find this page.
+          Sorry, we couldn't find this page.
         </p>
-        <p className="mb-8">But dont worry, you can find plenty of other things on our homepage.</p>
+        <p className="mb-4">
+          It may have moved or no longer exists. Here are some good places to go next:
+        </p>
+        <ul className="mb-8 space-y-2 text-gray-600 dark:text-gray-400">
+          <li>
+            <Link
+              href="/services"
+              className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
+            >
+              Services
+            </Link>{' '}
+            — what we build and how we help
+          </li>
+          <li>
+            <Link
+              href="/blog"
+              className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
+            >
+              Blog
+            </Link>{' '}
+            — practical writing on software and AI automation
+          </li>
+          <li>
+            <Link
+              href="/contact"
+              className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
+            >
+              Contact
+            </Link>{' '}
+            — start a project conversation
+          </li>
+        </ul>
         <Link
           href="/"
-          className="focus:shadow-outline-blue inline rounded-lg border border-transparent bg-blue-600 px-4 py-2 text-sm leading-5 font-medium text-white shadow-xs transition-colors duration-150 hover:bg-blue-700 focus:outline-hidden dark:hover:bg-blue-500"
+          className="bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 inline rounded-lg border border-transparent px-4 py-2 text-sm leading-5 font-medium text-white shadow-xs transition-colors duration-150 focus:ring-2 focus:ring-offset-2 focus:outline-none"
         >
           Back to homepage
         </Link>

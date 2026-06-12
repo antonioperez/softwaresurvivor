@@ -8,7 +8,7 @@ interface PortfolioItem {
 const portfolioData: PortfolioItem[] = [
   {
     title: 'Inbox2Order',
-    description: `Intelligent email-to-order automation platform that transforms email inquiries into structured orders automatically, eliminating manual data entry and streamlining business operations.`,
+    description: `Email-to-order automation platform that turns email inquiries into structured orders automatically, eliminating manual data entry for operations teams.`,
     href: 'http://inbox2order.com',
     imgSrc: '/static/images/portfolio/inbox2order.png',
   },
@@ -26,7 +26,7 @@ const portfolioData: PortfolioItem[] = [
   },
   {
     title: 'FeelsReel',
-    description: `Revolutionary AI-powered story book generator that creates personalized children's stories and transforms them into engaging videos using OpenAI (GPT-4) and RunwayAI.`,
+    description: `AI story book generator that creates personalized children's stories and turns them into videos using OpenAI (GPT-4) and RunwayAI.`,
     imgSrc: '/static/images/portfolio/feelsreel.png',
     href: 'https://feelsreel.com/story/bee8aa0a-895d-4d17-af3e-e9a8c98f97e3',
   },

@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import Script from 'next/script'
+import siteMetadata from '@/data/siteMetadata'
 
 interface BreadcrumbItem {
   name: string
@@ -33,7 +34,7 @@ export default function Breadcrumb() {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: `https://softwaresurvivor.com${item.href}`,
+      item: `${siteMetadata.siteUrl}${item.href}`,
     })),
   }
 

@@ -14,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: post.lastmod || post.date,
     }))
 
+  // Static routes intentionally omit lastModified: stamping the build date on
+  // every page makes lastmod meaningless to crawlers.
   const routes = [
     '',
     'blog',
@@ -26,7 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'faq',
   ].map((route) => ({
     url: `${siteUrl}/${route}`,
-    lastModified: new Date().toISOString().split('T')[0],
   }))
 
   return [...routes, ...blogRoutes]

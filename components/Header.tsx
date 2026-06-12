@@ -22,7 +22,7 @@ const Header = () => {
           <div className="group-hover:campfire-glow mr-3 transition-all duration-300 group-hover:scale-105">
             <Image
               src="/static/images/big-logo.png"
-              alt="Logo"
+              alt="Software Survivor logo"
               width={32}
               height={32}
               className="flame-flicker group-hover:ember-glow transition-all duration-300"

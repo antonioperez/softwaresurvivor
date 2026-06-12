@@ -16,6 +16,104 @@ export const metadata = genPageMetadata({
   ],
 })
 
+const services = [
+  {
+    title: 'Custom Software & SaaS Development',
+    description:
+      'We design and build the web applications, portals, and SaaS products your revenue and operations depend on, with maintainable architecture and practical delivery milestones.',
+    items: [
+      'Web applications and customer portals (React, Next.js, Node.js)',
+      'Mobile apps (React Native, Flutter, native iOS/Android)',
+      'API design and development (REST, GraphQL, gRPC)',
+      'Database design and optimization (PostgreSQL, MongoDB, Redis)',
+    ],
+    iconBg: 'bg-blue-100 dark:bg-blue-900',
+    iconColor: 'text-blue-600 dark:text-blue-400',
+    iconPaths: [
+      'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
+    ],
+  },
+  {
+    title: 'AI Workflow Automation',
+    description:
+      'We automate expensive manual workflows and add AI where it creates measurable leverage, grounded safely in your business data instead of bolted on as a demo.',
+    items: [
+      'AI-assisted document, email, and data processing',
+      'Automating manual review, routing, and data-entry steps',
+      'LLM integration with your existing systems and guardrails',
+      'Pilot first: prove the ROI before scaling the automation',
+    ],
+    iconBg: 'bg-purple-100 dark:bg-purple-900',
+    iconColor: 'text-purple-600 dark:text-purple-400',
+    iconPaths: [
+      'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
+    ],
+  },
+  {
+    title: 'Systems Integration',
+    description:
+      'We connect the tools your team already uses so data flows without copy-paste: ERPs, CRMs, e-commerce platforms, and the spreadsheets in between.',
+    items: [
+      'ERP, CRM, and e-commerce integrations (NetSuite, WooCommerce, and more)',
+      'Email-to-order and document intake automation',
+      'Reliable data sync with webhooks, queues, and retries',
+      'Third-party API integrations and internal API gateways',
+    ],
+    iconBg: 'bg-teal-100 dark:bg-teal-900',
+    iconColor: 'text-teal-600 dark:text-teal-400',
+    iconPaths: [
+      'M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1',
+    ],
+  },
+  {
+    title: 'Software Modernization & Rescue',
+    description:
+      'We stabilize fragile systems and modernize legacy code incrementally, so the business keeps running while the risky parts get replaced.',
+    items: [
+      'Legacy system assessment and migration planning',
+      'Stabilizing fragile production systems before they fail',
+      'Incremental replatforming instead of risky big-bang rewrites',
+      'Performance, reliability, and cost optimization',
+    ],
+    iconBg: 'bg-orange-100 dark:bg-orange-900',
+    iconColor: 'text-orange-600 dark:text-orange-400',
+    iconPaths: [
+      'M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15',
+    ],
+  },
+  {
+    title: 'Architecture & Technical Leadership',
+    description:
+      'We bring Principal Engineer-level judgment to architecture decisions, delivery planning, and team growth, before and during the build.',
+    items: [
+      'Fractional CTO and senior technical direction',
+      'System and cloud architecture design (AWS, Azure, GCP)',
+      'Code review, quality standards, and team mentoring',
+      'Technical strategy, roadmaps, and key-hire support',
+    ],
+    iconBg: 'bg-green-100 dark:bg-green-900',
+    iconColor: 'text-green-600 dark:text-green-400',
+    iconPaths: ['M13 10V3L4 14h7v7l9-11h-7z'],
+  },
+  {
+    title: 'DevOps & Cloud Infrastructure',
+    description:
+      'We set up the deployment pipelines, infrastructure, and monitoring that let your team ship quickly without breaking production.',
+    items: [
+      'CI/CD pipeline setup and release automation',
+      'Infrastructure as code',
+      'Monitoring, alerting, and incident readiness',
+      'Security and compliance fundamentals',
+    ],
+    iconBg: 'bg-indigo-100 dark:bg-indigo-900',
+    iconColor: 'text-indigo-600 dark:text-indigo-400',
+    iconPaths: [
+      'M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z',
+      'M15 12a3 3 0 11-6 0 3 3 0 016 0z',
+    ],
+  },
+]
+
 export default function ServicesPage() {
   return (
     <>
@@ -28,218 +126,79 @@ export default function ServicesPage() {
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             We help established businesses and funded teams build, modernize, and integrate the
             software their operations depend on. The work spans custom business applications, AI
-            workflow automation, systems integration, architecture, and delivery leadership.
+            workflow automation, systems integration, architecture, and delivery leadership. Based
+            in{' '}
+            <Link
+              href="/fresno-software-development"
+              className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
+            >
+              Fresno
+            </Link>
+            , we serve Central California businesses and remote teams across the US.
           </p>
         </div>
 
         <div className="container py-12">
           <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-            {/* Custom Software Development */}
-            <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-100 dark:bg-blue-900">
-                <svg
-                  className="h-6 w-6 text-blue-600 dark:text-blue-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
+            {services.map((service) => (
+              <div
+                key={service.title}
+                className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800"
+              >
+                <div
+                  className={`mb-4 flex h-12 w-12 items-center justify-center rounded-lg ${service.iconBg}`}
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
-                  />
-                </svg>
+                  <svg
+                    className={`h-6 w-6 ${service.iconColor}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    aria-hidden="true"
+                  >
+                    {service.iconPaths.map((d) => (
+                      <path
+                        key={d}
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d={d}
+                      />
+                    ))}
+                  </svg>
+                </div>
+                <h2 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
+                  {service.title}
+                </h2>
+                <p className="mb-4 text-gray-600 dark:text-gray-400">{service.description}</p>
+                <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
+                  {service.items.map((item) => (
+                    <li key={item}>• {item}</li>
+                  ))}
+                </ul>
               </div>
-              <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                Enterprise Software Development
-              </h3>
-              <p className="mb-4 text-gray-600 dark:text-gray-400">
-                We build enterprise-grade web applications, mobile apps, and scalable systems using
-                modern architectural patterns and best practices.
-              </p>
-              <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Enterprise Web Applications (React, Next.js, Node.js)</li>
-                <li>• Mobile Apps (React Native, Flutter, Native iOS/Android)</li>
-                <li>• API Development (REST, GraphQL, gRPC)</li>
-                <li>• Database Design & Optimization (PostgreSQL, MongoDB, Redis)</li>
-              </ul>
-            </div>
-
-            {/* Technical Leadership */}
-            <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-green-100 dark:bg-green-900">
-                <svg
-                  className="h-6 w-6 text-green-600 dark:text-green-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M13 10V3L4 14h7v7l9-11h-7z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                Technical Leadership & Architecture
-              </h3>
-              <p className="mb-4 text-gray-600 dark:text-gray-400">
-                We provide Principal Engineer-level leadership, enterprise architecture design, and
-                technical strategy for growing companies.
-              </p>
-              <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Engineering Team Management & Mentoring</li>
-                <li>• Enterprise Architecture Design</li>
-                <li>• Code Review & Quality Standards</li>
-                <li>• Technical Strategy & Roadmap Planning</li>
-              </ul>
-            </div>
-
-            {/* System Design & Architecture */}
-            <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-purple-100 dark:bg-purple-900">
-                <svg
-                  className="h-6 w-6 text-purple-600 dark:text-purple-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                System Design & Cloud Architecture
-              </h3>
-              <p className="mb-4 text-gray-600 dark:text-gray-400">
-                We design enterprise system architectures, microservices, and cloud infrastructure
-                solutions across multiple platforms.
-              </p>
-              <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Enterprise System Design</li>
-                <li>• Microservices & Event-Driven Architecture</li>
-                <li>• Multi-Cloud Infrastructure (AWS, Azure, GCP)</li>
-                <li>• Performance & Cost Optimization</li>
-              </ul>
-            </div>
-
-            {/* DevOps & CI/CD */}
-            <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-orange-100 dark:bg-orange-900">
-                <svg
-                  className="h-6 w-6 text-orange-600 dark:text-orange-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                DevOps & CI/CD
-              </h3>
-              <p className="mb-4 text-gray-600 dark:text-gray-400">
-                We set up automated deployment pipelines, monitoring, and infrastructure management.
-              </p>
-              <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• CI/CD Pipeline Setup</li>
-                <li>• Infrastructure as Code</li>
-                <li>• Monitoring & Alerting</li>
-                <li>• Security & Compliance</li>
-              </ul>
-            </div>
-
-            {/* Technical Consulting */}
-            <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-teal-100 dark:bg-teal-900">
-                <svg
-                  className="h-6 w-6 text-teal-600 dark:text-teal-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                Technical Consulting
-              </h3>
-              <p className="mb-4 text-gray-600 dark:text-gray-400">
-                We provide expert guidance on technology decisions, code reviews, and technical
-                problem-solving.
-              </p>
-              <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Technology Stack Selection</li>
-                <li>• Code Review & Refactoring</li>
-                <li>• Performance Optimization</li>
-                <li>• Technical Problem Solving</li>
-              </ul>
-            </div>
-
-            {/* Training & Mentoring */}
-            <div className="rounded-lg bg-white p-6 shadow-lg dark:bg-gray-800">
-              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-indigo-100 dark:bg-indigo-900">
-                <svg
-                  className="h-6 w-6 text-indigo-600 dark:text-indigo-400"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"
-                  />
-                </svg>
-              </div>
-              <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                Training & Mentoring
-              </h3>
-              <p className="mb-4 text-gray-600 dark:text-gray-400">
-                We help teams improve their technical skills through training and mentoring
-                programs.
-              </p>
-              <ul className="mb-4 space-y-2 text-sm text-gray-600 dark:text-gray-400">
-                <li>• Team Training Programs</li>
-                <li>• Code Review Best Practices</li>
-                <li>• Architecture Design Patterns</li>
-                <li>• Technical Interview Preparation</li>
-              </ul>
-            </div>
+            ))}
           </div>
 
           <div className="mt-12 text-center">
-            <Link
-              href="/contact"
-              className="group bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 relative inline-flex items-center justify-center overflow-hidden rounded-lg px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:ring-2 focus:ring-offset-2 focus:outline-none"
-            >
-              <span className="relative z-10">Get Started with Our Services</span>
-              <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
-            </Link>
+            <p className="mx-auto mb-6 max-w-2xl text-gray-600 dark:text-gray-400">
+              Not sure which service fits? Describe the problem and we will recommend the smallest
+              engagement that moves it forward.
+            </p>
+            <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <Link
+                href="/contact"
+                className="group bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 relative inline-flex items-center justify-center overflow-hidden rounded-lg px-8 py-4 text-base font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:ring-2 focus:ring-offset-2 focus:outline-none"
+              >
+                <span className="relative z-10">Start a Project Conversation</span>
+                <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
+              </Link>
+              <Link
+                href="/portfolio"
+                className="inline-flex items-center justify-center rounded-lg border border-gray-300 px-8 py-4 text-base font-semibold text-gray-700 transition-all duration-300 hover:bg-gray-50 hover:shadow-lg focus:ring-2 focus:ring-gray-500 focus:ring-offset-2 focus:outline-none dark:border-gray-600 dark:text-gray-300 dark:hover:bg-gray-700"
+              >
+                See Relevant Work
+              </Link>
+            </div>
           </div>
         </div>
       </div>

@@ -55,10 +55,11 @@ export default function NewsletterForm() {
   return (
     <div className="mx-auto max-w-2xl text-center">
       <h3 className="text-2xl font-bold tracking-tight text-gray-900 sm:text-3xl dark:text-gray-100">
-        Stay updated with my latest insights
+        Get practical software insights
       </h3>
       <p className="mt-4 text-lg leading-8 text-gray-600 dark:text-gray-400">
-        Get notified about new blog posts, technical insights, and software development tips.
+        New posts on custom software, AI workflow automation, and technical leadership — straight to
+        your inbox.
       </p>
       <form onSubmit={handleSubmit} className="mx-auto mt-8 flex max-w-md gap-x-4">
         <label htmlFor="email-address" className="sr-only">

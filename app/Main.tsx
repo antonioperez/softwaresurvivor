@@ -10,16 +10,21 @@ const serviceHighlights = [
     title: 'Custom Business Software and SaaS',
     description:
       'Plan and build revenue, operations, and customer-facing products with maintainable architecture, clean APIs, and practical delivery milestones.',
+    iconPath:
+      'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
   },
   {
     title: 'AI Workflow Automation and Integrations',
     description:
       'Connect the tools your team already uses, automate expensive manual workflows, and add AI where it can create measurable leverage.',
+    iconPath:
+      'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
   },
   {
     title: 'Architecture, Rescue, and Technical Leadership',
     description:
       'Stabilize fragile systems, modernize legacy code, and get senior engineering judgment before a rebuild, scale-up, or key technical hire.',
+    iconPath: 'M13 10V3L4 14h7v7l9-11h-7z',
   },
 ]
 
@@ -87,8 +92,14 @@ export default function Home({ posts }) {
                 </span>
               </h1>
               <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-100 md:text-2xl">
-                {homepageDescription} Based in Fresno and serving teams across California and the
-                US.
+                {homepageDescription}{' '}
+                <Link
+                  href="/fresno-software-development"
+                  className="underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white"
+                >
+                  Based in Fresno
+                </Link>{' '}
+                and serving teams across California and the US.
               </p>
               <div className="mx-auto flex max-w-4xl flex-wrap justify-center gap-3 text-sm font-medium text-white/90">
                 <span className="rounded-full border border-white/30 bg-white/10 px-4 py-2">
@@ -127,7 +138,7 @@ export default function Home({ posts }) {
       </div>
 
       {/* Services Section */}
-      <div className="warm-gradient mb-8 py-15 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
+      <div className="warm-gradient mb-8 py-16 dark:bg-gradient-to-br dark:from-gray-900 dark:via-gray-800 dark:to-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
@@ -141,7 +152,7 @@ export default function Home({ posts }) {
           </div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {serviceHighlights.map((service, index) => (
+            {serviceHighlights.map((service) => (
               <div
                 key={service.title}
                 className="group relative overflow-hidden rounded-xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800"
@@ -152,12 +163,13 @@ export default function Home({ posts }) {
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
+                    aria-hidden="true"
                   >
                     <path
                       strokeLinecap="round"
                       strokeLinejoin="round"
                       strokeWidth={2}
-                      d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
+                      d={service.iconPath}
                     />
                   </svg>
                 </div>
@@ -165,16 +177,17 @@ export default function Home({ posts }) {
                   {service.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">{service.description}</p>
-                {index === 0 && (
-                  <Link
-                    href="/services"
-                    className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 mt-6 inline-flex font-medium"
-                  >
-                    Explore software services →
-                  </Link>
-                )}
               </div>
             ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href="/services"
+              className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex font-medium"
+            >
+              Explore all software services →
+            </Link>
           </div>
         </div>
       </div>
@@ -221,14 +234,14 @@ export default function Home({ posts }) {
 
       {/* Latest Blog Post */}
       {posts.length > 0 && (
-        <div className="bg-gray-50 dark:bg-gray-900">
+        <div className="bg-gray-50 py-16 dark:bg-gray-900">
           <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div className="mb-16 text-center">
               <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
                 Latest Insights
               </h2>
               <p className="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-400">
-                Stay updated with our latest thoughts on software development, architecture, and
+                Practical writing on custom software, AI workflow automation, architecture, and
                 technical leadership
               </p>
             </div>
@@ -314,7 +327,7 @@ export default function Home({ posts }) {
               <div className="md:w-1/2">
                 <Image
                   src="/static/images/portfolio/feelsreel.png"
-                  alt="FeelsReel"
+                  alt="FeelsReel AI story generator interface showing a personalized children's story"
                   width={600}
                   height={400}
                   className="h-64 w-full object-cover md:h-full"
@@ -379,15 +392,15 @@ export default function Home({ posts }) {
       </div>
 
       {/* Other Projects */}
-      <div className="bg-gray-50 py-10 dark:bg-gray-900">
+      <div className="bg-gray-50 py-16 dark:bg-gray-900">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-              Our Portfolio
+              More Client Work
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-              Explore our portfolio to see how we solve real client challenges with cutting-edge
-              technology.
+              Production systems we have built for clients, from serverless photo moderation on AWS
+              to compliance tools for California water agencies.
             </p>
           </div>
 
@@ -395,7 +408,7 @@ export default function Home({ posts }) {
             <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
               <Image
                 src="/static/images/portfolio/candid-moments.png"
-                alt="Candid Moments"
+                alt="Candid Moments photo-sharing app for private events"
                 width={600}
                 height={300}
                 className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -420,7 +433,7 @@ export default function Home({ posts }) {
             <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
               <Image
                 src="/static/images/portfolio/sgma.gif"
-                alt="Sigma Solutions"
+                alt="Sigma Solutions groundwater management app with interactive California map"
                 width={600}
                 height={300}
                 unoptimized

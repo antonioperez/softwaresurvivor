@@ -5,9 +5,9 @@ import { coreContent } from 'pliny/utils/contentlayer'
 import { genPageMetadata } from 'app/seo'
 
 export const metadata = genPageMetadata({
-  title: 'About | Custom Software Consulting Expert',
+  title: 'About Antonio Perez',
   description:
-    'Learn about Software Survivor - a custom software consulting firm in Fresno, CA. Expert in enterprise software development, technical leadership, and system architecture. Serving Central California businesses.',
+    'Software Survivor is the custom software consultancy of Antonio Perez, a Principal Engineer in Fresno, CA with over a decade of experience building and modernizing systems for startups, small businesses, and enterprises.',
   canonical: '/about',
   keywords: [
     'custom software consultant',

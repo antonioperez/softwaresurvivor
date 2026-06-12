@@ -3,23 +3,18 @@ import { genPageMetadata } from 'app/seo'
 import siteMetadata from '@/data/siteMetadata'
 
 export const metadata: Metadata = genPageMetadata({
-  title: 'Fresno Custom Software Consulting | Software Development Company',
+  title: 'Fresno Software Development Company',
   description:
-    'Leading custom software consulting company in Fresno, CA. Custom web applications, mobile apps, and technical leadership services. Expert software consulting serving Central California businesses with scalable solutions.',
+    'Custom software development company in Fresno, CA. Web applications, AI workflow automation, systems integration, and technical leadership for Central California businesses.',
   canonical: '/fresno-software-development',
   keywords: [
-    'custom software consulting fresno',
     'Fresno software development company',
-    'Fresno custom software consulting',
+    'custom software consulting fresno',
     'Fresno web development',
     'Fresno mobile app development',
     'Central California software company',
-    'Fresno IT consulting',
     'Clovis software development',
     'Madera web development',
-    'San Luis Obispo software development',
-    'Pismo Beach software development',
-    'SLO software development',
   ],
 })
 
@@ -63,7 +58,7 @@ export default function FresnoSoftwareDevelopmentPage() {
               Software Development Services in Fresno
             </h2>
             <div className="space-y-4">
-              <div className="border-l-4 border-red-600 pl-4">
+              <div className="border-brand-600 border-l-4 pl-4">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                   Enterprise Web Applications
                 </h3>
@@ -72,7 +67,7 @@ export default function FresnoSoftwareDevelopmentPage() {
                   and Node.js with focus on scalability and maintainability
                 </p>
               </div>
-              <div className="border-l-4 border-red-600 pl-4">
+              <div className="border-brand-600 border-l-4 pl-4">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                   Mobile App Development
                 </h3>
@@ -80,7 +75,7 @@ export default function FresnoSoftwareDevelopmentPage() {
                   Native and cross-platform mobile applications for iOS and Android
                 </p>
               </div>
-              <div className="border-l-4 border-red-600 pl-4">
+              <div className="border-brand-600 border-l-4 pl-4">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                   Technical Leadership & Architecture
                 </h3>
@@ -89,7 +84,7 @@ export default function FresnoSoftwareDevelopmentPage() {
                   companies
                 </p>
               </div>
-              <div className="border-l-4 border-red-600 pl-4">
+              <div className="border-brand-600 border-l-4 pl-4">
                 <h3 className="font-semibold text-gray-900 dark:text-gray-100">
                   System Architecture
                 </h3>
@@ -137,12 +132,12 @@ export default function FresnoSoftwareDevelopmentPage() {
             {[
               {
                 city: 'San Luis Obispo',
-                description: 'Coastal tech hub with thriving startup ecosystem and innovation',
+                description: 'Coastal tech hub with a thriving startup ecosystem',
               },
               { city: 'Pismo Beach', description: 'Tourism and hospitality technology solutions' },
               {
                 city: 'Santa Barbara',
-                description: 'Tech hub with thriving startup ecosystem and innovation',
+                description: 'Established technology and research community on the central coast',
               },
             ].map((area) => (
               <div
@@ -168,9 +163,9 @@ export default function FresnoSoftwareDevelopmentPage() {
           <div className="flex flex-col gap-4 sm:flex-row">
             <a
               href="/contact"
-              className="inline-flex items-center rounded-md border border-transparent bg-red-600 px-6 py-3 text-base font-medium text-white hover:bg-red-700"
+              className="bg-brand-600 hover:bg-brand-700 inline-flex items-center rounded-md border border-transparent px-6 py-3 text-base font-medium text-white"
             >
-              Get Started Today
+              Start a Project Conversation
             </a>
           </div>
         </div>

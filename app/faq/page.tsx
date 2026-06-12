@@ -1,23 +1,25 @@
 import { Metadata } from 'next'
 import { genPageMetadata } from 'app/seo'
 import FAQSchema from '@/components/FAQSchema'
+import Link from '@/components/Link'
 
 export const metadata: Metadata = genPageMetadata({
-  title: 'Frequently Asked Questions - Fresno Software Development',
+  title: 'Frequently Asked Questions',
   description:
-    'Common questions about software development services in Fresno, CA. Learn about our process, pricing, and how we serve Central California businesses.',
+    'Common questions about working with Software Survivor: services, pricing, timelines, technologies, and how we serve Fresno and Central California businesses.',
+  canonical: '/faq',
 })
 
 const faqs = [
   {
     question: 'What software development services do you offer in Fresno?',
     answer:
-      'We provide comprehensive software development services including custom web applications, mobile app development, system architecture design, technical leadership, and consulting. We serve businesses throughout Central California with scalable solutions that grow with your business.',
+      'We provide custom web and mobile application development, AI workflow automation, systems integration, software modernization, system architecture design, and technical leadership. We serve businesses throughout Central California with scalable solutions that grow with your business.',
   },
   {
     question: 'Do you work with local Fresno businesses?',
     answer:
-      'Yes! We specialize in serving Central California businesses. Our local presence means we understand the unique challenges and opportunities facing Fresno, Clovis, Madera, Visalia, and surrounding areas. We provide face-to-face collaboration and ongoing local support.',
+      'Yes. We specialize in serving Central California businesses. Our local presence means we understand the challenges and opportunities facing Fresno, Clovis, Madera, Visalia, and surrounding areas, and we can collaborate face-to-face and provide ongoing local support. We also work with remote teams across the US.',
   },
   {
     question: 'What industries do you serve in the Central Valley?',
@@ -27,7 +29,7 @@ const faqs = [
   {
     question: 'How much does software development cost in Fresno?',
     answer:
-      'Our pricing is competitive and transparent. We offer flexible engagement models including project-based pricing, retainer agreements, and technical leadership services. Contact us for a free consultation to discuss your specific needs and budget.',
+      'Most serious custom software engagements start in the five-figure range, and smaller advisory or architecture reviews can be scoped separately when you need a clear technical plan first. We offer flexible engagement models including project-based pricing, retainers, and ongoing technical leadership. Contact us for a free consultation to discuss your specific needs and budget.',
   },
   {
     question: 'Do you provide ongoing support and maintenance?',
@@ -71,8 +73,13 @@ export default function FAQPage() {
             Frequently Asked Questions
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Common questions about our software development services in Fresno and Central
-            California
+            Common questions about our software development services in{' '}
+            <Link
+              href="/fresno-software-development"
+              className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
+            >
+              Fresno and Central California
+            </Link>
           </p>
         </div>
 
@@ -98,8 +105,8 @@ export default function FAQPage() {
                 Still Have Questions?
               </h3>
               <p className="mb-6 text-gray-600 dark:text-gray-400">
-                We're here to help! Contact us for a free consultation about your software
-                development needs.
+                Tell us about the problem you are trying to solve and we will respond with a fit
+                check or a practical next step, usually within 24 hours.
               </p>
               <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
                 <a
