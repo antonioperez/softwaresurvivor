@@ -48,27 +48,49 @@ const clientFit = [
   },
 ]
 
+const trustSignals = [
+  'Principal Engineer-led delivery',
+  'Enterprise and growth-stage experience',
+  'Business-critical systems, integrations, and AI workflows',
+  'Fresno-based, serving remote US teams',
+]
+
+const proofSignals = [
+  {
+    value: '10+ years',
+    label: 'building and modernizing production software',
+  },
+  {
+    value: 'Target + Pressed Juicery',
+    label: 'enterprise and operations-heavy experience',
+  },
+  {
+    value: '1 business day',
+    label: 'typical response for qualified project conversations',
+  },
+]
+
 // Kept in sync with the full list on /faq so the FAQPage schema stays consistent.
 const homepageFaqs = [
   {
     question: 'How much does custom software development cost?',
     answer:
-      'Most serious custom software engagements start in the five-figure range, and smaller advisory or architecture reviews can be scoped separately when you need a clear technical plan first. We offer flexible engagement models including project-based pricing, retainers, and ongoing technical leadership. Contact us for a free consultation to discuss your specific needs and budget.',
+      'Most serious custom software engagements start in the five-figure range. Smaller advisory or architecture reviews can be scoped separately when you need a clear technical plan before implementation. Share the problem, constraints, and budget range so we can recommend the smallest responsible next step.',
   },
   {
     question: 'How long does a typical software project take?',
     answer:
-      'Project timelines vary based on complexity and scope. A simple web application might take 4-8 weeks, while complex enterprise systems can take 3-6 months. We provide detailed timelines during our initial consultation and keep you updated throughout the process.',
+      'Project timelines vary by complexity, existing systems, and decision speed. A focused first release may take 4-8 weeks, while more complex integrations or modernization efforts can take 3-6 months. The first conversation is used to clarify scope, risk, and a practical delivery path.',
   },
   {
     question: 'Can you help with existing software systems?',
     answer:
-      'Yes, we can help modernize, maintain, or enhance existing software systems. We provide code reviews, system audits, performance optimization, and migration services to improve your current technology infrastructure.',
+      'Yes. Existing-system work is often the strongest fit: architecture reviews, modernization plans, rescue work, performance and reliability improvements, integration cleanup, and incremental replacement of fragile workflows.',
   },
   {
     question: 'How do I get started with a software project?',
     answer:
-      "Start by contacting us for a free consultation. We'll discuss your business needs, technical requirements, timeline, and budget. From there, we'll create a detailed proposal and project plan tailored to your specific goals.",
+      'Start with a project conversation. Share the workflow, business constraint, timeline, budget range if known, and what a useful first release would accomplish. If there is a fit, the next step is usually a short discovery call or scoped architecture recommendation.',
   },
 ]
 
@@ -108,16 +130,19 @@ export default function Home({ posts }) {
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-          <div className="text-center">
+        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-24 lg:px-8">
+          <div className="mx-auto max-w-5xl text-center">
             <div className="mb-8">
-              <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
-                Custom Software Development
+              <p className="mb-4 text-sm font-semibold tracking-wide text-white/80 uppercase">
+                Custom software consulting for serious operational constraints
+              </p>
+              <h1 className="mb-6 text-4xl leading-tight font-bold tracking-tight md:text-6xl">
+                Business-critical software
                 <span className="block font-extrabold text-yellow-100 dark:text-yellow-200">
-                  When Off-the-Shelf Runs Out.
+                  when workarounds start costing real money.
                 </span>
               </h1>
-              <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-100 md:text-2xl">
+              <p className="mx-auto mb-8 max-w-3xl text-lg leading-8 text-gray-100 md:text-xl">
                 {homepageDescription}{' '}
                 <Link
                   href="/fresno-software-development"
@@ -152,7 +177,34 @@ export default function Home({ posts }) {
                 <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
               </Link>
             </div>
+
+            <div className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-3 text-sm text-white/85">
+              {trustSignals.map((signal) => (
+                <span
+                  key={signal}
+                  className="rounded-full border border-white/25 bg-white/10 px-4 py-2 backdrop-blur-sm"
+                >
+                  {signal}
+                </span>
+              ))}
+            </div>
           </div>
+        </div>
+      </div>
+
+      {/* Trust Signals */}
+      <div className="border-b border-gray-200 bg-white py-8 dark:border-gray-800 dark:bg-gray-950">
+        <div className="mx-auto grid max-w-7xl gap-6 px-4 sm:px-6 md:grid-cols-3 lg:px-8">
+          {proofSignals.map((signal) => (
+            <div key={signal.value}>
+              <div className="text-brand-600 dark:text-brand-400 text-xl font-bold">
+                {signal.value}
+              </div>
+              <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                {signal.label}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
 

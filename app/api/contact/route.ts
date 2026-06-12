@@ -5,10 +5,10 @@ import Mailgun from 'mailgun.js'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { firstName, lastName, email, company, service, message } = body
+    const { firstName, lastName, email, company, service, timeline, budgetRange, message } = body
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !message) {
+    if (!firstName || !lastName || !email || !company || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
@@ -40,8 +40,10 @@ export async function POST(request: NextRequest) {
 ───────────────────────────────────────────────────────────────
 • Full Name: ${firstName} ${lastName}
 • Email Address: ${email}
-• Company: ${company || 'Not provided'}
+• Company: ${company}
 • Service Interest: ${service || 'Not specified'}
+• Timeline: ${timeline || 'Not specified'}
+• Budget Range: ${budgetRange || 'Not specified'}
 
 💬 MESSAGE CONTENT
 ───────────────────────────────────────────────────────────────
@@ -62,7 +64,7 @@ ${message}
     await mg.messages.create(process.env.MAILGUN_API_SERVER, {
       from: 'noreply@softwaresurvivor.com',
       to: [process.env.CONTACT_EMAIL || 'contact@softwaresurvivor.com'],
-      subject: `📧 Contact Form: ${firstName} ${lastName} - ${service || 'General Inquiry'}`,
+      subject: `📧 Project Conversation: ${company} - ${service || 'General Inquiry'}`,
       text: emailContent,
       'h:Reply-To': email, // Allow replying directly to the submitter
     })

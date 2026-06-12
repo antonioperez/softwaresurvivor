@@ -19,7 +19,8 @@ export default function AuthorLayout({ children, content }: Props) {
             About Software Survivor
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            We build scalable software solutions that survive the test of time.
+            Principal Engineer-led software consulting for business-critical systems, workflow
+            automation, integrations, and modernization work.
           </p>
         </div>
         <div className="items-start space-y-2 xl:grid xl:grid-cols-3 xl:space-y-0 xl:gap-x-8">

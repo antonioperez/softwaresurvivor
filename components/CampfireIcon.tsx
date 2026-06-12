@@ -14,7 +14,7 @@ const CampfireIcon: React.FC<CampfireIconProps> = ({ className = '', size = 'md'
 
   return (
     <svg
-      className={`${sizeClasses[size]} ${className} flame-flicker`}
+      className={`${sizeClasses[size]} ${className}`}
       fill="currentColor"
       viewBox="0 0 24 24"
       xmlns="http://www.w3.org/2000/svg"

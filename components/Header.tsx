@@ -1,6 +1,5 @@
 import siteMetadata from '@/data/siteMetadata'
 import headerNavLinks from '@/data/headerNavLinks'
-import Logo from '@/data/logo.svg'
 import Link from './Link'
 import MobileNav from './MobileNav'
 import ThemeSwitch from './ThemeSwitch'
@@ -19,13 +18,13 @@ const Header = () => {
     <header className={headerClass}>
       <Link href="/" aria-label={siteMetadata.headerTitle}>
         <div className="group flex items-center justify-between">
-          <div className="group-hover:campfire-glow mr-3 transition-all duration-300 group-hover:scale-105">
+          <div className="mr-3 transition-all duration-300 group-hover:scale-105">
             <Image
               src="/static/images/big-logo.png"
               alt="Software Survivor logo"
               width={32}
               height={32}
-              className="flame-flicker group-hover:ember-glow transition-all duration-300"
+              className="transition-all duration-300"
               priority
             />
           </div>
@@ -46,16 +45,26 @@ const Header = () => {
         <div className="no-scrollbar hidden items-center gap-x-4 sm:flex">
           {headerNavLinks
             .filter((link) => link.href !== '/')
-            .map((link) => (
-              <Link
-                key={link.title}
-                href={link.href}
-                className="hover:text-brand-600 dark:hover:text-brand-400 group relative m-1 font-medium whitespace-nowrap text-gray-700 transition-colors duration-300 dark:text-gray-300"
-              >
-                {link.title}
-                <span className="bg-brand-600 dark:bg-brand-400 absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"></span>
-              </Link>
-            ))}
+            .map((link) => {
+              const isContact = link.href === '/contact'
+
+              return (
+                <Link
+                  key={link.title}
+                  href={link.href}
+                  className={
+                    isContact
+                      ? 'bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 rounded-lg px-4 py-2 font-semibold whitespace-nowrap text-white shadow-sm transition-colors duration-300 focus:ring-2 focus:ring-offset-2 focus:outline-none'
+                      : 'hover:text-brand-600 dark:hover:text-brand-400 group relative m-1 font-medium whitespace-nowrap text-gray-700 transition-colors duration-300 dark:text-gray-300'
+                  }
+                >
+                  {isContact ? 'Start a Conversation' : link.title}
+                  {!isContact && (
+                    <span className="bg-brand-600 dark:bg-brand-400 absolute -bottom-1 left-0 h-0.5 w-0 transition-all duration-300 group-hover:w-full"></span>
+                  )}
+                </Link>
+              )
+            })}
         </div>
         <SearchButton />
         <ThemeSwitch />

@@ -72,16 +72,24 @@ const MobileNav = () => {
                 ref={navRef}
                 className="mt-8 flex h-full basis-0 flex-col items-start overflow-y-auto pt-2 pl-12 text-left"
               >
-                {headerNavLinks.map((link) => (
-                  <Link
-                    key={link.title}
-                    href={link.href}
-                    className="hover:text-primary-500 dark:hover:text-primary-400 mb-4 py-2 pr-4 text-2xl font-bold tracking-widest text-gray-900 outline outline-0 dark:text-gray-100"
-                    onClick={onToggleNav}
-                  >
-                    {link.title}
-                  </Link>
-                ))}
+                {headerNavLinks.map((link) => {
+                  const isContact = link.href === '/contact'
+
+                  return (
+                    <Link
+                      key={link.title}
+                      href={link.href}
+                      className={
+                        isContact
+                          ? 'bg-brand-600 hover:bg-brand-700 mb-4 rounded-lg px-5 py-3 text-base font-semibold text-white shadow-sm outline outline-0'
+                          : 'hover:text-primary-500 dark:hover:text-primary-400 mb-4 py-2 pr-4 text-2xl font-bold tracking-wide text-gray-900 outline outline-0 dark:text-gray-100'
+                      }
+                      onClick={onToggleNav}
+                    >
+                      {isContact ? 'Start a Project Conversation' : link.title}
+                    </Link>
+                  )
+                })}
               </nav>
 
               <button

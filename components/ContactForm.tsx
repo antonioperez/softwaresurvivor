@@ -8,6 +8,8 @@ interface FormData {
   email: string
   company: string
   service: string
+  timeline: string
+  budgetRange: string
   message: string
 }
 
@@ -24,6 +26,8 @@ export default function ContactForm() {
     email: '',
     company: '',
     service: '',
+    timeline: '',
+    budgetRange: '',
     message: '',
   })
 
@@ -80,6 +84,8 @@ export default function ContactForm() {
         email: '',
         company: '',
         service: '',
+        timeline: '',
+        budgetRange: '',
         message: '',
       })
     } catch (error) {
@@ -124,9 +130,14 @@ export default function ContactForm() {
 
   return (
     <div className="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800">
-      <h2 className="mb-6 text-2xl font-bold text-gray-900 dark:text-white">
-        Tell Us About the Project
-      </h2>
+      <div className="mb-6">
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
+          Tell Us About the Project
+        </h2>
+        <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
+          A few specifics help us respond with a useful fit check instead of a generic sales call.
+        </p>
+      </div>
 
       {status.error && (
         <div className="bg-error-50 dark:bg-error-900/20 mb-6 rounded-lg p-4">
@@ -195,65 +206,118 @@ export default function ContactForm() {
           </div>
         </div>
 
-        <div>
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Email Address *
-          </label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            value={formData.email}
-            onChange={handleInputChange}
-            required
-            className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-            placeholder="john@company.com"
-          />
+        <div className="grid gap-6 md:grid-cols-2">
+          <div>
+            <label
+              htmlFor="email"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
+              Work Email *
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={formData.email}
+              onChange={handleInputChange}
+              required
+              className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+              placeholder="name@company.com"
+            />
+          </div>
+
+          <div>
+            <label
+              htmlFor="company"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
+              Company *
+            </label>
+            <input
+              type="text"
+              id="company"
+              name="company"
+              value={formData.company}
+              onChange={handleInputChange}
+              required
+              className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
+              placeholder="Company or organization"
+            />
+          </div>
+        </div>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <div>
+            <label
+              htmlFor="service"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
+              Primary Need
+            </label>
+            <select
+              id="service"
+              name="service"
+              value={formData.service}
+              onChange={handleInputChange}
+              className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+            >
+              <option value="">Select the closest fit</option>
+              <option value="custom-development">Custom business software or SaaS</option>
+              <option value="ai-workflow-automation">AI workflow automation</option>
+              <option value="systems-integration">Systems integration</option>
+              <option value="software-modernization">Software modernization or rescue</option>
+              <option value="architecture-leadership">Architecture or technical leadership</option>
+              <option value="other">Not sure yet</option>
+            </select>
+          </div>
+
+          <div>
+            <label
+              htmlFor="timeline"
+              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
+            >
+              Timeline
+            </label>
+            <select
+              id="timeline"
+              name="timeline"
+              value={formData.timeline}
+              onChange={handleInputChange}
+              className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+            >
+              <option value="">Select a timeline</option>
+              <option value="now">Need help now</option>
+              <option value="30-days">Planning for the next 30 days</option>
+              <option value="quarter">Planning this quarter</option>
+              <option value="exploring">Exploring options</option>
+            </select>
+          </div>
         </div>
 
         <div>
           <label
-            htmlFor="company"
+            htmlFor="budgetRange"
             className="block text-sm font-medium text-gray-700 dark:text-gray-300"
           >
-            Company
-          </label>
-          <input
-            type="text"
-            id="company"
-            name="company"
-            value={formData.company}
-            onChange={handleInputChange}
-            className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-            placeholder="Your Company"
-          />
-        </div>
-
-        <div>
-          <label
-            htmlFor="service"
-            className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-          >
-            Service of Interest
+            Approximate Budget Range
           </label>
           <select
-            id="service"
-            name="service"
-            value={formData.service}
+            id="budgetRange"
+            name="budgetRange"
+            value={formData.budgetRange}
             onChange={handleInputChange}
-            className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 dark:border-gray-600 dark:bg-gray-700 dark:text-white"
+            className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
           >
-            <option value="">Select a service</option>
-            <option value="custom-development">Custom Software Development</option>
-            <option value="ai-workflow-automation">AI Workflow Automation</option>
-            <option value="systems-integration">Systems Integration</option>
-            <option value="software-modernization">Software Modernization</option>
-            <option value="architecture-leadership">Architecture & Technical Leadership</option>
-            <option value="other">Other</option>
+            <option value="">Select a range if known</option>
+            <option value="under-25k">Under $25k</option>
+            <option value="25k-75k">$25k-$75k</option>
+            <option value="75k-150k">$75k-$150k</option>
+            <option value="150k-plus">$150k+</option>
+            <option value="not-sure">Not sure yet</option>
           </select>
+          <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
+            Optional, but it helps us recommend the smallest responsible next step.
+          </p>
         </div>
 
         <div>
@@ -271,7 +335,7 @@ export default function ContactForm() {
             required
             rows={6}
             className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-            placeholder="What problem are you trying to solve? Include the current workflow or system, timeline, budget range if known, and what a useful first release would do."
+            placeholder="What business problem are you trying to solve? Include the current workflow or system, who owns the decision, and what a useful first release would accomplish."
           />
         </div>
 
@@ -300,7 +364,7 @@ export default function ContactForm() {
               Sending...
             </div>
           ) : (
-            <span className="relative z-10">Send Project Details</span>
+            <span className="relative z-10">Send Project Context</span>
           )}
           <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
         </button>

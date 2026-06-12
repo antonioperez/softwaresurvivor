@@ -1,7 +1,7 @@
 import Image from './Image'
 import Link from './Link'
 
-const Card = ({ title, description, imgSrc, href }) => {
+const Card = ({ title, description, problem, role, proof, imgSrc, href }) => {
   // Check if the image is a GIF to add unoptimized property
   const isGif = imgSrc && imgSrc.toLowerCase().endsWith('.gif')
 
@@ -47,14 +47,36 @@ const Card = ({ title, description, imgSrc, href }) => {
               title
             )}
           </h2>
-          <p className="mb-4 flex-1 text-gray-600 dark:text-gray-400">{description}</p>
+          <p className="mb-5 text-gray-600 dark:text-gray-400">{description}</p>
+          {(problem || role || proof) && (
+            <div className="mb-5 flex-1 space-y-3 border-t border-gray-100 pt-5 text-sm dark:border-gray-700">
+              {problem && (
+                <div>
+                  <div className="mb-1 font-semibold text-gray-900 dark:text-white">Problem</div>
+                  <p className="text-gray-600 dark:text-gray-400">{problem}</p>
+                </div>
+              )}
+              {role && (
+                <div>
+                  <div className="mb-1 font-semibold text-gray-900 dark:text-white">Role</div>
+                  <p className="text-gray-600 dark:text-gray-400">{role}</p>
+                </div>
+              )}
+              {proof && (
+                <div>
+                  <div className="mb-1 font-semibold text-gray-900 dark:text-white">Proof</div>
+                  <p className="text-gray-600 dark:text-gray-400">{proof}</p>
+                </div>
+              )}
+            </div>
+          )}
           {href && (
             <Link
               href={href}
               className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex items-center font-medium transition-colors duration-300"
               aria-label={`Link to ${title}`}
             >
-              Learn more →
+              View project →
             </Link>
           )}
         </div>

@@ -29,7 +29,7 @@ const faqs = [
   {
     question: 'How much does software development cost in Fresno?',
     answer:
-      'Most serious custom software engagements start in the five-figure range, and smaller advisory or architecture reviews can be scoped separately when you need a clear technical plan first. We offer flexible engagement models including project-based pricing, retainers, and ongoing technical leadership. Contact us for a free consultation to discuss your specific needs and budget.',
+      'Most serious custom software engagements start in the five-figure range. Smaller advisory or architecture reviews can be scoped separately when you need a clear technical plan before implementation. Share the problem, constraints, and budget range so we can recommend the smallest responsible next step.',
   },
   {
     question: 'Do you provide ongoing support and maintenance?',
@@ -44,7 +44,7 @@ const faqs = [
   {
     question: 'How long does a typical software project take?',
     answer:
-      'Project timelines vary based on complexity and scope. A simple web application might take 4-8 weeks, while complex enterprise systems can take 3-6 months. We provide detailed timelines during our initial consultation and keep you updated throughout the process.',
+      'Project timelines vary by complexity, existing systems, and decision speed. A focused first release may take 4-8 weeks, while more complex integrations or modernization efforts can take 3-6 months. The first conversation is used to clarify scope, risk, and a practical delivery path.',
   },
   {
     question: 'Do you handle all aspects of software development?',
@@ -54,12 +54,12 @@ const faqs = [
   {
     question: 'Can you help with existing software systems?',
     answer:
-      'Yes, we can help modernize, maintain, or enhance existing software systems. We provide code reviews, system audits, performance optimization, and migration services to improve your current technology infrastructure.',
+      'Yes. Existing-system work is often the strongest fit: architecture reviews, modernization plans, rescue work, performance and reliability improvements, integration cleanup, and incremental replacement of fragile workflows.',
   },
   {
     question: 'How do I get started with a software project?',
     answer:
-      "Start by contacting us for a free consultation. We'll discuss your business needs, technical requirements, timeline, and budget. From there, we'll create a detailed proposal and project plan tailored to your specific goals.",
+      'Start with a project conversation. Share the workflow, business constraint, timeline, budget range if known, and what a useful first release would accomplish. If there is a fit, the next step is usually a short discovery call or scoped architecture recommendation.',
   },
 ]
 
@@ -113,7 +113,7 @@ export default function FAQPage() {
                   href="/contact"
                   className="bg-brand-600 hover:bg-brand-700 inline-flex items-center rounded-md px-6 py-3 text-base font-medium text-white"
                 >
-                  Get Free Consultation
+                  Start a Project Conversation
                 </a>
               </div>
             </div>
