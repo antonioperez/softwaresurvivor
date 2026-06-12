@@ -1,0 +1,102 @@
+---
+title: 'Candid Moments Case Study: Serverless Photo Moderation with AWS'
+date: '2026-07-07 00:00:00'
+tags: ['projects', 'cloud', 'ai']
+draft: true
+summary: 'A case study on building event photo collection with QR uploads, S3, Lambda, Rekognition, and moderation workflows.'
+images: []
+---
+
+Event photo sharing has a simple user promise: guests scan a QR code, upload photos, and everyone gets the memories without downloading another app. The engineering behind that promise needs to be fast, safe, and inexpensive to operate.
+
+Candid Moments is a good example of where serverless architecture fits. Uploads are bursty, events are temporary, and the system needs to process user-generated media safely.
+
+## The product problem
+
+At an event, the experience has to be low-friction. Guests should not need an account. The host should not need to chase people for photos. The gallery should collect images quickly while reducing the risk of inappropriate content appearing publicly.
+
+That creates a few requirements:
+
+- QR-based event access
+- Direct photo uploads
+- Safe storage
+- Image moderation
+- Host review
+- Gallery display
+- Low operating cost between events
+
+Serverless tools are a natural match because traffic rises during events and falls afterward.
+
+## The upload flow
+
+A typical flow looks like this:
+
+1. Guest scans an event QR code.
+2. Browser requests upload permission.
+3. Photo uploads to S3.
+4. S3 event triggers a Lambda function.
+5. Lambda sends the image to Rekognition moderation.
+6. Moderation result updates the photo record.
+7. Approved or reviewable photos appear in the host workflow.
+
+The browser does not need direct application server storage. S3 handles the upload path, and Lambda handles processing.
+
+## Why moderation belongs in the pipeline
+
+User-generated media needs a safety layer. For a private event, the goal is not to build a social network moderation system. The goal is to reduce obvious risk and give the host control.
+
+AWS Rekognition can flag categories like explicit content, suggestive content, violence, or other moderation labels. The application can then decide:
+
+- Auto-approve low-risk photos
+- Hold uncertain photos for review
+- Block high-risk photos
+- Let hosts override when appropriate
+
+The important part is that moderation happens before broad gallery exposure.
+
+## Serverless tradeoffs
+
+Serverless is not magic. It has real tradeoffs.
+
+Benefits:
+
+- Low idle cost
+- Simple scaling during upload bursts
+- Managed storage
+- Managed image moderation
+- Clear event-driven processing
+
+Costs:
+
+- More moving parts
+- Asynchronous debugging
+- Need for good logs and retry behavior
+- Careful permission design
+- Local development can be less direct
+
+For event photo collection, the benefits usually outweigh the complexity.
+
+## What to log
+
+The system should log enough to answer operational questions:
+
+- Which event received the upload?
+- Which file was processed?
+- Did moderation run?
+- Which labels were returned?
+- Was the photo approved, blocked, or held?
+- Did thumbnail generation succeed?
+
+These logs make support possible when a host asks why a photo did or did not appear.
+
+## Product architecture follows the event
+
+The key design choice is to model the system around events, not just photos. Photos belong to events. Events belong to hosts. Upload permissions, gallery access, and moderation state all derive from that model.
+
+That keeps the product simple for users and gives the engineering system clear boundaries.
+
+## Why this matters
+
+Candid Moments is not just a photo upload app. It is an example of a broader pattern: use serverless architecture when demand is bursty, media processing is event-driven, and managed cloud services can remove heavy operational work.
+
+The same pattern can apply to documents, receipts, intake forms, inspections, and other workflows where users upload content and the business needs automated review.

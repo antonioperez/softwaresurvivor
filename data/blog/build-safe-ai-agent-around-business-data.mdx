@@ -1,0 +1,105 @@
+---
+title: 'How to Build a Safe AI Agent Around Business Data'
+date: '2026-06-30 00:00:00'
+tags: ['ai', 'software-development']
+draft: true
+summary: 'A practical architecture for AI agents that can read business data, draft actions, and stay inside controlled permission boundaries.'
+images: []
+---
+
+An AI agent connected to business data can be useful. It can answer questions, summarize records, draft replies, prepare reports, and help staff move faster. It can also become dangerous if it can read too much, write too freely, or act without review.
+
+The safe version is not just a prompt. It is an application architecture.
+
+## Start with read-only value
+
+The first useful agent should usually be read-only. Let it search, summarize, and explain before it can create or update records.
+
+Good read-only tasks include:
+
+- Summarize a customer account
+- Explain recent order history
+- Find missing fields
+- Compare records across systems
+- Draft a support response
+- Create a report from approved data
+
+This proves value while keeping the blast radius low.
+
+## Separate model reasoning from system permissions
+
+The model should not decide what it is allowed to access. The application should.
+
+Use normal software controls:
+
+- User authentication
+- Role-based access
+- Tenant boundaries
+- Field-level filtering
+- Audit logs
+- Explicit tool permissions
+
+The agent can request an action. The application decides whether the request is allowed.
+
+## Keep tools narrow
+
+Do not give an agent one giant "database access" tool. Give it small tools with clear behavior.
+
+Better tools look like:
+
+- `searchOrders(customerId, dateRange)`
+- `readCustomerSummary(customerId)`
+- `draftEmailReply(threadId)`
+- `createOrderDraft(validatedPayload)`
+- `listOpenExceptions(teamId)`
+
+Each tool should validate inputs, enforce permissions, and return only the fields needed for the task.
+
+## Use approval for writes
+
+Most business workflows should start with human approval before the agent writes to production systems.
+
+Approval is especially important for:
+
+- Creating orders
+- Issuing refunds
+- Sending emails
+- Updating customer records
+- Changing inventory
+- Posting accounting transactions
+
+The agent can prepare the action. A person approves it. Over time, low-risk actions can become automatic if the logs show consistent correctness.
+
+## Store evidence with the output
+
+Every useful answer should show its work in a practical way.
+
+For example:
+
+- Which records were used
+- Which date range was searched
+- Which assumptions were made
+- Which fields were missing
+- Which action is being proposed
+
+This makes review faster and reduces blind trust.
+
+## Design for correction
+
+Users will correct the agent. That correction should improve the system.
+
+Capture:
+
+- Edited fields
+- Rejected suggestions
+- Missing context
+- Wrong classifications
+- Follow-up questions
+
+Corrections can improve prompts, retrieval, validation rules, and product design. They are not just mistakes. They are training signals for the workflow.
+
+## The safest agent is boring
+
+The safest business agent is not the one with the flashiest demo. It is the one with narrow tools, clear permissions, good logs, reviewable actions, and a path for correction.
+
+That is how an AI agent becomes operational software instead of a risky chatbot with database access.

@@ -1,0 +1,106 @@
+---
+title: 'Legacy Software Modernization in the AI Era'
+date: '2026-06-09 00:00:00'
+tags: ['software-development', 'ai']
+draft: true
+summary: 'How AI changes the economics of legacy modernization, and why architecture, data ownership, and incremental migration still matter.'
+images: []
+---
+
+AI has changed the conversation around legacy software modernization. It can speed up code analysis, test generation, documentation, migration planning, and repetitive refactoring. That matters. But it does not remove the hard parts of modernization.
+
+The hard parts are rarely just old syntax. They are hidden business rules, unclear ownership, fragile integrations, missing tests, and years of operational knowledge living in people's heads.
+
+AI helps, but modernization is still an engineering and business process.
+
+## Legacy systems are not always bad systems
+
+A legacy system usually exists because it worked long enough to matter. It may run payroll, inventory, scheduling, compliance, billing, logistics, or customer operations. Replacing it casually is risky.
+
+The goal should not be "rewrite everything." The goal should be to reduce the cost of change while protecting the business capabilities the system already provides.
+
+That means starting with questions:
+
+- Which workflows are slow or risky to change?
+- Which integrations fail most often?
+- Which reports does the business depend on?
+- Which parts of the system are stable and boring?
+- Which parts block growth?
+
+Modernization should follow business pressure, not developer boredom.
+
+## Where AI helps first
+
+AI is useful early in modernization because it can accelerate understanding.
+
+Good uses include:
+
+- Summarizing large files
+- Explaining unfamiliar code paths
+- Identifying duplicated logic
+- Generating first-pass documentation
+- Building migration checklists
+- Producing draft tests around known behavior
+- Translating code patterns between languages
+- Creating data mapping tables
+
+These tasks do not require the model to make final architecture decisions. They help the team build a better map.
+
+## Where AI is not enough
+
+AI does not know which behavior matters to the business unless someone tells it. It can infer intent from code, but legacy code often contains accidents, patches, and outdated assumptions.
+
+The team still needs to decide:
+
+- Which behavior must be preserved
+- Which behavior should change
+- Which data is authoritative
+- Which integrations need compatibility windows
+- Which workflows can tolerate downtime
+- Which reports finance or operations depend on
+
+AI can support those decisions. It cannot own them.
+
+## A safer modernization pattern
+
+The safest pattern is incremental.
+
+1. Map the current system.
+2. Identify high-pain workflows.
+3. Add observability around those workflows.
+4. Write characterization tests for critical behavior.
+5. Extract one boundary at a time.
+6. Replace or wrap the riskiest integration points.
+7. Move data only when ownership is clear.
+8. Retire old code after the new path has proven itself.
+
+This is slower than a rewrite pitch and faster than years of stalled migration.
+
+## Use AI to reduce drag, not discipline
+
+AI can help engineers move faster, but speed without discipline creates a new legacy system. Generated code still needs review, tests, deployment strategy, rollback behavior, and ownership.
+
+For modernization work, AI output should be treated like a strong junior draft:
+
+- Useful
+- Fast
+- Sometimes insightful
+- Not automatically correct
+- In need of review against real business rules
+
+That mindset keeps the team from confusing code production with system improvement.
+
+## The business case is adaptability
+
+Modernization is not just about cleaner code. It is about reducing the cost of future change.
+
+The payoff shows up when the business can:
+
+- Add a new sales channel
+- Integrate a new warehouse
+- Automate a manual workflow
+- Produce accurate reports faster
+- Change pricing rules safely
+- Use AI against clean, accessible data
+
+AI makes modernization more approachable. It does not make architecture optional. The companies that benefit most will use AI to accelerate careful engineering, not avoid it.
