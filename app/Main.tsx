@@ -114,7 +114,7 @@ export default function Home({ posts }) {
               <h1 className="mb-6 text-4xl font-bold tracking-tight md:text-6xl lg:text-7xl">
                 Custom Software Development
                 <span className="block font-extrabold text-yellow-100 dark:text-yellow-200">
-                  for Teams That Outgrew Workarounds.
+                  When Off-the-Shelf Runs Out.
                 </span>
               </h1>
               <p className="mx-auto mb-8 max-w-3xl text-xl text-gray-100 md:text-2xl">
