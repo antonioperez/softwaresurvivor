@@ -55,6 +55,12 @@ const trustSignals = [
   'Fresno-based, serving remote US teams',
 ]
 
+const mobileTrustSignals = [
+  'Principal Engineer-led',
+  'Target + Pressed Juicery experience',
+  '1 business day response',
+]
+
 const proofSignals = [
   {
     value: '10+ years',
@@ -130,55 +136,72 @@ export default function Home({ posts }) {
           <div className="absolute inset-0 bg-[url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.1%22%3E%3Ccircle%20cx%3D%2230%22%20cy%3D%2230%22%20r%3D%222%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')]"></div>
         </div>
 
-        <div className="relative mx-auto max-w-7xl px-4 py-20 sm:px-6 md:py-24 lg:px-8">
+        <div className="relative mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-16 md:py-24 lg:px-8">
           <div className="mx-auto max-w-5xl text-center">
-            <div className="mb-8">
-              <p className="mb-4 text-sm font-semibold tracking-wide text-white/80 uppercase">
+            <div className="mb-6 sm:mb-8">
+              <p className="mb-3 text-xs leading-5 font-semibold tracking-wide text-white/80 uppercase sm:mb-4 sm:text-sm">
                 Custom software consulting for serious operational constraints
               </p>
-              <h1 className="mb-6 text-4xl leading-tight font-bold tracking-tight md:text-6xl">
-                Business-critical software
+              <h1 className="mb-4 text-3xl leading-tight font-bold tracking-tight sm:mb-6 sm:text-4xl md:text-6xl">
+                Business-critical software{' '}
                 <span className="block font-extrabold text-yellow-100 dark:text-yellow-200">
                   when workarounds start costing real money.
                 </span>
               </h1>
-              <p className="mx-auto mb-8 max-w-3xl text-lg leading-8 text-gray-100 md:text-xl">
-                {homepageDescription}{' '}
-                <Link
-                  href="/fresno-software-development"
-                  className="underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white"
-                >
-                  Based in Fresno
-                </Link>
-                , we offer custom development and{' '}
-                <Link
-                  href="/fresno-tech-consulting"
-                  className="underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white"
-                >
-                  tech consulting
-                </Link>{' '}
-                to teams across California and the US.
+              <p className="mx-auto mb-6 max-w-3xl text-base leading-7 text-gray-100 sm:mb-8 sm:text-lg sm:leading-8 md:text-xl">
+                <span className="sm:hidden">
+                  Senior engineering help for custom software, AI workflow automation, integrations,
+                  and modernization.
+                </span>
+                <span className="hidden sm:inline">
+                  {homepageDescription}{' '}
+                  <Link
+                    href="/fresno-software-development"
+                    className="underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white"
+                  >
+                    Based in Fresno
+                  </Link>
+                  , we offer custom development and{' '}
+                  <Link
+                    href="/fresno-tech-consulting"
+                    className="underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white"
+                  >
+                    tech consulting
+                  </Link>{' '}
+                  to teams across California and the US.
+                </span>
               </p>
+            </div>
+
+            <div className="mx-auto mb-6 grid max-w-sm gap-2 text-sm text-white/90 sm:hidden">
+              {mobileTrustSignals.map((signal) => (
+                <span
+                  key={signal}
+                  className="rounded-lg border border-white/20 bg-white/10 px-3 py-2 backdrop-blur-sm"
+                >
+                  {signal}
+                </span>
+              ))}
             </div>
 
             <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link
                 href="/contact"
-                className="group text-brand-600 focus:ring-offset-brand-600 relative inline-flex items-center justify-center overflow-hidden rounded-lg bg-white px-8 py-4 font-semibold shadow-lg transition-all duration-300 hover:bg-gray-50 hover:shadow-xl focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
+                className="group text-brand-600 focus:ring-offset-brand-600 relative inline-flex w-full items-center justify-center overflow-hidden rounded-lg bg-white px-6 py-3.5 font-semibold shadow-lg transition-all duration-300 hover:bg-gray-50 hover:shadow-xl focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none sm:w-auto sm:px-8 sm:py-4"
               >
                 <span className="relative z-10">Start a Project Conversation</span>
                 <div className="from-brand-500 to-brand-600 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
               </Link>
               <Link
                 href="/portfolio"
-                className="group hover:text-brand-600 focus:ring-offset-brand-600 relative inline-flex items-center justify-center overflow-hidden rounded-lg border-2 border-white px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none"
+                className="group hover:text-brand-600 focus:ring-offset-brand-600 relative inline-flex w-full items-center justify-center overflow-hidden rounded-lg border-2 border-white px-6 py-3.5 font-semibold text-white transition-all duration-300 hover:bg-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:outline-none sm:w-auto sm:px-8 sm:py-4"
               >
                 <span className="relative z-10">See Relevant Work</span>
                 <div className="absolute inset-0 bg-white opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
               </Link>
             </div>
 
-            <div className="mx-auto mt-10 flex max-w-4xl flex-wrap justify-center gap-3 text-sm text-white/85">
+            <div className="mx-auto mt-10 hidden max-w-4xl flex-wrap justify-center gap-3 text-sm text-white/85 sm:flex">
               {trustSignals.map((signal) => (
                 <span
                   key={signal}

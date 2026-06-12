@@ -3,9 +3,9 @@ import Card from '@/components/Card'
 import { genPageMetadata } from 'app/seo'
 
 export const metadata = genPageMetadata({
-  title: 'Portfolio: Custom Software Projects',
+  title: 'Selected Client Systems',
   description:
-    'Production software we have built for clients: AI products, AWS serverless platforms, e-commerce automation, and compliance tools for businesses in Fresno, Central California, and beyond.',
+    'Selected client systems by Software Survivor: business workflow automation, AI products, integrations, and compliance tooling with problem, role, and proof context.',
   canonical: '/portfolio',
   keywords: [
     'custom software consulting portfolio',

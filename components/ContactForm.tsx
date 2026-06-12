@@ -3,8 +3,7 @@
 import { useState } from 'react'
 
 interface FormData {
-  firstName: string
-  lastName: string
+  fullName: string
   email: string
   company: string
   service: string
@@ -21,8 +20,7 @@ interface FormStatus {
 
 export default function ContactForm() {
   const [formData, setFormData] = useState<FormData>({
-    firstName: '',
-    lastName: '',
+    fullName: '',
     email: '',
     company: '',
     service: '',
@@ -79,8 +77,7 @@ export default function ContactForm() {
 
       // Reset form
       setFormData({
-        firstName: '',
-        lastName: '',
+        fullName: '',
         email: '',
         company: '',
         service: '',
@@ -131,11 +128,9 @@ export default function ContactForm() {
   return (
     <div className="rounded-xl bg-white p-8 shadow-lg dark:bg-gray-800">
       <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">
-          Tell Us About the Project
-        </h2>
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Project Context</h2>
         <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
-          A few specifics help us respond with a useful fit check instead of a generic sales call.
+          Share enough context for a useful fit check and practical next step.
         </p>
       </div>
 
@@ -169,44 +164,23 @@ export default function ContactForm() {
         <div className="grid gap-6 md:grid-cols-2">
           <div>
             <label
-              htmlFor="firstName"
+              htmlFor="fullName"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300"
             >
-              First Name *
+              Name *
             </label>
             <input
               type="text"
-              id="firstName"
-              name="firstName"
-              value={formData.firstName}
+              id="fullName"
+              name="fullName"
+              value={formData.fullName}
               onChange={handleInputChange}
               required
               className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-              placeholder="John"
+              placeholder="Your name"
             />
           </div>
 
-          <div>
-            <label
-              htmlFor="lastName"
-              className="block text-sm font-medium text-gray-700 dark:text-gray-300"
-            >
-              Last Name *
-            </label>
-            <input
-              type="text"
-              id="lastName"
-              name="lastName"
-              value={formData.lastName}
-              onChange={handleInputChange}
-              required
-              className="focus:border-brand-500 focus:ring-brand-500 mt-1 block w-full rounded-lg border border-gray-300 px-4 py-3 text-gray-900 placeholder-gray-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400"
-              placeholder="Doe"
-            />
-          </div>
-        </div>
-
-        <div className="grid gap-6 md:grid-cols-2">
           <div>
             <label
               htmlFor="email"
@@ -226,7 +200,7 @@ export default function ContactForm() {
             />
           </div>
 
-          <div>
+          <div className="md:col-span-2">
             <label
               htmlFor="company"
               className="block text-sm font-medium text-gray-700 dark:text-gray-300"

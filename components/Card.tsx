@@ -1,4 +1,4 @@
-import Image from './Image'
+import Image from 'next/image'
 import Link from './Link'
 
 const Card = ({ title, description, problem, role, proof, imgSrc, href }) => {
@@ -11,11 +11,15 @@ const Card = ({ title, description, problem, role, proof, imgSrc, href }) => {
         {imgSrc && (
           <div className="flex h-48 w-full items-center justify-center overflow-hidden bg-gray-50 dark:bg-gray-900">
             {href ? (
-              <Link href={href} aria-label={`Link to ${title}`}>
+              <Link
+                href={href}
+                aria-label={`Link to ${title}`}
+                className="flex h-full w-full items-center justify-center"
+              >
                 <Image
                   alt={title}
                   src={imgSrc}
-                  className="max-h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                  className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                   width={544}
                   height={306}
                   unoptimized={isGif}
@@ -25,7 +29,7 @@ const Card = ({ title, description, problem, role, proof, imgSrc, href }) => {
               <Image
                 alt={title}
                 src={imgSrc}
-                className="max-h-full w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                className="h-full w-full object-contain p-4 transition-transform duration-300 group-hover:scale-105"
                 width={544}
                 height={306}
                 unoptimized={isGif}
@@ -47,9 +51,9 @@ const Card = ({ title, description, problem, role, proof, imgSrc, href }) => {
               title
             )}
           </h2>
-          <p className="mb-5 text-gray-600 dark:text-gray-400">{description}</p>
+          <p className="mb-4 text-gray-600 sm:mb-5 dark:text-gray-400">{description}</p>
           {(problem || role || proof) && (
-            <div className="mb-5 flex-1 space-y-3 border-t border-gray-100 pt-5 text-sm dark:border-gray-700">
+            <div className="mb-5 flex-1 space-y-3 border-t border-gray-100 pt-4 text-sm sm:pt-5 dark:border-gray-700">
               {problem && (
                 <div>
                   <div className="mb-1 font-semibold text-gray-900 dark:text-white">Problem</div>
@@ -57,7 +61,7 @@ const Card = ({ title, description, problem, role, proof, imgSrc, href }) => {
                 </div>
               )}
               {role && (
-                <div>
+                <div className="hidden sm:block">
                   <div className="mb-1 font-semibold text-gray-900 dark:text-white">Role</div>
                   <p className="text-gray-600 dark:text-gray-400">{role}</p>
                 </div>

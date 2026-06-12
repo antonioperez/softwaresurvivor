@@ -5,10 +5,24 @@ import Mailgun from 'mailgun.js'
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json()
-    const { firstName, lastName, email, company, service, timeline, budgetRange, message } = body
+    const {
+      fullName,
+      firstName,
+      lastName,
+      email,
+      company,
+      service,
+      timeline,
+      budgetRange,
+      message,
+    } = body
+    const submitterName =
+      typeof fullName === 'string' && fullName.trim()
+        ? fullName.trim()
+        : [firstName, lastName].filter(Boolean).join(' ').trim()
 
     // Validate required fields
-    if (!firstName || !lastName || !email || !company || !message) {
+    if (!submitterName || !email || !company || !message) {
       return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
     }
 
@@ -38,7 +52,7 @@ export async function POST(request: NextRequest) {
 
 👤 CONTACT INFORMATION
 ───────────────────────────────────────────────────────────────
-• Full Name: ${firstName} ${lastName}
+• Full Name: ${submitterName}
 • Email Address: ${email}
 • Company: ${company}
 • Service Interest: ${service || 'Not specified'}

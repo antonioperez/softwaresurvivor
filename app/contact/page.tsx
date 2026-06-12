@@ -43,9 +43,8 @@ export default function ContactPage() {
             Start a Project Conversation
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
-            Tell us about the software problem, workflow, integration, or modernization effort your
-            team needs to solve. The goal is to quickly determine whether Software Survivor is the
-            right senior partner for the work.
+            Share the software problem, current workflow, and constraints. We&apos;ll respond with a
+            fit check or a practical next step.
           </p>
         </div>
 
