@@ -12,9 +12,9 @@ export const metadata: Metadata = genPageMetadata({
 
 const faqs = [
   {
-    question: 'What software development services do you offer in Fresno?',
+    question: 'What software development and tech consulting services do you offer in Fresno?',
     answer:
-      'We provide custom web and mobile application development, AI workflow automation, systems integration, software modernization, system architecture design, and technical leadership. We serve businesses throughout Central California with scalable solutions that grow with your business.',
+      'We provide custom web and mobile application development, AI workflow automation, systems integration, software modernization, system architecture design, and technical leadership. On the tech consulting side, we offer fractional CTO services, architecture reviews, AI strategy, and buy-vs-build guidance. We serve businesses throughout Central California with scalable solutions that grow with your business.',
   },
   {
     question: 'Do you work with local Fresno businesses?',

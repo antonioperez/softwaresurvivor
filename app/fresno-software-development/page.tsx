@@ -49,6 +49,16 @@ export default function FresnoSoftwareDevelopmentPage() {
                 <li>Strong relationships with local technology partners</li>
                 <li>Faster response times and personalized service</li>
               </ul>
+              <p>
+                Not ready to build yet? Start with our{' '}
+                <a
+                  href="/fresno-tech-consulting"
+                  className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
+                >
+                  Fresno tech consulting
+                </a>{' '}
+                services for architecture reviews, AI strategy, and buy-vs-build guidance.
+              </p>
             </div>
           </div>
 

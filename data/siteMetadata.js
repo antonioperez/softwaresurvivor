@@ -15,6 +15,8 @@ const siteMetadata = {
     'fractional CTO consulting',
     'SaaS product development',
     'Fresno software development',
+    'Fresno tech consulting',
+    'technology consulting Fresno',
   ],
   language: 'en-us',
   theme: 'system', // system, dark or light
@@ -50,7 +52,7 @@ const siteMetadata = {
     email: 'aperez2541@gmail.com',
     url: 'https://softwaresurvivor.com',
     description:
-      'Custom software development, AI workflow automation, systems integration, and technical leadership services based in Fresno, California.',
+      'Custom software development, tech consulting, AI workflow automation, systems integration, and technical leadership services based in Fresno, California.',
     areaServed: [
       'Fresno',
       'Clovis',
@@ -63,6 +65,7 @@ const siteMetadata = {
     ],
     serviceType: [
       'Custom Software Development',
+      'Technology Consulting',
       'AI Workflow Automation',
       'Systems Integration',
       'Software Modernization',

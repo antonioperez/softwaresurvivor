@@ -3,12 +3,13 @@ import ServiceSchema from '@/components/ServiceSchema'
 import { genPageMetadata } from '../seo'
 
 export const metadata = genPageMetadata({
-  title: 'Custom Software Development Services',
+  title: 'Software Development & Tech Consulting Services',
   description:
-    'Custom software development, AI workflow automation, systems integration, software modernization, and technical leadership for established businesses and funded teams.',
+    'Custom software development, tech consulting, AI workflow automation, systems integration, software modernization, and technical leadership for established businesses and funded teams.',
   canonical: '/services',
   keywords: [
     'custom software development services',
+    'tech consulting services',
     'AI workflow automation services',
     'systems integration consulting',
     'software modernization services',
@@ -121,13 +122,19 @@ export default function ServicesPage() {
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">
-            Custom Software Development Services
+            Software Development &amp; Tech Consulting Services
           </h1>
           <p className="text-lg leading-7 text-gray-500 dark:text-gray-400">
             We help established businesses and funded teams build, modernize, and integrate the
             software their operations depend on. The work spans custom business applications, AI
-            workflow automation, systems integration, architecture, and delivery leadership. Based
-            in{' '}
+            workflow automation, systems integration,{' '}
+            <Link
+              href="/fresno-tech-consulting"
+              className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"
+            >
+              tech consulting
+            </Link>
+            , architecture, and delivery leadership. Based in{' '}
             <Link
               href="/fresno-software-development"
               className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 font-medium"

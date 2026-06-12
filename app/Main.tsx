@@ -124,8 +124,15 @@ export default function Home({ posts }) {
                   className="underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white"
                 >
                   Based in Fresno
+                </Link>
+                , we offer custom development and{' '}
+                <Link
+                  href="/fresno-tech-consulting"
+                  className="underline decoration-white/50 underline-offset-4 transition-colors hover:decoration-white"
+                >
+                  tech consulting
                 </Link>{' '}
-                and serving teams across California and the US.
+                to teams across California and the US.
               </p>
             </div>
 

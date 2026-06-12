@@ -25,6 +25,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'portfolio',
     'tags',
     'fresno-software-development',
+    'fresno-tech-consulting',
     'faq',
   ].map((route) => ({
     url: `${siteUrl}/${route}`,
