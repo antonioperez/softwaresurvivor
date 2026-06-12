@@ -268,7 +268,7 @@ export default function Home({ posts }) {
                 Every engagement is led directly by a Principal Engineer with over a decade of
                 experience building software for startups, small businesses, and enterprises
                 including Target and Pressed Juicery. You get senior judgment on architecture and
-                delivery from the first conversation — not a handoff to a junior team.
+                delivery from the first conversation.
               </p>
               <Link
                 href="/about"
