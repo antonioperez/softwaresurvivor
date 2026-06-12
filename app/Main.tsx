@@ -356,16 +356,16 @@ export default function Home({ posts }) {
         </div>
       )}
 
-      {/* Featured Project - FeelsReel */}
+      {/* Featured Project - Candid Moments */}
       <div className="py-20">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="mb-4 text-3xl font-bold text-gray-900 md:text-4xl lg:text-5xl dark:text-white">
-              Featured AI Product Build: FeelsReel
+              Featured Product Build: Candid Moments
             </h2>
             <p className="mx-auto max-w-3xl text-lg text-gray-600 dark:text-gray-400">
-              A media-heavy AI product that combines custom application development, prompt-driven
-              content workflows, and third-party video generation APIs.
+              A serverless photo-sharing product that replaces manual photo review with automated
+              moderation, built on AWS Lambda, Rekognition, and S3.
             </p>
           </div>
 
@@ -373,8 +373,8 @@ export default function Home({ posts }) {
             <div className="md:flex">
               <div className="md:w-1/2">
                 <Image
-                  src="/static/images/portfolio/feelsreel.png"
-                  alt="FeelsReel AI story generator interface showing a personalized children's story"
+                  src="/static/images/portfolio/candid-moments.png"
+                  alt="Candid Moments photo-sharing app showing a private event gallery"
                   width={600}
                   height={400}
                   className="h-64 w-full object-cover md:h-full"
@@ -383,34 +383,38 @@ export default function Home({ posts }) {
                 />
               </div>
               <div className="p-8 md:w-1/2">
-                <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">FeelsReel</h3>
+                <h3 className="mb-4 text-2xl font-bold text-gray-900 dark:text-white">
+                  Candid Moments
+                </h3>
                 <p className="mb-6 text-gray-600 dark:text-gray-400">
-                  FeelsReel generates personalized children's stories and turns them into videos
-                  using OpenAI and RunwayAI. It is a useful example of where Software Survivor fits:
-                  turning a product idea with complex AI and media dependencies into a working
-                  software platform.
+                  Candid Moments gives private events a shared photo gallery where every guest
+                  upload is screened automatically before anyone sees it. It is a useful example of
+                  where Software Survivor fits: turning a costly manual review process into a
+                  dependable serverless platform.
                 </p>
                 <div className="mb-8 space-y-3">
                   <div className="flex items-center">
                     <div className="bg-brand-500 mr-3 h-2 w-2 rounded-full"></div>
                     <span className="text-sm text-gray-600 dark:text-gray-400">
-                      AI Story Generation
+                      Automated Photo Moderation
                     </span>
                   </div>
                   <div className="flex items-center">
                     <div className="bg-accent-500 mr-3 h-2 w-2 rounded-full"></div>
-                    <span className="text-sm text-gray-600 dark:text-gray-400">Video Creation</span>
+                    <span className="text-sm text-gray-600 dark:text-gray-400">
+                      Private Event Galleries
+                    </span>
                   </div>
                   <div className="flex items-center">
                     <div className="bg-success-500 mr-3 h-2 w-2 rounded-full"></div>
                     <span className="text-sm text-gray-600 dark:text-gray-400">
-                      OpenAI Integration
+                      AWS Rekognition Screening
                     </span>
                   </div>
                   <div className="flex items-center">
                     <div className="bg-warning-500 mr-3 h-2 w-2 rounded-full"></div>
                     <span className="text-sm text-gray-600 dark:text-gray-400">
-                      RunwayAI Video Processing
+                      Serverless Lambda and S3 Pipeline
                     </span>
                   </div>
                 </div>
@@ -423,12 +427,12 @@ export default function Home({ posts }) {
                     <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
                   </Link>
                   <Link
-                    href="https://feelsreel.com"
+                    href="https://candidmoments.io"
                     className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex font-medium"
                     target="_blank"
                     rel="noopener noreferrer"
                   >
-                    Visit FeelsReel →
+                    Visit Candid Moments →
                   </Link>
                 </div>
               </div>
@@ -445,16 +449,16 @@ export default function Home({ posts }) {
               More Client Work
             </h2>
             <p className="mx-auto max-w-2xl text-lg text-gray-600 dark:text-gray-400">
-              Production systems we have built for clients, from serverless photo moderation on AWS
-              to compliance tools for California water agencies.
+              Production systems we have built for clients, from AI media products to compliance
+              tools for California water agencies.
             </p>
           </div>
 
           <div className="grid gap-8 md:grid-cols-2">
             <div className="group overflow-hidden rounded-xl bg-white shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800">
               <Image
-                src="/static/images/portfolio/candid-moments.png"
-                alt="Candid Moments photo-sharing app for private events"
+                src="/static/images/portfolio/feelsreel.png"
+                alt="FeelsReel AI story generator interface showing a personalized children's story"
                 width={600}
                 height={300}
                 className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-105"
@@ -463,14 +467,14 @@ export default function Home({ posts }) {
               />
               <div className="p-6">
                 <h3 className="mb-2 text-xl font-semibold text-gray-900 dark:text-white">
-                  Candid Moments
+                  FeelsReel
                 </h3>
                 <p className="mb-4 text-gray-600 dark:text-gray-400">
-                  Replaced manual photo review for private events: every guest upload is screened
-                  automatically for safety before it appears, using serverless AWS moderation.
+                  Turns a child's name and interests into a personalized storybook video — a complex
+                  AI and media pipeline with OpenAI and RunwayAI, shipped as a working product.
                 </p>
                 <Link
-                  href="https://candidmoments.io"
+                  href="https://feelsreel.com"
                   className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex items-center font-medium"
                 >
                   Visit Website →
