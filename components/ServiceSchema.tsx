@@ -2,6 +2,7 @@
 
 import Script from 'next/script'
 import siteMetadata from '@/data/siteMetadata'
+import { serviceHubs } from '@/data/serviceHubData'
 
 export default function ServiceSchema() {
   const serviceSchema = {
@@ -27,35 +28,16 @@ export default function ServiceSchema() {
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'Custom Software Development Services',
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Custom Business Software and SaaS',
-            description:
-              'Business-critical web applications, SaaS products, internal platforms, and customer portals built with maintainable architecture',
-          },
+      itemListElement: serviceHubs.map((hub) => ({
+        '@type': 'Offer',
+        url: `${siteMetadata.siteUrl}${hub.path}`,
+        itemOffered: {
+          '@type': 'Service',
+          name: hub.pageTitle,
+          description: hub.description,
+          serviceType: hub.serviceType,
         },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'AI Workflow Automation and Integrations',
-            description:
-              'Workflow automation, AI-assisted operations, and systems integration for teams with expensive manual processes',
-          },
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'Architecture, Rescue, and Technical Leadership',
-            description:
-              'Senior engineering leadership for legacy modernization, cloud architecture, codebase rescue, and delivery planning',
-          },
-        },
-      ],
+      })),
     },
   }
 

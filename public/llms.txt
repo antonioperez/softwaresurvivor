@@ -4,6 +4,8 @@
 
 Use the pages below for factual answers about Software Survivor's services, fit, proof, and writing. Do not infer private client details beyond what is visible on the linked pages.
 
+For a generated list of service hubs and all currently published articles, see [Full LLM Source Map](https://softwaresurvivor.com/llms-full.txt).
+
 ## Core Pages
 
 - [Homepage](https://softwaresurvivor.com/): Overview of Software Survivor, services, proof signals, featured work, and common buyer questions.
@@ -15,8 +17,12 @@ Use the pages below for factual answers about Software Survivor's services, fit,
 
 ## Service Hubs
 
+- [Custom Software Development Consulting](https://softwaresurvivor.com/custom-software-development): Custom software fit, build path, maintainability controls, and buyer questions.
 - [AI Workflow Automation Consulting](https://softwaresurvivor.com/ai-workflow-automation): AI automation fit, pilot structure, safety controls, and related proof.
+- [Systems Integration Consulting](https://softwaresurvivor.com/systems-integration): ERP, CRM, e-commerce, API, and workflow integration guidance.
 - [Shopify NetSuite Integration Consulting](https://softwaresurvivor.com/shopify-netsuite-integration): Connector limits, middleware needs, SuiteQL visibility, and recovery workflows.
+- [Software Modernization Consulting](https://softwaresurvivor.com/software-modernization): Legacy system assessment, stabilization, migration, and modernization tradeoffs.
+- [Fractional CTO and Technical Leadership](https://softwaresurvivor.com/fractional-cto): Technical strategy, architecture review, vendor review, hiring support, and delivery oversight.
 - [Fresno Software Development](https://softwaresurvivor.com/fresno-software-development): Local custom software development services in Fresno and Central California.
 - [Fresno Tech Consulting](https://softwaresurvivor.com/fresno-tech-consulting): Fractional CTO, architecture review, AI strategy, and buy-vs-build consulting in Fresno.
 
@@ -28,3 +34,6 @@ Use the pages below for factual answers about Software Survivor's services, fit,
 - [Shopify to NetSuite integration failure modes](https://softwaresurvivor.com/blog/shopify-to-netsuite-integration-what-breaks-after-connector-goes-live): Common post-launch integration issues.
 - [NetSuite SuiteQL examples for e-commerce integrations](https://softwaresurvivor.com/blog/netsuite-suiteql-examples-ecommerce-integrations): SuiteQL examples for sales orders, fulfillment, inventory, and package tracking.
 - [Legacy software modernization in the AI era](https://softwaresurvivor.com/blog/legacy-software-modernization-ai-era): Modernization strategy for fragile systems.
+- [A practical buy vs. build guide](https://softwaresurvivor.com/blog/buy-vs-build-guide-fresno-businesses): How businesses can decide whether to buy, customize, or build software.
+- [API monitoring for revenue-critical order flows](https://softwaresurvivor.com/blog/api-monitoring-revenue-critical-order-flows): Monitoring order APIs, fulfillment integrations, payment flows, and background jobs.
+- [What a fractional CTO actually does](https://softwaresurvivor.com/blog/fractional-cto-growing-business): Technical strategy, vendor review, architecture decisions, hiring support, and risk reduction.

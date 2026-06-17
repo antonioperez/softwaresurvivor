@@ -1,5 +1,5 @@
 import ServiceHubPage from '@/components/ServiceHubPage'
-import { aiWorkflowAutomationHub as hub } from '@/data/serviceHubData'
+import { systemsIntegrationHub as hub } from '@/data/serviceHubData'
 import { genPageMetadata } from 'app/seo'
 
 export const metadata = genPageMetadata({
@@ -9,6 +9,6 @@ export const metadata = genPageMetadata({
   keywords: hub.keywords,
 })
 
-export default function AIWorkflowAutomationPage() {
+export default function SystemsIntegrationPage() {
   return <ServiceHubPage hub={hub} />
 }

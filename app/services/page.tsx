@@ -22,6 +22,8 @@ const services = [
     title: 'Custom Software & SaaS Development',
     description:
       'We design and build the web applications, portals, and SaaS products your revenue and operations depend on, with maintainable architecture and practical delivery milestones.',
+    href: '/custom-software-development',
+    hrefLabel: 'Explore custom software development',
     items: [
       'Web applications and customer portals (React, Next.js, Node.js)',
       'Mobile apps (React Native, Flutter, native iOS/Android)',
@@ -56,8 +58,8 @@ const services = [
     title: 'Systems Integration',
     description:
       'We connect the tools your team already uses so data flows without copy-paste: ERPs, CRMs, e-commerce platforms, and the spreadsheets in between.',
-    href: '/shopify-netsuite-integration',
-    hrefLabel: 'Explore Shopify-NetSuite integration',
+    href: '/systems-integration',
+    hrefLabel: 'Explore systems integration',
     items: [
       'ERP, CRM, and e-commerce integrations (NetSuite, WooCommerce, and more)',
       'Email-to-order and document intake automation',
@@ -74,6 +76,8 @@ const services = [
     title: 'Software Modernization & Rescue',
     description:
       'We stabilize fragile systems and modernize legacy code incrementally, so the business keeps running while the risky parts get replaced.',
+    href: '/software-modernization',
+    hrefLabel: 'Explore software modernization',
     items: [
       'Legacy system assessment and migration planning',
       'Stabilizing fragile production systems before they fail',
@@ -90,6 +94,8 @@ const services = [
     title: 'Architecture & Technical Leadership',
     description:
       'We bring Principal Engineer-level judgment to architecture decisions, delivery planning, and team growth, before and during the build.',
+    href: '/fractional-cto',
+    hrefLabel: 'Explore fractional CTO services',
     items: [
       'Fractional CTO and senior technical direction',
       'System and cloud architecture design (AWS, Azure, GCP)',

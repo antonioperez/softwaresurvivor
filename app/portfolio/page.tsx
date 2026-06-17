@@ -1,6 +1,7 @@
 import portfolioData from '@/data/portfolioData'
 import Card from '@/components/Card'
 import { genPageMetadata } from 'app/seo'
+import siteMetadata from '@/data/siteMetadata'
 
 export const metadata = genPageMetadata({
   title: 'Selected Client Systems',
@@ -16,8 +17,42 @@ export const metadata = genPageMetadata({
 })
 
 export default function Portfolio() {
+  const portfolioStructuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    '@id': `${siteMetadata.siteUrl}/portfolio#collection`,
+    url: `${siteMetadata.siteUrl}/portfolio`,
+    name: 'Selected Client Systems',
+    description:
+      'Selected client systems by Software Survivor with problem, role, and proof context.',
+    isPartOf: {
+      '@id': `${siteMetadata.siteUrl}/#website`,
+    },
+    mainEntity: {
+      '@type': 'ItemList',
+      itemListElement: portfolioData.map((item, index) => ({
+        '@type': 'ListItem',
+        position: index + 1,
+        item: {
+          '@type': 'CreativeWork',
+          name: item.title,
+          description: item.description,
+          url: item.href || `${siteMetadata.siteUrl}/portfolio`,
+          about: [item.problem, item.role, item.proof].filter(Boolean),
+          creator: {
+            '@id': `${siteMetadata.siteUrl}/#organization`,
+          },
+        },
+      })),
+    },
+  }
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(portfolioStructuredData) }}
+      />
       <div className="divide-y divide-gray-200 dark:divide-gray-700">
         <div className="space-y-2 pt-6 pb-8 md:space-y-5">
           <h1 className="text-3xl leading-9 font-extrabold tracking-tight text-gray-900 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 dark:text-gray-100">

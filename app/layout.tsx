@@ -63,9 +63,21 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   const basePath = process.env.BASE_PATH || ''
 
   const organizationId = `${siteMetadata.siteUrl}/#organization`
+  const personId = `${siteMetadata.siteUrl}/about#antonio-perez`
   const websiteId = `${siteMetadata.siteUrl}/#website`
   const serviceId = `${siteMetadata.siteUrl}/#software-development-services`
   const logoUrl = `${siteMetadata.siteUrl}/static/images/logo.png`
+  const headshotUrl = `${siteMetadata.siteUrl}/static/images/antonio-headshot.JPG`
+  const knowsAbout = [
+    'Custom software development',
+    'AI workflow automation',
+    'Systems integration',
+    'Software modernization',
+    'Shopify NetSuite integration',
+    'NetSuite SuiteQL',
+    'Fractional CTO consulting',
+    'Technical leadership',
+  ]
 
   const siteStructuredData = {
     '@context': 'https://schema.org',
@@ -87,6 +99,29 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           addressCountry: siteMetadata.localBusiness.address.addressCountry,
         },
         sameAs: [siteMetadata.github, siteMetadata.linkedin].filter(Boolean),
+        founder: {
+          '@id': personId,
+        },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          email: siteMetadata.localBusiness.email,
+          contactType: 'sales',
+          areaServed: siteMetadata.localBusiness.areaServed,
+        },
+        knowsAbout,
+      },
+      {
+        '@type': 'Person',
+        '@id': personId,
+        name: siteMetadata.author,
+        url: `${siteMetadata.siteUrl}/about`,
+        image: headshotUrl,
+        jobTitle: 'Principal Engineer',
+        sameAs: [siteMetadata.github, siteMetadata.linkedin].filter(Boolean),
+        worksFor: {
+          '@id': organizationId,
+        },
+        knowsAbout,
       },
       {
         '@type': 'WebSite',

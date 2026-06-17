@@ -65,3 +65,30 @@
 - [x] Run `yarn build`.
 - [x] Inspect `git status --short`.
 - [x] Confirm the sitemap includes the two new hubs and the build succeeds.
+
+### Task 6: Major SEO/GEO Expansion
+
+**Files:**
+
+- Create: `data/serviceHubData.ts`
+- Create: `components/ServiceHubPage.tsx`
+- Create: `app/custom-software-development/page.tsx`
+- Create: `app/systems-integration/page.tsx`
+- Create: `app/software-modernization/page.tsx`
+- Create: `app/fractional-cto/page.tsx`
+- Create: `app/llms-full.txt/route.ts`
+- Modify: `app/Main.tsx`
+- Modify: `app/services/page.tsx`
+- Modify: `app/sitemap.ts`
+- Modify: `app/layout.tsx`
+- Modify: `app/about/page.tsx`
+- Modify: `app/portfolio/page.tsx`
+- Modify: `components/ServiceSchema.tsx`
+- Modify: `public/llms.txt`
+- Modify: selected `data/blog/*.mdx`
+
+- [x] Refactor service hub pages into shared structured data and a shared page renderer.
+- [x] Add crawlable hubs for custom software development, systems integration, software modernization, and fractional CTO services.
+- [x] Add richer Organization, Person, ProfilePage, Service, FAQPage, and portfolio ItemList schema.
+- [x] Add a generated `/llms-full.txt` source map for service hubs and published articles.
+- [x] Expand internal links from homepage, services, and related blog posts into the service hubs.

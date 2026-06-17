@@ -3,6 +3,7 @@ import Image from 'next/image'
 import siteMetadata from '@/data/siteMetadata'
 import NewsletterForm from '@/components/NewsletterForm'
 import FAQSchema from '@/components/FAQSchema'
+import { serviceHubs } from '@/data/serviceHubData'
 
 const homepageDescription =
   'Software Survivor helps established businesses and funded product teams build business-critical web apps, AI workflow automation, integrations, and cloud platforms.'
@@ -73,19 +74,6 @@ const proofSignals = [
   {
     value: '1 business day',
     label: 'typical response for qualified project conversations',
-  },
-]
-
-const geoServiceLinks = [
-  {
-    title: 'AI workflow automation consulting',
-    description: 'Pilot structure, review controls, and safe automation patterns.',
-    href: '/ai-workflow-automation',
-  },
-  {
-    title: 'Shopify-NetSuite integration consulting',
-    description: 'Connector cleanup, SuiteQL reporting, middleware, and recovery tooling.',
-    href: '/shopify-netsuite-integration',
   },
 ]
 
@@ -288,18 +276,18 @@ export default function Home({ posts }) {
             ))}
           </div>
 
-          <div className="mt-10 grid gap-4 md:grid-cols-2">
-            {geoServiceLinks.map((item) => (
+          <div className="mt-10 grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+            {serviceHubs.map((hub) => (
               <Link
-                key={item.href}
-                href={item.href}
+                key={hub.path}
+                href={hub.path}
                 className="hover:border-brand-300 dark:hover:border-brand-700 block rounded-lg border border-gray-200 bg-white p-5 text-left transition-colors dark:border-gray-700 dark:bg-gray-800"
               >
                 <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">
-                  {item.title}
+                  {hub.pageTitle}
                 </h3>
                 <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
-                  {item.description}
+                  {hub.summaryCards[0].description}
                 </p>
               </Link>
             ))}

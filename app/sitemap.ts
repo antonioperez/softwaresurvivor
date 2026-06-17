@@ -1,6 +1,7 @@
 import { MetadataRoute } from 'next'
 import { allBlogs } from 'contentlayer/generated'
 import siteMetadata from '@/data/siteMetadata'
+import { serviceHubs } from '@/data/serviceHubData'
 
 export const dynamic = 'force-static'
 
@@ -24,11 +25,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'about',
     'portfolio',
     'tags',
-    'ai-workflow-automation',
-    'shopify-netsuite-integration',
     'fresno-software-development',
     'fresno-tech-consulting',
     'faq',
+    ...serviceHubs.map((hub) => hub.path.replace(/^\//, '')),
   ].map((route) => ({
     url: `${siteUrl}/${route}`,
   }))
