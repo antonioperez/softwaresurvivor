@@ -13,6 +13,7 @@ const serviceHighlights = [
     title: 'Custom Business Software and SaaS',
     description:
       'Plan and build revenue, operations, and customer-facing products with maintainable architecture, clean APIs, and practical delivery milestones.',
+    href: '/custom-software-development',
     iconPath:
       'M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z',
   },
@@ -20,6 +21,7 @@ const serviceHighlights = [
     title: 'AI Workflow Automation and Integrations',
     description:
       'Connect the tools your team already uses, automate expensive manual workflows, and add AI where it can create measurable leverage.',
+    href: '/ai-workflow-automation-consulting',
     iconPath:
       'M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z',
   },
@@ -27,6 +29,7 @@ const serviceHighlights = [
     title: 'Architecture, Rescue, and Technical Leadership',
     description:
       'Stabilize fragile systems, modernize legacy code, and get senior engineering judgment before a rebuild, scale-up, or key technical hire.',
+    href: '/technical-architecture-review',
     iconPath: 'M13 10V3L4 14h7v7l9-11h-7z',
   },
 ]
@@ -248,8 +251,9 @@ export default function Home({ posts }) {
 
           <div className="grid gap-8 md:grid-cols-3">
             {serviceHighlights.map((service) => (
-              <div
+              <Link
                 key={service.title}
+                href={service.href}
                 className="group relative overflow-hidden rounded-xl bg-white p-8 shadow-lg transition-all duration-300 hover:shadow-xl dark:bg-gray-800"
               >
                 <div className="bg-brand-100 dark:bg-brand-900 mb-6 flex h-16 w-16 items-center justify-center rounded-xl">
@@ -272,7 +276,10 @@ export default function Home({ posts }) {
                   {service.title}
                 </h3>
                 <p className="text-gray-600 dark:text-gray-400">{service.description}</p>
-              </div>
+                <span className="text-brand-600 dark:text-brand-400 mt-5 inline-flex text-sm font-medium">
+                  {service.title} →
+                </span>
+              </Link>
             ))}
           </div>
 
@@ -520,10 +527,10 @@ export default function Home({ posts }) {
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
                   <Link
-                    href="/portfolio"
+                    href="/portfolio/candid-moments"
                     className="group bg-brand-600 hover:bg-brand-700 focus:ring-brand-500 relative inline-flex items-center justify-center overflow-hidden rounded-lg px-6 py-3 font-semibold text-white shadow-lg transition-all duration-300 hover:shadow-xl focus:ring-2 focus:ring-offset-2 focus:outline-none"
                   >
-                    <span className="relative z-10">See How We Build Products</span>
+                    <span className="relative z-10">Read the Case Study</span>
                     <div className="from-brand-700 to-brand-800 absolute inset-0 bg-gradient-to-r opacity-0 transition-opacity duration-300 group-hover:opacity-10"></div>
                   </Link>
                   <Link

@@ -16,18 +16,25 @@ export interface ServiceHubFaq {
 
 export interface ServiceHub {
   path: string
+  aliases?: string[]
   eyebrow: string
   pageTitle: string
   h1: string
   description: string
   keywords: string[]
   serviceType: string
+  buyerIntro?: string
   summaryCards: ServiceHubStep[]
   fitTitle: string
   fitIntro: string
   fitSignals: string[]
+  problemsSolved?: string[]
+  whatYouGet?: ServiceHubStep[]
+  technologies?: string[]
+  useCases?: ServiceHubStep[]
   processTitle: string
   processSteps: ServiceHubStep[]
+  engagementOptions?: ServiceHubStep[]
   controlsTitle: string
   controlsIntro: string
   controls: string[]
@@ -40,7 +47,7 @@ export interface ServiceHub {
 }
 
 export const aiWorkflowAutomationHub: ServiceHub = {
-  path: '/ai-workflow-automation',
+  path: '/ai-workflow-automation-consulting',
   eyebrow: 'AI workflow automation',
   pageTitle: 'AI Workflow Automation Consulting',
   h1: 'AI Automation for Business Workflows That Need Control',
@@ -155,7 +162,7 @@ export const aiWorkflowAutomationHub: ServiceHub = {
 }
 
 export const shopifyNetSuiteIntegrationHub: ServiceHub = {
-  path: '/shopify-netsuite-integration',
+  path: '/shopify-netsuite-integration-consulting',
   eyebrow: 'Shopify and NetSuite integration',
   pageTitle: 'Shopify NetSuite Integration Consulting',
   h1: 'Shopify-NetSuite Integration When Connectors Stop Being Enough',
@@ -383,7 +390,7 @@ export const customSoftwareDevelopmentHub: ServiceHub = {
 }
 
 export const systemsIntegrationHub: ServiceHub = {
-  path: '/systems-integration',
+  path: '/systems-integration-consulting',
   eyebrow: 'Systems integration',
   pageTitle: 'Systems Integration Consulting',
   h1: 'Systems Integration for Teams Tired of Copy-Paste Operations',
@@ -453,7 +460,7 @@ export const systemsIntegrationHub: ServiceHub = {
       title: 'Shopify-NetSuite Integration Consulting',
       description:
         'A focused service hub for connector cleanup, custom middleware, SuiteQL reporting, and recovery tooling.',
-      href: '/shopify-netsuite-integration',
+      href: '/shopify-netsuite-integration-consulting',
     },
     {
       title: 'API Monitoring for Revenue-Critical Order Flows',
@@ -497,7 +504,7 @@ export const systemsIntegrationHub: ServiceHub = {
 }
 
 export const softwareModernizationHub: ServiceHub = {
-  path: '/software-modernization',
+  path: '/software-modernization-consulting',
   eyebrow: 'Software modernization',
   pageTitle: 'Software Modernization Consulting',
   h1: 'Modernize Fragile Software Without Betting the Business on a Rewrite',
@@ -611,7 +618,7 @@ export const softwareModernizationHub: ServiceHub = {
 }
 
 export const fractionalCtoHub: ServiceHub = {
-  path: '/fractional-cto',
+  path: '/fractional-cto-fresno',
   eyebrow: 'Fractional CTO',
   pageTitle: 'Fractional CTO and Technical Leadership',
   h1: 'Fractional CTO Help for Founders and Operators Who Need Senior Technical Judgment',
@@ -681,7 +688,7 @@ export const fractionalCtoHub: ServiceHub = {
       title: 'What a Fractional CTO Actually Does',
       description:
         'A practical explanation of fractional CTO work and when it makes sense for a growing business.',
-      href: '/blog/fractional-cto-growing-business',
+      href: '/blog/fractional-cto-fresno-growing-business',
     },
     {
       title: 'Management Leverage for Software Leaders',
@@ -724,6 +731,739 @@ export const fractionalCtoHub: ServiceHub = {
     'Share the decision you are weighing, the systems involved, the vendor or hiring context, and the business constraint. We will help identify the clearest technical next step.',
 }
 
+Object.assign(customSoftwareDevelopmentHub, {
+  buyerIntro:
+    'This page is for buyers who need software tied to a real operating constraint: internal tools, portals, SaaS products, dashboards, or workflow systems that cannot be handled cleanly by off-the-shelf software.',
+  problemsSolved: [
+    'Spreadsheet-driven workflows that have become a shadow application.',
+    'Customer, vendor, or team portals that need business-specific permissions and data.',
+    'SaaS or internal product ideas that need senior architecture before scaling.',
+    'Disconnected data and manual handoffs around revenue, operations, or service delivery.',
+  ],
+  whatYouGet: [
+    {
+      title: 'A scoped first release',
+      description:
+        'A build plan focused on the smallest useful workflow instead of a speculative full rebuild.',
+    },
+    {
+      title: 'Production-minded engineering',
+      description:
+        'Architecture, implementation, testing, deployment, and observability around the workflows that matter.',
+    },
+    {
+      title: 'Integration-ready software',
+      description:
+        'APIs, data models, and system boundaries designed to work with the rest of the business.',
+    },
+  ],
+  technologies: [
+    'Next.js',
+    'React',
+    'Node.js',
+    'TypeScript',
+    'PostgreSQL',
+    'AWS',
+    'Cloudflare',
+    'Stripe',
+    'Shopify',
+    'NetSuite',
+  ],
+  useCases: [
+    {
+      title: 'Operations portals',
+      description:
+        'Replace ad hoc spreadsheets and inbox-driven status checks with a workflow your team can actually trust.',
+    },
+    {
+      title: 'Customer-facing platforms',
+      description:
+        'Build portals, dashboards, and SaaS workflows where generic software does not model the buyer journey.',
+    },
+    {
+      title: 'Workflow automation products',
+      description:
+        'Turn repeated service delivery, intake, review, or fulfillment work into maintainable software.',
+    },
+  ],
+  relatedLinks: [
+    {
+      title: 'Candid Moments Case Study',
+      description:
+        'A serverless photo-sharing product with QR uploads, AWS media storage, and automated moderation.',
+      href: '/portfolio/candid-moments',
+    },
+    {
+      title: 'Tlaloc Harvest Case Study',
+      description:
+        'A community food-waste platform with sustainability, logistics, and multi-sided workflow constraints.',
+      href: '/portfolio/tlaloc-harvest',
+    },
+    {
+      title: 'A Practical Buy vs. Build Guide for Fresno Businesses',
+      description:
+        'How to decide when to buy software, customize an existing platform, or build a custom system.',
+      href: '/blog/buy-vs-build-guide-fresno-businesses',
+    },
+  ],
+  engagementOptions: [
+    {
+      title: 'Discovery and architecture',
+      description:
+        'Clarify the workflow, integration boundaries, data model, risks, and first useful release.',
+    },
+    {
+      title: 'Build and launch',
+      description:
+        'Implement the product or internal system with practical milestones and production checks.',
+    },
+    {
+      title: 'Modernize and extend',
+      description:
+        'Improve an existing system without throwing away working business logic unnecessarily.',
+    },
+  ],
+})
+
+Object.assign(aiWorkflowAutomationHub, {
+  path: '/ai-workflow-automation-consulting',
+  aliases: ['/ai-workflow-automation'],
+  buyerIntro:
+    'This page is for operators, founders, and department leaders who want AI automation attached to a controlled workflow instead of a fragile demo.',
+  problemsSolved: [
+    'Teams manually reading, classifying, summarizing, or routing the same documents and emails.',
+    'Order, intake, support, or review workflows that need AI help but still require human approval.',
+    'Messy handoffs between inboxes, spreadsheets, CRMs, ERPs, and e-commerce platforms.',
+    'AI experiments that need permissions, auditability, and production guardrails.',
+  ],
+  whatYouGet: [
+    {
+      title: 'Workflow assessment',
+      description:
+        'A clear map of inputs, outputs, review points, business rules, and systems the automation must respect.',
+    },
+    {
+      title: 'Controlled AI pilot',
+      description:
+        'A narrow automation that extracts, drafts, classifies, routes, or recommends with human review built in.',
+    },
+    {
+      title: 'Integration and safety controls',
+      description:
+        'Validation, logging, permissions, approval queues, and rollback paths before automated writes are allowed.',
+    },
+  ],
+  technologies: [
+    'OpenAI',
+    'Anthropic',
+    'Vercel AI SDK',
+    'LangChain',
+    'Node.js',
+    'TypeScript',
+    'PostgreSQL',
+    'Gmail',
+    'Outlook',
+    'Shopify',
+    'NetSuite',
+  ],
+  useCases: [
+    {
+      title: 'Email-to-order automation',
+      description:
+        'Parse inbound email, extract order intent, validate fields, and prepare a reviewed order draft.',
+    },
+    {
+      title: 'Document intake',
+      description:
+        'Extract structured data from PDFs, forms, claims, invoices, or service requests for human approval.',
+    },
+    {
+      title: 'Internal knowledge workflows',
+      description:
+        'Help teams search, summarize, and route information without giving the model broad write permissions.',
+    },
+  ],
+  relatedLinks: [
+    {
+      title: 'Inbox2Order Case Study',
+      description:
+        'Email-to-order automation that turns unstructured email inquiries into structured order drafts.',
+      href: '/portfolio/inbox2order',
+    },
+    {
+      title: 'Building Inbox2Order',
+      description:
+        'A project writeup covering parsing, validation, order creation, and automated communication.',
+      href: '/blog/building-inbox2order-email-to-order-automation',
+    },
+    {
+      title: 'Safe AI Agents',
+      description:
+        'A practical architecture for AI agents that read business data while staying inside controlled permission boundaries.',
+      href: '/blog/build-safe-ai-agent-around-business-data',
+    },
+  ],
+  engagementOptions: [
+    {
+      title: 'AI opportunity review',
+      description:
+        'Identify one or two workflows where AI can reduce repeated work without creating operational risk.',
+    },
+    {
+      title: 'Pilot build',
+      description:
+        'Build a focused automation around real examples, validation rules, and a review surface.',
+    },
+    {
+      title: 'Production hardening',
+      description:
+        'Add permissions, monitoring, exception handling, and integration controls for live business use.',
+    },
+  ],
+})
+
+Object.assign(systemsIntegrationHub, {
+  path: '/systems-integration-consulting',
+  aliases: ['/systems-integration'],
+  buyerIntro:
+    'This page is for businesses whose teams are losing time because important data lives across disconnected systems.',
+  problemsSolved: [
+    'Duplicate data entry between ERPs, CRMs, e-commerce platforms, spreadsheets, and internal tools.',
+    'Sync failures that require engineering help because there is no recovery workflow.',
+    'Operational reporting that cannot answer questions across multiple systems.',
+    'Manual customer, inventory, fulfillment, finance, or support handoffs.',
+  ],
+  whatYouGet: [
+    {
+      title: 'Source-of-truth map',
+      description:
+        'A practical model for which system owns each record, field, status, and lifecycle event.',
+    },
+    {
+      title: 'Reliable integration layer',
+      description:
+        'Webhooks, jobs, queues, retries, idempotency, mapping logic, and APIs built around failure recovery.',
+    },
+    {
+      title: 'Operational visibility',
+      description:
+        'Dashboards, reports, exports, or admin actions that show what moved, what failed, and what needs attention.',
+    },
+  ],
+  technologies: [
+    'REST APIs',
+    'GraphQL',
+    'Webhooks',
+    'Queues',
+    'PostgreSQL',
+    'NetSuite',
+    'Shopify',
+    'WooCommerce',
+    'HubSpot',
+    'Salesforce',
+    'Gmail',
+    'Outlook',
+  ],
+  useCases: [
+    {
+      title: 'Order and fulfillment flows',
+      description:
+        'Connect e-commerce, warehouse, ERP, and customer-support systems with recoverable sync behavior.',
+    },
+    {
+      title: 'CRM and operations sync',
+      description:
+        'Keep customer, account, and workflow state aligned across sales, service, and back-office tools.',
+    },
+    {
+      title: 'Cross-system reporting',
+      description:
+        'Join business data across systems so leaders can see exceptions, throughput, and bottlenecks.',
+    },
+  ],
+  relatedLinks: [
+    {
+      title: 'Inbox2Order Case Study',
+      description:
+        'A business workflow example where unstructured email becomes reviewed, integration-ready order data.',
+      href: '/portfolio/inbox2order',
+    },
+    {
+      title: 'Shopify-NetSuite Integration Consulting',
+      description:
+        'A focused service hub for connector cleanup, custom middleware, SuiteQL reporting, and recovery tooling.',
+      href: '/shopify-netsuite-integration-consulting',
+    },
+    {
+      title: 'API Monitoring for Revenue-Critical Order Flows',
+      description:
+        'How to monitor order APIs, fulfillment integrations, payment flows, and background jobs.',
+      href: '/blog/api-monitoring-revenue-critical-order-flows',
+    },
+  ],
+  engagementOptions: [
+    {
+      title: 'Integration audit',
+      description: 'Review current systems, failure patterns, mappings, and manual recovery steps.',
+    },
+    {
+      title: 'Focused integration build',
+      description:
+        'Implement one critical flow with clear ownership, logging, retries, and visibility.',
+    },
+    {
+      title: 'Connector support layer',
+      description:
+        'Keep the connector for standard flows and add custom code around edge cases and reporting.',
+    },
+  ],
+})
+
+Object.assign(shopifyNetSuiteIntegrationHub, {
+  path: '/shopify-netsuite-integration-consulting',
+  aliases: ['/shopify-netsuite-integration'],
+  buyerIntro:
+    'This page is for e-commerce teams that rely on Shopify and NetSuite but need more control than a connector dashboard provides.',
+  problemsSolved: [
+    'Orders, refunds, fulfillments, payments, or inventory states that do not map cleanly through the connector.',
+    'Finance and operations teams exporting spreadsheets to reconcile what happened.',
+    'Warehouse, package, lot, or tracking workflows that need SuiteQL visibility.',
+    'Repeated connector exceptions with no safe retry or replay path.',
+  ],
+  whatYouGet: [
+    {
+      title: 'Flow diagnosis',
+      description:
+        'A clear read on whether the issue is configuration, business logic, missing reporting, or custom middleware.',
+    },
+    {
+      title: 'Custom middleware where needed',
+      description:
+        'Focused services around order normalization, fulfillment, refunds, inventory, and recovery behavior.',
+    },
+    {
+      title: 'SuiteQL reporting',
+      description:
+        'Practical NetSuite reports for pending orders, fulfillment gaps, package tracking, and reconciliation.',
+    },
+  ],
+  technologies: [
+    'Shopify Admin API',
+    'Shopify webhooks',
+    'NetSuite RESTlets',
+    'SuiteTalk',
+    'SuiteQL',
+    'Node.js',
+    'TypeScript',
+    'Queues',
+    'PostgreSQL',
+  ],
+  useCases: [
+    {
+      title: 'Connector recovery tooling',
+      description:
+        'Create safe retry, replay, and exception workflows around the connector instead of relying on ad hoc fixes.',
+    },
+    {
+      title: 'Fulfillment visibility',
+      description:
+        'Expose pending lines, package tracking, partial shipments, and warehouse-specific fulfillment states.',
+    },
+    {
+      title: 'Finance reconciliation',
+      description:
+        'Trace Shopify orders, payments, refunds, cash sales, and invoices through NetSuite records.',
+    },
+  ],
+  relatedLinks: [
+    {
+      title: 'When Shopify-NetSuite Connectors Are Not Enough',
+      description:
+        'How to identify when a connector needs custom middleware, recovery tooling, SuiteQL reports, or workflow-specific business logic.',
+      href: '/blog/when-shopify-netsuite-connectors-are-not-enough',
+    },
+    {
+      title: 'NetSuite SuiteQL Examples for E-commerce Integrations',
+      description:
+        'SuiteQL examples for sales orders, fulfillment tracking, pending items, inventory, and e-commerce workflows.',
+      href: '/blog/netsuite-suiteql-examples-ecommerce-integrations',
+    },
+    {
+      title: 'Inbox2Order Case Study',
+      description:
+        'A related automation case study for turning customer email into reviewed operational data.',
+      href: '/portfolio/inbox2order',
+    },
+  ],
+  engagementOptions: [
+    {
+      title: 'Connector assessment',
+      description: 'Review mappings, records, failure cases, SuiteQL evidence, and recovery gaps.',
+    },
+    {
+      title: 'Middleware or report build',
+      description:
+        'Build the smallest custom layer needed to resolve the recurring operational problem.',
+    },
+    {
+      title: 'Ongoing integration support',
+      description:
+        'Maintain reporting, exception queues, sync improvements, and new business rules as operations change.',
+    },
+  ],
+})
+
+Object.assign(softwareModernizationHub, {
+  path: '/software-modernization-consulting',
+  aliases: ['/software-modernization'],
+  buyerIntro:
+    'This page is for teams with valuable software that has become expensive, fragile, slow to change, or difficult to staff.',
+  problemsSolved: [
+    'Legacy systems that block integrations, reporting, AI automation, or product changes.',
+    'Production codebases where small changes are risky because tests and ownership are weak.',
+    'Old platforms, dependencies, or deployment processes that create business continuity risk.',
+    'Rewrite pressure without a clear migration path or business case.',
+  ],
+  whatYouGet: [
+    {
+      title: 'Current-state assessment',
+      description:
+        'A practical review of architecture, deployment, data, integration, dependency, and operational risks.',
+    },
+    {
+      title: 'Incremental modernization plan',
+      description:
+        'A sequenced path that stabilizes the system and replaces high-value boundaries first.',
+    },
+    {
+      title: 'Implementation support',
+      description:
+        'Refactoring, test coverage, migration work, API extraction, and replacement workflows where useful.',
+    },
+  ],
+  technologies: [
+    'Legacy PHP',
+    '.NET',
+    'Node.js',
+    'React',
+    'Next.js',
+    'PostgreSQL',
+    'MySQL',
+    'AWS',
+    'Azure',
+    'Docker',
+    'CI/CD',
+  ],
+  useCases: [
+    {
+      title: 'Stabilize before replacing',
+      description:
+        'Add observability, tests, backups, and rollback paths around fragile revenue or operations workflows.',
+    },
+    {
+      title: 'Extract a bounded workflow',
+      description:
+        'Move one risky module, integration, or reporting path behind a clearer modern interface.',
+    },
+    {
+      title: 'Prepare for AI and automation',
+      description:
+        'Clean up data ownership and system boundaries so automation has reliable inputs and permissions.',
+    },
+  ],
+  engagementOptions: [
+    {
+      title: 'Modernization assessment',
+      description:
+        'Review the codebase and production workflow enough to rank risks and useful migration seams.',
+    },
+    {
+      title: 'Stabilization sprint',
+      description:
+        'Add missing checks, deployment fixes, monitoring, and documentation around critical paths.',
+    },
+    {
+      title: 'Incremental migration',
+      description: 'Replace or refactor selected workflows while the business keeps operating.',
+    },
+  ],
+})
+
+Object.assign(fractionalCtoHub, {
+  path: '/fractional-cto-fresno',
+  aliases: ['/fractional-cto'],
+  pageTitle: 'Fractional CTO in Fresno',
+  description:
+    'Fractional CTO consulting in Fresno and remote across the US for founders and operators who need architecture, vendor review, delivery planning, and senior technical judgment.',
+  keywords: [
+    'fractional CTO Fresno',
+    'Fresno fractional CTO',
+    'technical leadership consulting Fresno',
+    'software architecture review Fresno',
+    'technology strategy consultant',
+  ],
+  buyerIntro:
+    'This page is for Fresno, Central California, and remote US businesses that need senior technical judgment before making expensive software, vendor, hiring, or architecture decisions.',
+  problemsSolved: [
+    'Founders and operators making technical decisions without a senior engineering counterpart.',
+    'Vendor proposals that need independent architecture, scope, and maintenance review.',
+    'Delivery plans that keep slipping because risk and ownership are unclear.',
+    'Hiring decisions that depend on knowing what technical capability the business actually needs.',
+  ],
+  whatYouGet: [
+    {
+      title: 'Decision support',
+      description:
+        'Clear tradeoffs around build vs. buy, vendor selection, architecture, hiring, and delivery risk.',
+    },
+    {
+      title: 'Technical due diligence',
+      description:
+        'Codebase, proposal, architecture, or platform review from a Principal Engineer perspective.',
+    },
+    {
+      title: 'Execution direction',
+      description:
+        'Roadmaps, milestones, standards, and scope boundaries that teams and vendors can work from.',
+    },
+  ],
+  technologies: [
+    'AWS',
+    'Azure',
+    'Cloudflare',
+    'Next.js',
+    'React',
+    'Node.js',
+    'TypeScript',
+    'PostgreSQL',
+    'Shopify',
+    'NetSuite',
+    'AI/LLM platforms',
+  ],
+  useCases: [
+    {
+      title: 'Pre-build strategy',
+      description:
+        'Clarify what should be built, bought, postponed, or reviewed before committing budget.',
+    },
+    {
+      title: 'Vendor review',
+      description:
+        'Evaluate proposals, architecture claims, scope gaps, maintenance assumptions, and integration risk.',
+    },
+    {
+      title: 'Team and roadmap support',
+      description:
+        'Help a growing business define technical priorities before hiring or scaling a delivery team.',
+    },
+  ],
+  engagementOptions: [
+    {
+      title: 'Advisory call package',
+      description:
+        'Focused technical guidance around a narrow decision, proposal, or roadmap question.',
+    },
+    {
+      title: 'Fractional leadership',
+      description:
+        'Recurring senior technical direction for founders, operators, or teams without a full-time CTO.',
+    },
+    {
+      title: 'Architecture and delivery review',
+      description:
+        'A deeper review with written recommendations, risk ranking, and implementation sequence.',
+    },
+  ],
+})
+
+export const technicalArchitectureReviewHub: ServiceHub = {
+  path: '/technical-architecture-review',
+  eyebrow: 'Technical architecture review',
+  pageTitle: 'Technical Architecture Review',
+  h1: 'Independent Architecture Review Before You Bet More Budget',
+  description:
+    'Technical architecture review for teams that need a practical assessment of software risk, scalability, integrations, vendor plans, or modernization options.',
+  keywords: [
+    'technical architecture review',
+    'software architecture review',
+    'codebase assessment consultant',
+    'system architecture consulting',
+    'technical due diligence consultant',
+  ],
+  serviceType: 'Technical Architecture Review',
+  buyerIntro:
+    'This page is for founders, operators, and technical leaders who need an experienced outside read on a system, proposal, migration plan, or high-risk software decision.',
+  summaryCards: [
+    {
+      title: 'Best fit',
+      description: 'A technical decision is expensive enough that guessing would be irresponsible.',
+    },
+    {
+      title: 'Core work',
+      description:
+        'Architecture, codebase, data, integration, operational, and vendor risk review.',
+    },
+    {
+      title: 'Output',
+      description: 'A ranked set of risks, tradeoffs, and practical next steps.',
+    },
+  ],
+  fitTitle: 'Who This Is For',
+  fitIntro:
+    'A technical architecture review helps when the business needs clarity before a rebuild, vendor contract, funding milestone, hiring plan, or major integration.',
+  fitSignals: [
+    'A system works today, but the team is not sure it can support the next phase.',
+    'A vendor or internal team has proposed a rebuild, migration, or platform choice.',
+    'Executives need a plain-English read on risk, cost, and sequencing.',
+    'Engineering needs an outside principal-level review before committing to a path.',
+  ],
+  problemsSolved: [
+    'Architecture choices that are hard to evaluate from inside the delivery pressure.',
+    'Fragile integrations, unclear ownership, missing observability, or weak deployment practices.',
+    'Vendor proposals with hidden scope, maintenance, security, or data risks.',
+    'Modernization plans that need sequencing instead of a risky all-at-once rewrite.',
+  ],
+  whatYouGet: [
+    {
+      title: 'Evidence-based assessment',
+      description:
+        'Review of code, architecture diagrams, deployment flow, data model, logs, integrations, and team constraints where available.',
+    },
+    {
+      title: 'Risk ranking',
+      description:
+        'A prioritized list of technical and business risks with the consequences stated clearly.',
+    },
+    {
+      title: 'Actionable recommendation',
+      description:
+        'A practical sequence for stabilizing, building, migrating, buying, or stopping work.',
+    },
+  ],
+  technologies: [
+    'React',
+    'Next.js',
+    'Node.js',
+    'TypeScript',
+    'PostgreSQL',
+    'AWS',
+    'Azure',
+    'Cloudflare',
+    'Shopify',
+    'NetSuite',
+    'CI/CD',
+    'Legacy web stacks',
+  ],
+  useCases: [
+    {
+      title: 'Pre-rewrite review',
+      description:
+        'Check whether a full rewrite is necessary, and identify safer migration boundaries when possible.',
+    },
+    {
+      title: 'Vendor proposal review',
+      description:
+        'Evaluate whether scope, architecture, timeline, ownership, and maintenance assumptions are credible.',
+    },
+    {
+      title: 'Scale and reliability review',
+      description:
+        'Assess whether the current system can support planned traffic, workflow volume, integrations, or product expansion.',
+    },
+  ],
+  processTitle: 'Review Process',
+  processSteps: [
+    {
+      title: 'Collect evidence',
+      description:
+        'Review goals, architecture, code, deployments, incidents, dependencies, vendors, and business constraints.',
+    },
+    {
+      title: 'Identify risk and leverage',
+      description:
+        'Separate urgent risks from noise and look for high-leverage changes that reduce uncertainty quickly.',
+    },
+    {
+      title: 'Deliver the recommendation',
+      description:
+        'Summarize the system honestly, rank the risks, and propose the most responsible next sequence.',
+    },
+  ],
+  engagementOptions: [
+    {
+      title: 'Focused review',
+      description:
+        'A narrow read on one proposal, architecture decision, integration, or migration path.',
+    },
+    {
+      title: 'Codebase and architecture assessment',
+      description:
+        'A deeper review of the application, data, deployment, testing, and operational model.',
+    },
+    {
+      title: 'Follow-on implementation',
+      description:
+        'If useful, turn the recommendation into stabilization, modernization, or integration work.',
+    },
+  ],
+  controlsTitle: 'What the Review Looks For',
+  controlsIntro:
+    'The review focuses on the risks that tend to become expensive after a system is already in motion.',
+  controls: [
+    'System boundaries, ownership, and data flow.',
+    'Deployment, rollback, observability, and incident readiness.',
+    'Integration failure modes, retries, and recovery paths.',
+    'Testing strategy around revenue, operations, and customer-critical workflows.',
+  ],
+  relatedTitle: 'Related Services and Writing',
+  relatedLinks: [
+    {
+      title: 'Software Modernization Consulting',
+      description:
+        'Use an architecture review to find the safest modernization sequence before committing to a rewrite.',
+      href: '/software-modernization-consulting',
+    },
+    {
+      title: 'Fractional CTO in Fresno',
+      description:
+        'Ongoing technical leadership when the business needs senior judgment beyond a one-time review.',
+      href: '/fractional-cto-fresno',
+    },
+    {
+      title: 'Production Checklist for AI-Assisted Software',
+      description:
+        'A practical checklist for software that needs to hold up after AI-assisted development.',
+      href: '/blog/production-checklist-ai-assisted-software',
+    },
+  ],
+  faqTitle: 'Common Architecture Review Questions',
+  faqs: [
+    {
+      question: 'What do you review in a technical architecture review?',
+      answer:
+        'The review can cover code structure, system boundaries, database design, integrations, deployment, observability, testing, security basics, vendor assumptions, and whether the architecture fits the business goal.',
+    },
+    {
+      question: 'Do you need access to source code?',
+      answer:
+        'Source code helps for a deeper review, but a useful first assessment can also start from diagrams, deployment notes, vendor proposals, incident history, data models, and walkthroughs with the team.',
+    },
+    {
+      question: 'Is this only for broken systems?',
+      answer:
+        'No. A review is often most useful before a major rebuild, funding milestone, vendor contract, scale-up, or integration project.',
+    },
+    {
+      question: 'What is the deliverable?',
+      answer:
+        'The deliverable is a plain-English technical recommendation: what is working, what is risky, what should happen next, and which changes should wait.',
+    },
+  ],
+  ctaTitle: 'Bring the Decision or the Risk',
+  ctaDescription:
+    'Share the system, proposal, migration plan, or technical decision you need reviewed. We will help clarify the risk before more budget is committed.',
+}
+
 export const serviceHubs: ServiceHub[] = [
   customSoftwareDevelopmentHub,
   aiWorkflowAutomationHub,
@@ -731,6 +1471,7 @@ export const serviceHubs: ServiceHub[] = [
   shopifyNetSuiteIntegrationHub,
   softwareModernizationHub,
   fractionalCtoHub,
+  technicalArchitectureReviewHub,
 ]
 
 export const serviceHubByPath = Object.fromEntries(serviceHubs.map((hub) => [hub.path, hub]))

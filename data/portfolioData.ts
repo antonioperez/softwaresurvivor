@@ -16,7 +16,7 @@ const portfolioData: PortfolioItem[] = [
       'Manual email intake was slowing order operations and creating repeated data-entry work.',
     role: 'Designed and built the automation workflow from unstructured email to structured order data.',
     proof: 'AI workflow automation for an operations-heavy business process.',
-    href: 'http://inbox2order.com',
+    href: '/portfolio/inbox2order',
     imgSrc: '/static/images/portfolio/inbox2order.png',
   },
   {
@@ -27,7 +27,7 @@ const portfolioData: PortfolioItem[] = [
     role: 'Built product workflows and launch-ready web application architecture.',
     proof: 'Early-stage product build with community, logistics, and sustainability constraints.',
     imgSrc: 'https://tlaloc.pages.dev/assets/public-banner-BQdze4gp.webp',
-    href: 'https://tlaloc.pages.dev',
+    href: '/portfolio/tlaloc-harvest',
   },
   {
     title: 'Candid Moments',
@@ -37,7 +37,7 @@ const portfolioData: PortfolioItem[] = [
     role: 'Built a serverless moderation pipeline with AWS Lambda, Rekognition, and S3.',
     proof: 'Reduced manual review risk with automated safety checks before publishing.',
     imgSrc: '/static/images/portfolio/candid-moments.png',
-    href: 'https://candidmoments.io',
+    href: '/portfolio/candid-moments',
   },
   {
     title: 'FeelsReel',

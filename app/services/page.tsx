@@ -40,7 +40,7 @@ const services = [
     title: 'AI Workflow Automation',
     description:
       'We automate expensive manual workflows and add AI where it creates measurable leverage, grounded safely in your business data instead of bolted on as a demo.',
-    href: '/ai-workflow-automation',
+    href: '/ai-workflow-automation-consulting',
     hrefLabel: 'Explore AI workflow automation',
     items: [
       'AI-assisted document, email, and data processing',
@@ -58,7 +58,7 @@ const services = [
     title: 'Systems Integration',
     description:
       'We connect the tools your team already uses so data flows without copy-paste: ERPs, CRMs, e-commerce platforms, and the spreadsheets in between.',
-    href: '/systems-integration',
+    href: '/systems-integration-consulting',
     hrefLabel: 'Explore systems integration',
     items: [
       'ERP, CRM, and e-commerce integrations (NetSuite, WooCommerce, and more)',
@@ -73,10 +73,28 @@ const services = [
     ],
   },
   {
+    title: 'Shopify-NetSuite Integration',
+    description:
+      'We help e-commerce teams stabilize Shopify and NetSuite flows with connector cleanup, SuiteQL reporting, custom middleware, and recoverable exception handling.',
+    href: '/shopify-netsuite-integration-consulting',
+    hrefLabel: 'Explore Shopify-NetSuite integration',
+    items: [
+      'Order, fulfillment, refund, payment, and inventory mapping',
+      'SuiteQL reports for pending orders, tracking, and reconciliation',
+      'Connector support layers, retries, and replay tooling',
+      'Operational exception queues around revenue-critical workflows',
+    ],
+    iconBg: 'bg-yellow-100 dark:bg-yellow-900',
+    iconColor: 'text-yellow-700 dark:text-yellow-300',
+    iconPaths: [
+      'M3.75 7.5h16.5M6 7.5V6a3 3 0 013-3h6a3 3 0 013 3v1.5m-12 0V18a3 3 0 003 3h6a3 3 0 003-3V7.5',
+    ],
+  },
+  {
     title: 'Software Modernization & Rescue',
     description:
       'We stabilize fragile systems and modernize legacy code incrementally, so the business keeps running while the risky parts get replaced.',
-    href: '/software-modernization',
+    href: '/software-modernization-consulting',
     hrefLabel: 'Explore software modernization',
     items: [
       'Legacy system assessment and migration planning',
@@ -94,7 +112,7 @@ const services = [
     title: 'Architecture & Technical Leadership',
     description:
       'We bring Principal Engineer-level judgment to architecture decisions, delivery planning, and team growth, before and during the build.',
-    href: '/fractional-cto',
+    href: '/fractional-cto-fresno',
     hrefLabel: 'Explore fractional CTO services',
     items: [
       'Fractional CTO and senior technical direction',
@@ -105,6 +123,22 @@ const services = [
     iconBg: 'bg-green-100 dark:bg-green-900',
     iconColor: 'text-green-600 dark:text-green-400',
     iconPaths: ['M13 10V3L4 14h7v7l9-11h-7z'],
+  },
+  {
+    title: 'Technical Architecture Review',
+    description:
+      'We review codebases, vendor plans, integrations, and migration paths before you commit more budget to a risky technical direction.',
+    href: '/technical-architecture-review',
+    hrefLabel: 'Explore technical architecture review',
+    items: [
+      'Independent review of codebase, architecture, and deployment risk',
+      'Vendor proposal and rebuild-plan assessment',
+      'Prioritized recommendations for stabilization or migration',
+      'Plain-English tradeoffs for operators and technical teams',
+    ],
+    iconBg: 'bg-cyan-100 dark:bg-cyan-900',
+    iconColor: 'text-cyan-700 dark:text-cyan-300',
+    iconPaths: ['M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5l5 5v11a2 2 0 01-2 2z'],
   },
   {
     title: 'DevOps & Cloud Infrastructure',

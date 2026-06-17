@@ -7,9 +7,9 @@ import { genPageMetadata } from './seo'
 // homepage must append the brand suffix itself.
 export const metadata = {
   ...genPageMetadata({
-    title: 'Custom Software Development for Growing Teams',
+    title: 'Custom Software Development & AI Automation in Fresno',
     description:
-      'Custom software development for established businesses and funded teams. We build AI workflow automation, integrations, SaaS products, and cloud systems from Fresno, CA.',
+      'Principal engineer-led consulting for custom software, AI workflow automation, integrations, and software modernization in Fresno, Central California, and remote across the US.',
     canonical: '/',
     keywords: [
       'custom software development company',
@@ -21,7 +21,7 @@ export const metadata = {
       'Fresno software development',
     ],
   }),
-  title: 'Custom Software Development for Growing Teams | Software Survivor',
+  title: 'Custom Software Development & AI Automation in Fresno | Software Survivor',
 }
 
 export default async function Page() {

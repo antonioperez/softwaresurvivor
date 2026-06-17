@@ -8,6 +8,11 @@ interface ServiceHubPageProps {
 
 export default function ServiceHubPage({ hub }: ServiceHubPageProps) {
   const pageUrl = `${siteMetadata.siteUrl}${hub.path}`
+  const breadcrumbItems = [
+    { name: 'Home', item: siteMetadata.siteUrl },
+    { name: 'Services', item: `${siteMetadata.siteUrl}/services` },
+    { name: hub.pageTitle, item: pageUrl },
+  ]
   const structuredData = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -34,6 +39,20 @@ export default function ServiceHubPage({ hub }: ServiceHubPageProps) {
         },
         areaServed: siteMetadata.localBusiness.areaServed,
         serviceType: hub.serviceType,
+        hasOfferCatalog: hub.engagementOptions
+          ? {
+              '@type': 'OfferCatalog',
+              name: `${hub.pageTitle} engagement options`,
+              itemListElement: hub.engagementOptions.map((option) => ({
+                '@type': 'Offer',
+                itemOffered: {
+                  '@type': 'Service',
+                  name: option.title,
+                  description: option.description,
+                },
+              })),
+            }
+          : undefined,
       },
       {
         '@type': 'FAQPage',
@@ -45,6 +64,16 @@ export default function ServiceHubPage({ hub }: ServiceHubPageProps) {
             '@type': 'Answer',
             text: faq.answer,
           },
+        })),
+      },
+      {
+        '@type': 'BreadcrumbList',
+        '@id': `${pageUrl}#breadcrumb`,
+        itemListElement: breadcrumbItems.map((item, index) => ({
+          '@type': 'ListItem',
+          position: index + 1,
+          name: item.name,
+          item: item.item,
         })),
       },
     ],
@@ -68,6 +97,11 @@ export default function ServiceHubPage({ hub }: ServiceHubPageProps) {
             <p className="max-w-3xl text-lg leading-8 text-gray-600 dark:text-gray-400">
               {hub.description}
             </p>
+            {hub.buyerIntro && (
+              <p className="max-w-3xl text-base leading-7 text-gray-600 dark:text-gray-400">
+                {hub.buyerIntro}
+              </p>
+            )}
           </div>
 
           <div className="grid gap-4 md:grid-cols-3">
@@ -107,6 +141,50 @@ export default function ServiceHubPage({ hub }: ServiceHubPageProps) {
             </ul>
           </div>
 
+          {(hub.problemsSolved || hub.whatYouGet) && (
+            <div className="mt-16 grid gap-10 lg:grid-cols-2">
+              {hub.problemsSolved && (
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                    Problems This Solves
+                  </h2>
+                  <ul className="mt-6 space-y-3 text-gray-600 dark:text-gray-400">
+                    {hub.problemsSolved.map((problem) => (
+                      <li
+                        key={problem}
+                        className="rounded-lg border border-gray-200 bg-white p-4 dark:border-gray-700 dark:bg-gray-800"
+                      >
+                        {problem}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+              {hub.whatYouGet && (
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                    What You Get
+                  </h2>
+                  <div className="mt-6 space-y-4">
+                    {hub.whatYouGet.map((item) => (
+                      <div
+                        key={item.title}
+                        className="rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-800"
+                      >
+                        <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                          {item.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                          {item.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
+
           <div className="mt-16">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
               {hub.processTitle}
@@ -128,6 +206,71 @@ export default function ServiceHubPage({ hub }: ServiceHubPageProps) {
               ))}
             </div>
           </div>
+
+          {(hub.technologies || hub.useCases || hub.engagementOptions) && (
+            <div className="mt-16 grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+              <div>
+                {hub.technologies && (
+                  <>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                      Relevant Technologies and Platforms
+                    </h2>
+                    <div className="mt-5 flex flex-wrap gap-2">
+                      {hub.technologies.map((technology) => (
+                        <span
+                          key={technology}
+                          className="rounded-full border border-gray-200 bg-white px-3 py-1 text-sm text-gray-700 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-300"
+                        >
+                          {technology}
+                        </span>
+                      ))}
+                    </div>
+                  </>
+                )}
+                {hub.engagementOptions && (
+                  <div className={hub.technologies ? 'mt-10' : undefined}>
+                    <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                      Engagement Options
+                    </h2>
+                    <div className="mt-5 space-y-4">
+                      {hub.engagementOptions.map((option) => (
+                        <div key={option.title}>
+                          <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                            {option.title}
+                          </h3>
+                          <p className="mt-1 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                            {option.description}
+                          </p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
+              {hub.useCases && (
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+                    Example Use Cases
+                  </h2>
+                  <div className="mt-6 grid gap-4">
+                    {hub.useCases.map((useCase) => (
+                      <div
+                        key={useCase.title}
+                        className="rounded-lg border border-gray-200 bg-white p-5 dark:border-gray-700 dark:bg-gray-800"
+                      >
+                        <h3 className="font-semibold text-gray-900 dark:text-gray-100">
+                          {useCase.title}
+                        </h3>
+                        <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                          {useCase.description}
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+            </div>
+          )}
 
           <div className="mt-16 grid gap-10 lg:grid-cols-2">
             <div>

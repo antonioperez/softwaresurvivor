@@ -37,7 +37,11 @@ export default function Portfolio() {
           '@type': 'CreativeWork',
           name: item.title,
           description: item.description,
-          url: item.href || `${siteMetadata.siteUrl}/portfolio`,
+          url: item.href
+            ? item.href.startsWith('http')
+              ? item.href
+              : `${siteMetadata.siteUrl}${item.href}`
+            : `${siteMetadata.siteUrl}/portfolio`,
           about: [item.problem, item.role, item.proof].filter(Boolean),
           creator: {
             '@id': `${siteMetadata.siteUrl}/#organization`,
