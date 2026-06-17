@@ -114,16 +114,43 @@ export const Blog = defineDocumentType(() => ({
     ...computedFields,
     structuredData: {
       type: 'json',
-      resolve: (doc) => ({
-        '@context': 'https://schema.org',
-        '@type': 'BlogPosting',
-        headline: doc.title,
-        datePublished: doc.date,
-        dateModified: doc.lastmod || doc.date,
-        description: doc.summary,
-        image: doc.images ? doc.images[0] : siteMetadata.socialBanner,
-        url: `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`,
-      }),
+      resolve: (doc) => {
+        const url = `${siteMetadata.siteUrl}/${doc._raw.flattenedPath}`
+        const image = doc.images
+          ? typeof doc.images === 'string'
+            ? doc.images
+            : doc.images[0]
+          : siteMetadata.socialBanner
+        const imagePath = String(image || siteMetadata.socialBanner)
+        const imageUrl = imagePath.includes('http')
+          ? imagePath
+          : `${siteMetadata.siteUrl}${imagePath}`
+
+        return {
+          '@context': 'https://schema.org',
+          '@type': 'BlogPosting',
+          '@id': `${url}#article`,
+          headline: doc.title,
+          datePublished: doc.date,
+          dateModified: doc.lastmod || doc.date,
+          description: doc.summary,
+          image: imageUrl,
+          url,
+          mainEntityOfPage: {
+            '@type': 'WebPage',
+            '@id': url,
+          },
+          isPartOf: {
+            '@id': `${siteMetadata.siteUrl}/#website`,
+          },
+          publisher: {
+            '@id': `${siteMetadata.siteUrl}/#organization`,
+          },
+          inLanguage: siteMetadata.language,
+          keywords: doc.tags,
+          articleSection: doc.tags?.[0],
+        }
+      },
     },
   },
 }))

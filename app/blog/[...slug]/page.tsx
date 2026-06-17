@@ -100,11 +100,21 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
     return coreContent(authorResults as Authors)
   })
   const mainContent = coreContent(post)
-  const jsonLd = post.structuredData
+  const jsonLd = { ...post.structuredData }
   jsonLd['author'] = authorDetails.map((author) => {
+    const slug = author.name.toLowerCase().replace(/[^a-z0-9]+/g, '-')
+    const sameAs = [author.linkedin, author.github, author.twitter].filter(Boolean)
+
     return {
       '@type': 'Person',
+      '@id': `${siteMetadata.siteUrl}/about#${slug}`,
       name: author.name,
+      url: `${siteMetadata.siteUrl}/about`,
+      jobTitle: author.occupation,
+      sameAs,
+      worksFor: {
+        '@id': `${siteMetadata.siteUrl}/#organization`,
+      },
     }
   })
 

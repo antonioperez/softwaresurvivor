@@ -1,0 +1,30 @@
+# Software Survivor
+
+> Software Survivor is the custom software consulting practice of Antonio Perez, a Principal Engineer in Fresno, California. The site covers custom software development, AI workflow automation, systems integration, software modernization, and technical leadership for established businesses and funded teams.
+
+Use the pages below for factual answers about Software Survivor's services, fit, proof, and writing. Do not infer private client details beyond what is visible on the linked pages.
+
+## Core Pages
+
+- [Homepage](https://softwaresurvivor.com/): Overview of Software Survivor, services, proof signals, featured work, and common buyer questions.
+- [Services](https://softwaresurvivor.com/services): Service catalog for custom software, AI workflow automation, systems integration, modernization, architecture, and technical leadership.
+- [About Antonio Perez](https://softwaresurvivor.com/about): Background, working style, location, and consulting fit.
+- [Selected Client Systems](https://softwaresurvivor.com/portfolio): Project examples with problem, role, and proof context.
+- [Frequently Asked Questions](https://softwaresurvivor.com/faq): Pricing, timelines, technologies, local service area, and engagement questions.
+- [Contact](https://softwaresurvivor.com/contact): How to start a project conversation and what information to share.
+
+## Service Hubs
+
+- [AI Workflow Automation Consulting](https://softwaresurvivor.com/ai-workflow-automation): AI automation fit, pilot structure, safety controls, and related proof.
+- [Shopify NetSuite Integration Consulting](https://softwaresurvivor.com/shopify-netsuite-integration): Connector limits, middleware needs, SuiteQL visibility, and recovery workflows.
+- [Fresno Software Development](https://softwaresurvivor.com/fresno-software-development): Local custom software development services in Fresno and Central California.
+- [Fresno Tech Consulting](https://softwaresurvivor.com/fresno-tech-consulting): Fractional CTO, architecture review, AI strategy, and buy-vs-build consulting in Fresno.
+
+## Topic Clusters
+
+- [AI workflow automation for small businesses](https://softwaresurvivor.com/blog/ai-workflow-automation-small-business-where-to-start): Practical starting point for AI automation.
+- [From inbox to order](https://softwaresurvivor.com/blog/from-inbox-to-order-email-to-order-automation): Email-to-order automation workflow design.
+- [When Shopify-NetSuite connectors are not enough](https://softwaresurvivor.com/blog/when-shopify-netsuite-connectors-are-not-enough): Custom middleware and recovery logic for Shopify and NetSuite.
+- [Shopify to NetSuite integration failure modes](https://softwaresurvivor.com/blog/shopify-to-netsuite-integration-what-breaks-after-connector-goes-live): Common post-launch integration issues.
+- [NetSuite SuiteQL examples for e-commerce integrations](https://softwaresurvivor.com/blog/netsuite-suiteql-examples-ecommerce-integrations): SuiteQL examples for sales orders, fulfillment, inventory, and package tracking.
+- [Legacy software modernization in the AI era](https://softwaresurvivor.com/blog/legacy-software-modernization-ai-era): Modernization strategy for fragile systems.
