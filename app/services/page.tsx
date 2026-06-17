@@ -38,6 +38,8 @@ const services = [
     title: 'AI Workflow Automation',
     description:
       'We automate expensive manual workflows and add AI where it creates measurable leverage, grounded safely in your business data instead of bolted on as a demo.',
+    href: '/ai-workflow-automation',
+    hrefLabel: 'Explore AI workflow automation',
     items: [
       'AI-assisted document, email, and data processing',
       'Automating manual review, routing, and data-entry steps',
@@ -54,6 +56,8 @@ const services = [
     title: 'Systems Integration',
     description:
       'We connect the tools your team already uses so data flows without copy-paste: ERPs, CRMs, e-commerce platforms, and the spreadsheets in between.',
+    href: '/shopify-netsuite-integration',
+    hrefLabel: 'Explore Shopify-NetSuite integration',
     items: [
       'ERP, CRM, and e-commerce integrations (NetSuite, WooCommerce, and more)',
       'Email-to-order and document intake automation',
@@ -182,6 +186,14 @@ export default function ServicesPage() {
                     <li key={item}>• {item}</li>
                   ))}
                 </ul>
+                {service.href && (
+                  <Link
+                    href={service.href}
+                    className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex text-sm font-medium"
+                  >
+                    {service.hrefLabel} →
+                  </Link>
+                )}
               </div>
             ))}
           </div>

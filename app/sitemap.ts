@@ -24,6 +24,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'about',
     'portfolio',
     'tags',
+    'ai-workflow-automation',
+    'shopify-netsuite-integration',
     'fresno-software-development',
     'fresno-tech-consulting',
     'faq',

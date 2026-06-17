@@ -76,6 +76,19 @@ const proofSignals = [
   },
 ]
 
+const geoServiceLinks = [
+  {
+    title: 'AI workflow automation consulting',
+    description: 'Pilot structure, review controls, and safe automation patterns.',
+    href: '/ai-workflow-automation',
+  },
+  {
+    title: 'Shopify-NetSuite integration consulting',
+    description: 'Connector cleanup, SuiteQL reporting, middleware, and recovery tooling.',
+    href: '/shopify-netsuite-integration',
+  },
+]
+
 // Kept in sync with the full list on /faq so the FAQPage schema stays consistent.
 const homepageFaqs = [
   {
@@ -275,7 +288,24 @@ export default function Home({ posts }) {
             ))}
           </div>
 
-          <div className="mt-10 text-center">
+          <div className="mt-10 grid gap-4 md:grid-cols-2">
+            {geoServiceLinks.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="hover:border-brand-300 dark:hover:border-brand-700 block rounded-lg border border-gray-200 bg-white p-5 text-left transition-colors dark:border-gray-700 dark:bg-gray-800"
+              >
+                <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100">
+                  {item.title}
+                </h3>
+                <p className="mt-2 text-sm leading-6 text-gray-600 dark:text-gray-400">
+                  {item.description}
+                </p>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-8 text-center">
             <Link
               href="/services"
               className="text-brand-600 hover:text-brand-700 dark:text-brand-400 dark:hover:text-brand-300 inline-flex font-medium"
