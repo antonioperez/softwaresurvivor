@@ -119,6 +119,12 @@ const serviceLinks = [
     href: '/technical-architecture-review',
     description: 'Independent review before a rebuild, vendor decision, migration, or scale-up.',
   },
+  {
+    title: 'Fresno IT consulting for software strategy',
+    href: '/fresno-tech-consulting',
+    description:
+      'Software-focused IT consulting for buyers comparing vendors, platforms, modernization, and automation options.',
+  },
 ]
 
 export default function FresnoSoftwareDevelopmentPage() {

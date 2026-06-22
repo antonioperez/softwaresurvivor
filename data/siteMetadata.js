@@ -17,6 +17,8 @@ const siteMetadata = {
     'Fresno software development',
     'Fresno tech consulting',
     'technology consulting Fresno',
+    'IT consulting Fresno',
+    'Fresno IT companies',
   ],
   language: 'en-us',
   theme: 'system', // system, dark or light
