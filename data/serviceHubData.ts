@@ -280,66 +280,154 @@ export const customSoftwareDevelopmentHub: ServiceHub = {
   path: '/custom-software-development',
   eyebrow: 'Custom software development',
   pageTitle: 'Custom Software Development Consulting',
-  h1: 'Custom Software for Business-Critical Workflows',
+  h1: 'Custom Software Development for Business-Critical Workflows',
   description:
-    'Custom software development for businesses that need maintainable internal platforms, customer portals, SaaS products, and workflow tools tied to real operations.',
+    'Custom software development for business owners who need internal tools, customer portals, SaaS products, integrations, and workflow automation.',
   keywords: [
+    'custom software development',
     'custom software development consultant',
     'business software development',
     'custom web application development',
     'internal software platform',
     'SaaS product development consultant',
+    'workflow automation software',
+    'customer portal development',
   ],
   serviceType: 'Custom Software Development',
+  buyerIntro:
+    'This page is for business owners, operators, and decision makers who need to understand whether a custom build is the right move before committing budget, team time, or operational risk.',
   summaryCards: [
     {
       title: 'Best fit',
-      description: 'A workflow, product, or operation where off-the-shelf software no longer fits.',
+      description:
+        'A valuable workflow where off-the-shelf software creates workarounds, duplicate entry, or missed visibility.',
     },
     {
       title: 'Core work',
-      description: 'Requirements, architecture, implementation, integration, testing, and launch.',
+      description:
+        'Discovery, requirements, architecture, UX, implementation, integrations, testing, launch, and support.',
     },
     {
       title: 'First milestone',
-      description: 'A scoped release that proves value before the system grows.',
+      description: 'A scoped first release that proves business value before the system expands.',
     },
   ],
   fitTitle: 'When Custom Software Makes Sense',
   fitIntro:
-    'Custom software is justified when the workflow is specific, valuable, and hard to force into generic tools without creating manual work.',
+    'Custom software development is justified when the workflow is specific, valuable, and hard to force into generic tools without creating manual work.',
   fitSignals: [
-    'The workflow directly affects revenue, operations, compliance, or customer experience.',
-    'Existing tools require spreadsheets, duplicate entry, or informal workarounds to keep running.',
-    'The team needs ownership over data, process, permissions, and integration behavior.',
-    'A smaller first release can prove the direction without committing to a risky rebuild.',
+    'The workflow directly affects revenue, operations, compliance, reporting, or customer experience.',
+    'Existing SaaS tools require spreadsheets, duplicate entry, copy-paste work, or informal workarounds to keep running.',
+    'The team needs control over data, user permissions, approval paths, integration behavior, or business rules.',
+    'A smaller first release can prove the direction before the business commits to a larger platform or rebuild.',
+  ],
+  problemsSolved: [
+    'Internal operations that depend on fragile spreadsheets, email chains, and manual status updates.',
+    'Customer-facing portals where clients, vendors, or field teams need secure self-service access.',
+    'Disconnected systems where CRM, ERP, e-commerce, warehouse, accounting, or internal tools do not share reliable data.',
+    'Legacy software that still runs the business but is slow to change, hard to support, or blocking new workflows.',
+  ],
+  whatYouGet: [
+    {
+      title: 'Business-first discovery',
+      description:
+        'A clear map of users, current tools, manual steps, constraints, risks, and the outcome the software must support.',
+    },
+    {
+      title: 'A practical build plan',
+      description:
+        'Scope, architecture, integrations, data model, permissions, rollout sequence, and the smallest responsible first release.',
+    },
+    {
+      title: 'Production-ready implementation',
+      description:
+        'Custom web applications, internal platforms, customer portals, SaaS features, API integrations, testing, deployment, and ongoing maintainability.',
+    },
+  ],
+  technologies: [
+    'Next.js',
+    'React',
+    'TypeScript',
+    'Node.js',
+    'PostgreSQL',
+    'APIs',
+    'Webhooks',
+    'ERP integrations',
+    'CRM integrations',
+    'Cloud deployment',
+    'AI workflow automation',
+  ],
+  useCases: [
+    {
+      title: 'Internal workflow software',
+      description:
+        'Replace spreadsheet-driven approvals, scheduling, reporting, reconciliation, or fulfillment workflows with a clearer operating system.',
+    },
+    {
+      title: 'Customer and vendor portals',
+      description:
+        'Give customers, vendors, partners, or field teams secure access to orders, documents, requests, status updates, and account data.',
+    },
+    {
+      title: 'SaaS and product development',
+      description:
+        'Turn a validated product idea, manual service, or internal capability into a maintainable web application with real user workflows.',
+    },
+    {
+      title: 'Reporting dashboards and data tools',
+      description:
+        'Unify data from operational systems so leadership can see what is happening without asking the team for another spreadsheet export.',
+    },
+    {
+      title: 'ERP, CRM, and e-commerce extensions',
+      description:
+        'Build focused software around NetSuite, Shopify, CRMs, accounting systems, and warehouse tools when the standard platform does not cover the edge cases.',
+    },
   ],
   processTitle: 'How a Responsible Build Starts',
   processSteps: [
     {
-      title: 'Define the constraint',
+      title: 'Define the business problem',
       description:
-        'Start with the business problem, current workflow, system boundaries, budget, timeline, and the smallest useful outcome.',
+        'Start with users, current tools, manual steps, system boundaries, budget, timeline, and the business outcome that would make the project worth doing.',
     },
     {
-      title: 'Shape the architecture',
+      title: 'Scope the smallest useful release',
       description:
-        'Choose the simplest architecture that supports the workflow, integration points, permissions, observability, and maintainable delivery.',
+        'Choose the first version that can reduce real pain, prove adoption, and expose the right next questions without trying to build the entire platform at once.',
     },
     {
-      title: 'Ship in phases',
+      title: 'Design for production behavior',
       description:
-        'Release a useful first version, measure where it helps, then expand around the proven workflow instead of guessing at the full system.',
+        'Plan the data model, API boundaries, permissions, integrations, error handling, observability, and support paths before the workflow is business-critical.',
+    },
+  ],
+  engagementOptions: [
+    {
+      title: 'Discovery and architecture review',
+      description:
+        'Best when the business knows the pain but needs clarity on buy-vs-build, scope, cost, timeline, and technical risk before funding a build.',
+    },
+    {
+      title: 'Scoped first release',
+      description:
+        'Best when one workflow is ready to replace manual work with a focused internal tool, portal, dashboard, or integration-backed application.',
+    },
+    {
+      title: 'Ongoing product and platform development',
+      description:
+        'Best when the system will evolve through new workflows, users, integrations, reporting needs, and operational improvements after launch.',
     },
   ],
   controlsTitle: 'What Keeps a Custom Build Maintainable',
   controlsIntro:
-    'The long-term value comes from clarity around ownership, system boundaries, and production behavior.',
+    'The long-term value of custom software comes from clarity around ownership, system boundaries, and production behavior, not just the first launch.',
   controls: [
-    'Clear data model and API boundaries.',
-    'Automated checks around the most important workflows.',
-    'Observability for background jobs, integrations, and failed states.',
-    'Documentation for handoffs, support, and future development.',
+    'Clear source-code ownership, repository access, deployment notes, and handoff documentation.',
+    'A data model and API boundaries that future developers can understand without reverse-engineering the whole business.',
+    'Automated checks around revenue, operations, permissions, integrations, and other critical workflows.',
+    'Monitoring and observability for background jobs, API failures, sync issues, slow workflows, and user-facing errors.',
+    'A phased roadmap so improvements are tied to real adoption instead of an oversized feature list.',
   ],
   relatedTitle: 'Related Custom Software Writing',
   relatedLinks: [
@@ -356,6 +444,12 @@ export const customSoftwareDevelopmentHub: ServiceHub = {
       href: '/blog/building-scalable-reliable-systems-enterprise-architecture-guide',
     },
     {
+      title: 'From Inbox to Order',
+      description:
+        'A practical example of turning messy email workflows into structured operational software.',
+      href: '/blog/from-inbox-to-order-email-to-order-automation',
+    },
+    {
       title: 'Selected Client Systems',
       description: 'Examples of production software and business workflows built for real clients.',
       href: '/portfolio',
@@ -366,27 +460,37 @@ export const customSoftwareDevelopmentHub: ServiceHub = {
     {
       question: 'How much does custom software development cost?',
       answer:
-        'Most serious custom software engagements start in the five-figure range. A smaller architecture review or discovery engagement can come first when the build path is not yet clear.',
+        'Most serious custom software development engagements start in the five-figure range because they include discovery, architecture, implementation, testing, deployment, and support planning. A smaller discovery or architecture review can come first when the build path is not clear.',
     },
     {
       question: 'How long does a custom software project take?',
       answer:
-        'A focused first release may take 4-8 weeks. More complex platforms, integrations, or modernization efforts can take 3-6 months or longer depending on risk and scope.',
+        'A focused first release may take 4-8 weeks. More complex platforms, integration-heavy systems, customer portals, or modernization projects can take 3-6 months or longer depending on scope, data complexity, and rollout risk.',
     },
     {
       question: 'Should we buy software or build it?',
       answer:
-        'Buy when the process is standard. Customize when an existing platform is close. Build when the workflow is part of how the business creates value or when control over the process matters.',
+        'Buy when the process is standard and a mature tool fits most of the workflow. Customize or integrate when an existing platform is close. Build custom software when the workflow is part of how the business creates value or when control over data, process, permissions, or integration behavior matters.',
     },
     {
       question: 'Can custom software replace spreadsheets?',
       answer:
         'Yes, when the spreadsheet is acting as a workflow system, reporting layer, or source of truth. The right first step is to map what decisions the spreadsheet supports before rebuilding it.',
     },
+    {
+      question: 'Do we need a full development team?',
+      answer:
+        'Not always. Some businesses start with a principal-engineer-led discovery, a focused first release, or a small implementation team. The right team size depends on the workflow, timeline, integrations, design needs, and ongoing support expectations.',
+    },
+    {
+      question: 'What happens after custom software launches?',
+      answer:
+        'After launch, the work usually shifts to monitoring, support, user feedback, bug fixes, security updates, reporting improvements, and phased feature development. A maintainable system should have a clear plan for ownership after the first release.',
+    },
   ],
-  ctaTitle: 'Bring the Workflow, Not a Feature List',
+  ctaTitle: 'Bring the Workflow, Not Just the Feature List',
   ctaDescription:
-    'Share the users, current tools, manual steps, constraints, and business outcome. We will help shape the smallest responsible custom software path.',
+    'Share the users, current tools, manual steps, constraints, and business outcome. We will help decide whether the right next step is buying, integrating, modernizing, or building custom software.',
 }
 
 export const systemsIntegrationHub: ServiceHub = {
